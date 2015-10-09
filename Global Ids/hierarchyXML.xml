@@ -1,0 +1,82 @@
+<Connections>
+    <Instance database="Derby" instance="demo1" name="TestCon" pass="[C@4841a34" port="1530" system="192.168.33.94"
+              uname="demo1">
+        <Schema metadata_discovered="false" name="APP"/>
+        <Schema metadata_discovered="false" name="DEMO1">
+            <Table column_count="14" metadata_discovered="true" name="BUSINESS_ENTITIES" record_count="1551"
+                   timestamp=""/>
+            <Table column_count="8" metadata_discovered="true" name="CATEGORY_DETAILS" record_count="2957"
+                   timestamp=""/>
+            <Table metadata_discovered="false" name="CUSTOMER"/>
+            <Table column_count="3" metadata_discovered="true" name="EMPLOYEE" record_count="0" timestamp=""/>
+            <Table metadata_discovered="false" name="EMPLOYEES"/>
+            <Table metadata_discovered="false" name="ORDER_DETAILS"/>
+            <Table metadata_discovered="false" name="ORDER_INFORMATION"/>
+            <Table column_count="3" metadata_discovered="true" name="PARTY" record_count="8" timestamp=""/>
+            <Table metadata_discovered="false" name="PRODUCT_DETAILS"/>
+            <Table metadata_discovered="false" name="PUBLICATIONS"/>
+            <Table metadata_discovered="false" name="REGION_DETAILS"/>
+            <Table metadata_discovered="false" name="RETAIL SALES INFO"/>
+            <Table metadata_discovered="false" name="SALESDATA"/>
+            <Table metadata_discovered="false" name="SHIPPING_DETAILS"/>
+            <Table metadata_discovered="false" name="SUPPLIER_DETAILS"/>
+            <Table metadata_discovered="false" name="TERRITORIES_OF_EMPLOYEES"/>
+            <Table metadata_discovered="false" name="TERRITORY_DETAILS"/>
+            <Table metadata_discovered="false" name="TEST"/>
+        </Schema>
+        <Schema metadata_discovered="false" name="NULLID"/>
+        <Schema metadata_discovered="false" name="SAMPLE"/>
+        <Schema metadata_discovered="false" name="SAMPLE1"/>
+        <Schema metadata_discovered="false" name="SQLJ"/>
+        <Schema metadata_discovered="false" name="SYS"/>
+        <Schema metadata_discovered="false" name="SYSCAT"/>
+        <Schema metadata_discovered="false" name="SYSCS_DIAG"/>
+        <Schema metadata_discovered="false" name="SYSCS_UTIL"/>
+        <Schema metadata_discovered="false" name="SYSFUN"/>
+        <Schema metadata_discovered="false" name="SYSIBM"/>
+        <Schema metadata_discovered="false" name="SYSPROC"/>
+        <Schema metadata_discovered="false" name="SYSSTAT"/>
+    </Instance>
+    <Instance database="Derby" instance="demo2" name="Test" pass="[C@2f24b13a" port="1530" system="192.168.33.94"
+              uname="demo2">
+        <Schema metadata_discovered="false" name="APP"/>
+        <Schema metadata_discovered="false" name="DEMO2"/>
+        <Schema metadata_discovered="false" name="NULLID"/>
+        <Schema metadata_discovered="false" name="SAMPLE2">
+            <Table metadata_discovered="false" name="ABBREV_DETAILS"/>
+            <Table metadata_discovered="false" name="CATAGORIES_DETAILS"/>
+            <Table metadata_discovered="false" name="CENSUS_FINANCIAL_GAIN"/>
+            <Table metadata_discovered="false" name="CLIENT"/>
+            <Table metadata_discovered="false" name="COFFEECHAINSHEET"/>
+            <Table metadata_discovered="false" name="CUST_MASTER"/>
+            <Table metadata_discovered="false" name="DATA_SOURCE"/>
+            <Table metadata_discovered="false" name="DATSRCLN"/>
+            <Table metadata_discovered="false" name="DERIV_CD"/>
+            <Table metadata_discovered="false" name="DETAILS_ORDER"/>
+            <Table metadata_discovered="false" name="FOOD_DESCRIPTION"/>
+            <Table metadata_discovered="false" name="FOOD_GROUP"/>
+            <Table metadata_discovered="false" name="ITEMS"/>
+            <Table metadata_discovered="false" name="NUTR_DEF"/>
+            <Table metadata_discovered="false" name="NUT_DATA"/>
+            <Table metadata_discovered="false" name="ORDER_INFO"/>
+            <Table metadata_discovered="false" name="PUBLISHINGS"/>
+            <Table metadata_discovered="false" name="Region"/>
+            <Table metadata_discovered="false" name="SALESDATABASE"/>
+            <Table metadata_discovered="false" name="SALESREP"/>
+            <Table metadata_discovered="false" name="SALESREP_REGION"/>
+            <Table metadata_discovered="false" name="SHIP_INFO"/>
+            <Table metadata_discovered="false" name="SUPPLIER_INFO"/>
+            <Table metadata_discovered="false" name="TERRITORY_INFO"/>
+            <Table metadata_discovered="false" name="WEIGHT_INFO"/>
+        </Schema>
+        <Schema metadata_discovered="false" name="SQLJ"/>
+        <Schema metadata_discovered="false" name="SYS"/>
+        <Schema metadata_discovered="false" name="SYSCAT"/>
+        <Schema metadata_discovered="false" name="SYSCS_DIAG"/>
+        <Schema metadata_discovered="false" name="SYSCS_UTIL"/>
+        <Schema metadata_discovered="false" name="SYSFUN"/>
+        <Schema metadata_discovered="false" name="SYSIBM"/>
+        <Schema metadata_discovered="false" name="SYSPROC"/>
+        <Schema metadata_discovered="false" name="SYSSTAT"/>
+    </Instance>
+</Connections>

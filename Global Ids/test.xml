@@ -1,0 +1,626 @@
+<thead>
+    <tr>
+        <td>Serial No.</td>
+        <td>Class</td>
+        <td>Credits or hours</td>
+        <td>Grade</td>
+        <td>US Grade</td>
+        <td>GPA</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>English Language &amp; Communication</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Engg Physics 1</td>
+        <td>4</td>
+        <td>B</td>
+        <td>B</td>
+        <td>3.00</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Mathematics</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Mechanical Sciences 1</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Electronics</td>
+        <td>4</td>
+        <td>B</td>
+        <td>B</td>
+        <td>3.00</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Environment</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Physics Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Electronics Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Graphics Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Wokshop Practical 1</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Engg Physics 2</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Mathematics 2</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Mechanical Sciences 2</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Introduction to Computing</td>
+        <td>3</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>Electrical Engg</td>
+        <td>4</td>
+        <td>B-</td>
+        <td>B-</td>
+        <td>2.70</td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td>Engg Chemistry</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td>Physics Lab</td>
+        <td>1</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td>Chemistry Lab</td>
+        <td>1</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td>Computing Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td>Electrical Lab</td>
+        <td>2</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td>Engg Graphics</td>
+        <td>2</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>Workshop Practical 2</td>
+        <td>2</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td>Mathematics 3</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td>DS &amp; Algo</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td>Circuit Theory</td>
+        <td>4</td>
+        <td>B</td>
+        <td>B</td>
+        <td>3.00</td>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td>Comp Organisation</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td>Dig Electronics &amp; Logical Design</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td>Principles of Programming Language</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td>DS Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td>Dig Electronics Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td>Programming Prac Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>32</td>
+        <td>Circuits &amp; Networks Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td>Mathematics 4</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td>Formal Language &amp; Automata</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>35</td>
+        <td>OR</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td>Communication Engg</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>37</td>
+        <td>Architecture</td>
+        <td>4</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>38</td>
+        <td>OR Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>39</td>
+        <td>Architecture Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>40</td>
+        <td>Communication Engg Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>41</td>
+        <td>Report Writing Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>42</td>
+        <td>Operating System</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>43</td>
+        <td>DBMS</td>
+        <td>3</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>44</td>
+        <td>Algorithm</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>45</td>
+        <td>Microprocessor</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>46</td>
+        <td>Control Systems</td>
+        <td>4</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>47</td>
+        <td>OS Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>48</td>
+        <td>DBMS Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>49</td>
+        <td>Microprocessor Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td>Control Systems Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>51</td>
+        <td>Network</td>
+        <td>4</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>52</td>
+        <td>Software Engg</td>
+        <td>4</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>53</td>
+        <td>Graphics</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>54</td>
+        <td>Sys Software Adm</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>55</td>
+        <td>Object Technology</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>56</td>
+        <td>Network Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>57</td>
+        <td>Graphics Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>58</td>
+        <td>Sys Software Adm Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>59</td>
+        <td>Object Tech Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>60</td>
+        <td>OR Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>61</td>
+        <td>Language Processor</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>62</td>
+        <td>AI</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>63</td>
+        <td>Visual Programming &amp; Web</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td>FM and accounts</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>65</td>
+        <td>AOS</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>66</td>
+        <td>AI Lab</td>
+        <td>2</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>67</td>
+        <td>Visual Programming &amp; Web Lab</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>68</td>
+        <td>Assigned Project</td>
+        <td>4</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>69</td>
+        <td>Practical Training</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>70</td>
+        <td>Seminar</td>
+        <td>2</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>71</td>
+        <td>Values and Ethics</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>72</td>
+        <td>Industrial Management</td>
+        <td>3</td>
+        <td>B+</td>
+        <td>B+</td>
+        <td>3.30</td>
+    </tr>
+    <tr>
+        <td>73</td>
+        <td>E-Commerce</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>74</td>
+        <td>Advanced Java Programming</td>
+        <td>3</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+    <tr>
+        <td>75</td>
+        <td>Assigned Project</td>
+        <td>8</td>
+        <td>A+</td>
+        <td>A+</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>76</td>
+        <td>Viva-voce</td>
+        <td>4</td>
+        <td>A</td>
+        <td>A</td>
+        <td>4.00</td>
+    </tr>
+    <tr>
+        <td>77</td>
+        <td>Personality Development</td>
+        <td>2</td>
+        <td>A-</td>
+        <td>A-</td>
+        <td>3.70</td>
+    </tr>
+</thead>
