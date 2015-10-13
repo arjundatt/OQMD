@@ -1,1 +1,0 @@
-".\..\jdk\bin\java.exe" -Xms128m -Xmx512m -Djavax.net.ssl.keyStore=internalDBStore.key -Djavax.net.ssl.keyStorePassword=GlobalidsDB2013 -cp ../lib/drivers/derbynet.jar;../lib/drivers/derby.jar;../lib/drivers/derbyclient.jar  org.apache.derby.drda.NetworkServerControl shutdown -h 0.0.0.0 -p 1530 -ssl basic
