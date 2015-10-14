@@ -1,7 +1,5 @@
 package DIC.component.rightview;
 
-import com.jidesoft.swing.JideTabbedPane;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,20 +11,20 @@ import java.awt.*;
  */
 
 public class DefaultRightViewDisplay extends JPanel implements RightViewDisplay {
-    private JideTabbedPane tabbedPane;
+    private JTabbedPane tabbedPane;
     private DefaultTableView tableView;
 
     public DefaultTableView getTableView() {
         return tableView;
     }
 
-    public JideTabbedPane getTabbedPane() {
+    public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
 
     public DefaultRightViewDisplay() {
         setLayout(new BorderLayout());
-        tabbedPane = new JideTabbedPane();
+        tabbedPane = new JTabbedPane();
         tableView = new DefaultTableView();
         tableView = (DefaultTableView) tableView.emptyDisplay();
         add(tabbedPane, BorderLayout.CENTER);
@@ -41,7 +39,7 @@ public class DefaultRightViewDisplay extends JPanel implements RightViewDisplay 
     @Override
     public synchronized void addTab(String title, Component component, boolean close) {
         tabbedPane.addTab(title, component);
-        tabbedPane.setShowCloseButtonOnTab(close);
+//        tabbedPane.setShowCloseButtonOnTab(close);
 //        tabbedPane.setShowCloseButtonOnSelectedTab(close);
         updateUI();
     }

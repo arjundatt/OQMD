@@ -1,7 +1,5 @@
 package DIC.component.rightview;
 
-import com.jidesoft.swing.JideLabel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,11 +18,11 @@ public class ColumnInfo extends JPanel {
         this.name = name;
         this.type = type;
         this.length = length;
-        add(new JideLabel("Name"));
-        add(new JideLabel(name));
-        add(new JideLabel("Length"));
-        add(new JideLabel(length));
-        add(new JideLabel("Type"));
-        add(new JideLabel(type));
+        add(new JLabel("Name"));
+        add(new JLabel(name));
+        add(new JLabel("Length"));
+        add(new JLabel(length));
+        add(new JLabel("Type"));
+        add(new JLabel(type));
     }
 }

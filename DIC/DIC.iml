@@ -10,6 +10,6 @@
     <orderEntry type="library" name="drivers" level="project" />
     <orderEntry type="library" name="JIDE" level="project" />
     <orderEntry type="library" name="algs4" level="application" />
+    <orderEntry type="library" name="commons-math-2.2" level="project" />
   </component>
 </module>
-
