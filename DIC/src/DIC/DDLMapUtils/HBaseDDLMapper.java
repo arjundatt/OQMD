@@ -21,6 +21,12 @@ public class HBaseDDLMapper implements DDLMappingBase{
      */
     @Override
     public boolean insert(String mQuery) {
+        return false;
+    }
+
+    @Override
+    public String query(String mQuery) {
+
         String selectReg = "SELECT \\S+ FROM \\S+(.*)";
         if(mQuery.matches(selectReg)) {
             String[] components = mQuery.split("((\\s*SELECT\\s+)|(\\s*FROM\\s*))");
@@ -55,16 +61,10 @@ public class HBaseDDLMapper implements DDLMappingBase{
 //demo code ends
             } catch (IOException e) {
                 e.printStackTrace();
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
 
-    @Override
-    public String query(String mQuery) {
-        return null;
+            }
+        }
+        return "some value";
     }
 
     @Override
