@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="commons-math3-3">
+  <library name="hbase-0.94.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/ojdbc14.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/hbase-0.94.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
