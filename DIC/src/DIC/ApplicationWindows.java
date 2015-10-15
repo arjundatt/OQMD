@@ -22,9 +22,9 @@ import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ngarg
- * Date: 8/7/15
- * Time: 2:16 PM
+ * User: Arnab Saha
+ * Date: 8/7/13
+ * Time: 2:16
  */
 public class ApplicationWindows extends JFrame implements MouseListener {
 
@@ -87,7 +87,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new ApplicationWindows("Hello World");
+        new ApplicationWindows("OQMD");
     }
 
     @Override

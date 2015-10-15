@@ -6,18 +6,20 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/8/13
- * Time: 6:46 PM
- */
 public class DatabaseUtility {
     static final String JDBC_DRIVER = "com.ibm.db2.jcc.DB2Driver";
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DERBY = "Derby";
     static final String ORACLE = "Oracle";
 
+    /*Dic_Instance_ID INTEGER NOT NULL,"
+                + "Dic_Instance_DatabaseType VARCHAR(20)  NOT NULL, "
+                + "Dic_Instance_InstanceName VARCHAR(20) NOT NULL, "
+                + "Dic_Instance_ConnectionName VARCHAR(40) NOT NULL, "
+                + "Dic_Instance_Password VARCHAR(20) NOT NULL, "
+                + "Dic_Instance_PortNumber INTEGER NOT NULL, "
+                + "Dic_Instance_SystemName VARCHAR(40) NOT NULL, "
+                + "Dic_Instance_UserName VARCHAR(40) NOT NULL, "*/
     public static Connection getDerbyConnection(String dbIP, String port, String instance, String userName, String pass) throws SQLException {
         Connection connection = null;
         try {
@@ -30,6 +32,36 @@ public class DatabaseUtility {
         }
         return connection;
     }
+
+    public static void addConnectionToMetadatabase(String connectionName,String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
+            Statement st = con.createStatement();
+            String query = "Insert into Dic_Instance (Dic_Instance_ID," +
+                    "Dic_Instance_DatabaseType," +
+                    "Dic_Instance_InstanceName," +
+                    "Dic_Instance_ConnectionName," +
+                    "Dic_Instance_Password," +
+                    "Dic_Instance_PortNumber," +
+                    "Dic_Instance_SystemName," +
+                    "Dic_Instance_UserName) "+
+                    "values(2,'"
+                    +dbType+"','"
+                    +instanceName+"','"
+                    +connectionName+"','"
+                    +password+"','"
+                    +dbPort+"','"
+                    +dbIp+"','"
+                    +userName+"')";
+            st.executeUpdate(query);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public static Connection getOracleConnection(String dbIP, String port, String instance, String userName, String pass) throws SQLException {
         Connection connection = null;

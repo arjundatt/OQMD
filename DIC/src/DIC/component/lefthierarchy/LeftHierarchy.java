@@ -326,9 +326,8 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
             HierarchyTreeNode instanceNode = addConnection(addConnection);
             connectionMap.put(instanceNode, connection);
             addConnection.close();
-            int n = JOptionPane.showConfirmDialog(getTopLevelAncestor(), "Want to add more connections?", "Add More Connection", OK_CANCEL_OPTION);
-            if (n == 0)
-                showConnectionDialog();
+            //add the connection parameters to db
+            DatabaseUtility.addConnectionToMetadatabase(addConnection.getConnectionName().getText(),addConnection.getSystem().getText(), addConnection.getDbTypeComboBox().getSelectedItem().toString(), addConnection.getPort().getText(), addConnection.getInstanceName().getText(), addConnection.getUserName().getText(), addConnection.getPassword().getText());
 
         } catch (SQLException e1) {
             e1.printStackTrace();
