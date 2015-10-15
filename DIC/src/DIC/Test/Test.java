@@ -1,9 +1,8 @@
-package DIC.component.Test;
+package DIC.Test;
 
 import DIC.util.database.DatabaseUtility;
 
-import java.sql.*;
-import java.sql.DriverManager;
+import java.sql.Connection;
 import java.sql.Statement;
 
 /**
@@ -24,7 +23,6 @@ public class Test {
         String insert = "INSERT INTO Dic_Instance VALUES (1,'a','b','c','d',2,'g','h')";*/
         String query = "CREATE TABLE Dic_ID(Dic_ID INTEGER)";
         String insert = "INSERT INTO Dic_ID VALUES (100000)";
-
 
 
         //Statement st = null;
