@@ -20,7 +20,7 @@ public class Test {
                 + "Dic_Instance_SystemName VARCHAR(40) NOT NULL, "
                 + "Dic_Instance_UserName VARCHAR(40) NOT NULL, "
                 + "PRIMARY KEY (Dic_Instance_ID))";
-        String insert = "INSERT INTO Dic_Instance VALUES (1,'a','b','c','d',2,'g','h')";*/
+        string insert = "INSERT INTO Dic_Instance VALUES (1,'a','b','c','d',2,'g','h')";*/
         String query = "CREATE TABLE Dic_ID(Dic_ID INTEGER)";
         String insert = "INSERT INTO Dic_ID VALUES (100000)";
 
