@@ -1,7 +1,7 @@
 <h1>One query multiple databases - An interface to mutually access Hadoop/Oracle databases</h1>
-@author: <b>Arnab Saha</b>
-@author: <b>Arjun Sharma</b>
-@author: <b>Nishtha Garg</b>
+@author: <b>Arnab Saha</b></br>
+@author: <b>Arjun Sharma</b></br>
+@author: <b>Nishtha Garg</b></br>
 
 <h2>Abstract</h2>
 In today’s era of digitalism, where a number of technologies to maintain and analyze the huge amounts of data have evolved, querying and analyzing data from multiple data repositories with different data mechanics is challenging; esp. when one is RDBM system(like Oracle) and the other is NoSQL system(like HBase). For instance, if a company (which uses HBase) expands its product into a new location, by acquiring a similar product by another company (which uses Oracle) then processing the entire data using a single interface is an intricate task.</br>
