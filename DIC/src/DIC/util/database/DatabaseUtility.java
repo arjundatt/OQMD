@@ -1,5 +1,7 @@
 package DIC.util.database;
 
+import DIC.util.commons.GenerateID;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +35,7 @@ public class DatabaseUtility {
         return connection;
     }
 
-    public static void addConnectionToMetadatabase(String connectionName,String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
+    public static void addConnectionToMetadatabase(String connectionName, String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
@@ -45,15 +47,15 @@ public class DatabaseUtility {
                     "Dic_Instance_Password," +
                     "Dic_Instance_PortNumber," +
                     "Dic_Instance_SystemName," +
-                    "Dic_Instance_UserName) "+
-                    "values(2,'"
-                    +dbType+"','"
-                    +instanceName+"','"
-                    +connectionName+"','"
-                    +password+"','"
-                    +dbPort+"','"
-                    +dbIp+"','"
-                    +userName+"')";
+                    "Dic_Instance_UserName) " +
+                    "values(" + GenerateID.generateID() + ",'"
+                    + dbType + "','"
+                    + instanceName + "','"
+                    + connectionName + "','"
+                    + password + "','"
+                    + dbPort + "','"
+                    + dbIp + "','"
+                    + userName + "')";
             st.executeUpdate(query);
             con.close();
         } catch (Exception e) {
