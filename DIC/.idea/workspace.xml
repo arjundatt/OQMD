@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec4562c3-e0e3-42c2-bc4a-6c8ce5d66dc3" name="Default" comment="DDL Mapping&#10;Added interface DDLMappingBase&#10;Added code for SELECT for HBase(incomplete)&#10;&#10;Added 2 jars:&#10;hadoop_core_0_20_2&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java" afterPath="$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java" />
+    <list default="true" id="7c282334-d1bd-4f1e-9475-4449f02906e3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java" afterPath="$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
-    <ignored path="Global Ids.iws" />
+    <ignored path="DIC.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,97 +17,136 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Global Ids$ApplicationWindows.coverage" NAME="ApplicationWindows Coverage Results" MODIFIED="1377178348151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>GlobalIds.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Global Ids$AddConnection.coverage" NAME="AddConnection Coverage Results" MODIFIED="1376373647747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>GlobalIds.component.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/Global Ids$LogIn.coverage" NAME="LogIn Coverage Results" MODIFIED="1376025756821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>GlobalIds.*</FILTER>
-    </SUITE>
-  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DatabaseView">
-    <flatten value="false" />
-    <groupTables value="false" />
-    <sortChildren value="false" />
-  </component>
-  <component name="DebuggerManager">
-    <ui_properties converted="true" />
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/DIC/Test/Pong.java" line="81" class="DIC.Test.Pong" package="DIC.Test">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
-    <breakpoint_rules converted="true" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="Global Ids" />
+    <favorites_list name="DIC" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HBaseDDLMapper.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java">
+      <file leaf-file-name="HierarchyTreeNode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.5652175">
-              <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenerateID.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#540#541#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationWindows.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="244" column="5" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
+              <folding>
+                <element signature="docComment;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#ApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#createApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#main#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#mouseClicked#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showColumnView#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showInstanceView#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showSchemaView#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showTableView#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showMetaData#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#showTableData#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="class#8281:9394" expanded="false" />
+                <element signature="method#doInBackground#0;class#8281:9394" expanded="false" />
+                <element signature="method#done#0;class#8281:9394" expanded="false" />
+                <element signature="method#showConnectionTable#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#mousePressed#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#mouseReleased#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#mouseEntered#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#mouseExited#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="docComment;method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="docComment;method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+                <element signature="method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultDetailView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultRightViewDisplay.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseUtility.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7545126">
+              <caret line="200" column="25" selection-start-line="200" selection-start-column="5" selection-end-line="200" selection-end-column="5" />
+              <folding>
+                <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getOracleConnection#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getConnection#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getSchemas#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getTables#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
+                <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeftHierarchy.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/component/lefthierarchy/LeftHierarchy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="329" column="44" selection-start-line="329" selection-start-column="44" selection-end-line="329" selection-end-column="44" />
+              <folding>
+                <element signature="e#2293#3226#0" expanded="true" />
+                <element signature="e#3225#3226#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DIC/Test/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="docComment;class#Test#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -114,25 +154,15 @@
       </file>
     </leaf>
   </component>
-  <component name="FindManager">
-    <FindUsagesManager>
-      <setting name="OPEN_NEW_TAB" value="false" />
-    </FindUsagesManager>
-  </component>
-  <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Arnab" />
+        <option value="Class" />
       </list>
     </option>
-    <option name="UPDATE_TYPE" value="MERGE" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitLogSettings">
-    <option name="myDateState">
-      <MyDateState />
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -142,25 +172,28 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java" />
-        <option value="$PROJECT_DIR$/src/DIC/component/rightview/ColumnInfo.java" />
-        <option value="$PROJECT_DIR$/src/DIC/ApplicationWindows.java" />
-        <option value="$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java" />
-        <option value="$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java" />
+        <option value="$PROJECT_DIR$/src/DIC/Test/Test.java" />
+        <option value="$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java" />
+        <option value="$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java" />
+        <option value="$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java" />
       </list>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState />
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="NamedScopeManager">
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
-    <option name="height" value="1046" />
+    <option name="x" value="137" />
+    <option name="y" value="4" />
+    <option name="width" value="1225" />
+    <option name="height" value="739" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -169,8 +202,6 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <OptionsSetting value="true" id="Undo Check Out" />
-    <OptionsSetting value="true" id="Get Latest Version" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
@@ -187,7 +218,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -256,160 +287,232 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DDLMapUtils" />
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DIC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Libraries" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.15000002" />
-    <property name="OverrideImplement.combined" value="false" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="settings.github" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/commons-math-2.2.jar!/" />
-    <property name="project.structure.side.proportion" value="0.20000006" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15000002" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TeradataTest.jar!/" />
     <property name="dynamic.classpath" value="false" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$/lib" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Documents\Documents\Java\IdeaProjects\Global Ids\src\GlobalIds\Test\ChatClient" />
-      <recent name="C:\Users\Globalids\IdeaProjects\Global Ids\src\GlobalIds\resource" />
-      <recent name="C:\Users\Globalids\IdeaProjects\Global Ids\src\GlobalIds\xml" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="GlobalIds.util.database" />
-      <recent name="GlobalIds.component" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Globalids\IdeaProjects\Global Ids\src\GlobalIds" />
+      <recent name="D:\Documents\Documents\OQMD\OQMD\DIC\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ApplicationWindows">
-    <configuration default="false" name="StaticClients" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="DIC.Test.ChatClient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="DIC.Test.ChatClient.StaticClients" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DIC" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SortSentence" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="DIC.Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="DIC.Test.SortSentence" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DIC" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Stock" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="DIC.Test.algoclass.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="DIC.Test.algoclass.Stock" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DIC" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="LogIn" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="DIC.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="DIC.LogIn" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DIC" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ApplicationWindows" type="Application" factoryName="Application" temporary="true">
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/DIC.iml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/hadoop_core_0_20_2.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/hbase_0_94_2.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/DIC/DDLMapUtils/DDLMappingBase.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/libraries/commons_math3_3.xml</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Application.GenerateID">
+    <configuration default="false" name="ApplicationWindows" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="DIC.*" />
@@ -417,22 +520,56 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="DIC.ApplicationWindows" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="DIC" />
       <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <configuration default="false" name="GenerateID" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="DIC.util.commons.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="DIC.util.commons.GenerateID" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DIC" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="DIC.Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="DIC.Test.Test" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DIC" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -484,11 +621,9 @@
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module />
-      <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -584,43 +719,16 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="PropertyFileAccess" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="DIC.Property.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="DIC.Property.PropertyFileAccess" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DIC" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Application.PropertyFileAccess" />
-      <item index="1" class="java.lang.String" itemvalue="Application.StaticClients" />
-      <item index="2" class="java.lang.String" itemvalue="Application.SortSentence" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Stock" />
-      <item index="4" class="java.lang.String" itemvalue="Application.LogIn" />
-      <item index="5" class="java.lang.String" itemvalue="Application.ApplicationWindows" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Application.ApplicationWindows" />
+      <item index="1" class="java.lang.String" itemvalue="Application.GenerateID" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Test" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ApplicationWindows" />
-        <item index="1" class="java.lang.String" itemvalue="Application.LogIn" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Stock" />
-        <item index="3" class="java.lang.String" itemvalue="Application.SortSentence" />
-        <item index="4" class="java.lang.String" itemvalue="Application.StaticClients" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.GenerateID" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ApplicationWindows" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Test" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -629,127 +737,70 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SliceManager">
-    <option name="analysisUIOptions">
-      <AnalysisUIOptions />
-    </option>
-  </component>
-  <component name="SvnConfiguration" myUseAcceleration="nothing">
-    <configuration useDefault="false" />
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ec4562c3-e0e3-42c2-bc4a-6c8ce5d66dc3" name="Default" comment="" />
-      <created>1375854477951</created>
+      <changelist id="7c282334-d1bd-4f1e-9475-4449f02906e3" name="Default" comment="" />
+      <created>1444872688964</created>
       <option name="number" value="Default" />
-      <updated>1375854477951</updated>
+      <updated>1444872688964</updated>
     </task>
-    <task id="LOCAL-00001" summary="Basic version">
-      <created>1444062127764</created>
+    <task id="LOCAL-00001" summary="Random Id generator">
+      <created>1444926525134</created>
       <option name="number" value="00001" />
       <option name="project" value="LOCAL" />
-      <updated>1444062127764</updated>
+      <updated>1444926525134</updated>
     </task>
-    <task id="LOCAL-00002" summary="Basic version">
-      <created>1444328041524</created>
+    <task id="LOCAL-00002" summary="Random Id generator complete">
+      <created>1444931834055</created>
       <option name="number" value="00002" />
       <option name="project" value="LOCAL" />
-      <updated>1444328041524</updated>
+      <updated>1444931834055</updated>
     </task>
-    <task id="LOCAL-00003" summary="Basic version">
-      <created>1444328302634</created>
+    <task id="LOCAL-00003" summary="Random Id generator complete">
+      <created>1444937533770</created>
       <option name="number" value="00003" />
       <option name="project" value="LOCAL" />
-      <updated>1444328302634</updated>
+      <updated>1444937533770</updated>
     </task>
-    <task id="LOCAL-00004" summary="Basic version">
-      <created>1444328432201</created>
+    <task id="LOCAL-00004" summary="Random Id generator complete">
+      <created>1444938377448</created>
       <option name="number" value="00004" />
       <option name="project" value="LOCAL" />
-      <updated>1444328432201</updated>
+      <updated>1444938377448</updated>
     </task>
-    <task id="LOCAL-00005" summary="Basic version">
-      <created>1444328486060</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1444328486060</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Basic version">
-      <created>1444331036216</created>
-      <option name="number" value="00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1444331036216</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Basic version">
-      <created>1444341130407</created>
-      <option name="number" value="00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1444341130407</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Basic version">
-      <created>1444873093819</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1444873093819</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
-    <todo-panel id="selected-file">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="default-changelist">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
+    <frame x="137" y="4" width="1225" height="739" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32068965" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32839224" sideWeight="0.36510417" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975295" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32839224" sideWeight="0.63489586" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.50511944" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32474226" sideWeight="0.49658704" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14947917" sideWeight="0.537931" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24957265" sideWeight="0.67068964" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24978541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32954547" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45007923" sideWeight="0.71546054" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931036" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48118585" sideWeight="0.9036458" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="536" y="239" width="738" height="437" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4732041" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287879" sideWeight="0.394958" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27575278" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.49488056" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39862543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -766,21 +817,21 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Basic version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic version" />
+    <MESSAGE value="Random Id generator" />
+    <MESSAGE value="Random Id generator complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Random Id generator complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
-      <default-breakpoints>
-        <breakpoint type="java-exception">
-          <log-expression disabled="true" expression="&#13;&#13;JAVA" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DIC/Test/Test.java</url>
+          <line>33</line>
           <properties />
-        </breakpoint>
-      </default-breakpoints>
-      <option name="time" value="5" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -789,63 +840,112 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+          <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/xml/XMLTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="244" column="74" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#ApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#createApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#main#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showColumnView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showInstanceView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showSchemaView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showMetaData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="class#8281:9394" expanded="false" />
+            <element signature="method#doInBackground#0;class#8281:9394" expanded="false" />
+            <element signature="method#done#0;class#8281:9394" expanded="false" />
+            <element signature="method#showConnectionTable#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/AddConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="132" column="32" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
           <folding>
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="49" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
+          <folding>
+            <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getOracleConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getSchemas#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTables#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/lefthierarchy/LeftHierarchy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="329" column="44" selection-start-line="329" selection-start-column="44" selection-end-line="329" selection-end-column="44" />
+          <folding>
+            <element signature="e#2293#3226#0" expanded="true" />
+            <element signature="e#3225#3226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/Test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Test#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -853,10 +953,17 @@
     <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="9" column="61" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
           <folding>
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -864,8 +971,152 @@
     <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <caret line="244" column="74" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#ApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#createApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#main#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showColumnView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showInstanceView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showSchemaView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showMetaData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="class#8281:9394" expanded="false" />
+            <element signature="method#doInBackground#0;class#8281:9394" expanded="false" />
+            <element signature="method#done#0;class#8281:9394" expanded="false" />
+            <element signature="method#showConnectionTable#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="32" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="49" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
+          <folding>
+            <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getOracleConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getSchemas#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTables#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/lefthierarchy/LeftHierarchy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="329" column="44" selection-start-line="329" selection-start-column="44" selection-end-line="329" selection-end-column="44" />
+          <folding>
+            <element signature="e#2293#3226#0" expanded="true" />
+            <element signature="e#3225#3226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/Test/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Test#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="218" column="45" selection-start-line="218" selection-start-column="45" selection-end-line="218" selection-end-column="45" />
+          <folding>
+            <element signature="docComment;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#ApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#createApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#main#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showColumnView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showInstanceView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showSchemaView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showMetaData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="class#8281:9394" expanded="false" />
+            <element signature="method#doInBackground#0;class#8281:9394" expanded="false" />
+            <element signature="method#done#0;class#8281:9394" expanded="false" />
+            <element signature="method#showConnectionTable#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="57" selection-start-line="123" selection-start-column="57" selection-end-line="123" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -873,59 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/xml/XMLTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/AddConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -933,172 +1131,161 @@
     <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getOracleConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getSchemas#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTables#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/xml/XMLTree.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/Test/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/AddConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hierarchyXML - Copy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Test#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/Utility.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3068592">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/resource/edits/copy_16.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/SqlEditorView.java">
+    <entry file="jar://$PROJECT_DIR$/../../../Java/IdeaProjects/Global Ids/jdk/src.zip!/java/sql/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="3.7099447">
+          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/formcomponent/ComboBoxField.java">
+    <entry file="jar://$PROJECT_DIR$/../../../Java/IdeaProjects/Global Ids/jdk/src.zip!/java/sql/Statement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.1645963">
+          <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/Property/PropertyFileAccess.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/Test/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/LogIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/xml/XMLTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Stopwatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DIC.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/AddConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Test#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DIC/component/detailview/DefaultDetailView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+          <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/ColumnInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71291864">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DIC/component/treecomponent/HierarchyTreeNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/ApplicationWindows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="244" column="5" selection-start-line="244" selection-start-column="5" selection-end-line="244" selection-end-column="5" />
           <folding>
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
+            <element signature="docComment;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#ApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#createApplicationWindows#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#main#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseClicked#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showColumnView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showInstanceView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showSchemaView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableView#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showMetaData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#showTableData#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="class#8281:9394" expanded="false" />
+            <element signature="method#doInBackground#0;class#8281:9394" expanded="false" />
+            <element signature="method#done#0;class#8281:9394" expanded="false" />
+            <element signature="method#showConnectionTable#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mousePressed#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseReleased#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseEntered#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#mouseExited#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#getInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="docComment;method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
+            <element signature="method#callConnectionFromInstanceNode#0;class#ApplicationWindows#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DIC/DDLMapUtils/HBaseDDLMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/lefthierarchy/LeftHierarchy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5652175">
-          <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="329" column="44" selection-start-line="329" selection-start-column="44" selection-end-line="329" selection-end-column="44" />
+          <folding>
+            <element signature="e#2293#3226#0" expanded="true" />
+            <element signature="e#3225#3226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/component/rightview/DefaultRightViewDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/commons/GenerateID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7545126">
+          <caret line="200" column="25" selection-start-line="200" selection-start-column="5" selection-end-line="200" selection-end-column="5" />
+          <folding>
+            <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getOracleConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getConnection#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getSchemas#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTables#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
+            <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1112,7 +1299,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -1124,7 +1311,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -1136,7 +1323,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -1144,11 +1331,11 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8</last-edited>
+          <last-edited>1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -1160,7 +1347,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
                 <option value="0.6" />
               </list>
             </option>
@@ -1181,11 +1368,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>commons-math-2.2</last-edited>
+          <last-edited>src</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.20000006" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
