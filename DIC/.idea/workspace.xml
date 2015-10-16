@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c282334-d1bd-4f1e-9475-4449f02906e3" name="Default" comment="Drop table method in database utility">
+    <list default="true" id="7c282334-d1bd-4f1e-9475-4449f02906e3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java" afterPath="$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DIC.iws" />
@@ -105,8 +106,8 @@
       <file leaf-file-name="DatabaseUtility.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6931408">
-              <caret line="198" column="92" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.6949459">
+              <caret line="198" column="22" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
               <folding>
                 <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
                 <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
@@ -117,8 +118,6 @@
                 <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
                 <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
                 <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
-                <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
-                <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
                 <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
               </folding>
             </state>
@@ -775,7 +774,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445021759479</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Drop table method in database utility">
+      <created>1445021826697</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1445021826697</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -927,8 +932,6 @@
             <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
           </folding>
         </state>
@@ -1037,8 +1040,6 @@
             <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
           </folding>
         </state>
@@ -1147,8 +1148,6 @@
             <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
           </folding>
         </state>
@@ -1276,8 +1275,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DIC/util/database/DatabaseUtility.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6931408">
-          <caret line="198" column="92" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.6949459">
+          <caret line="198" column="22" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="19" />
           <folding>
             <element signature="method#getDerbyConnection#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#addConnectionToMetadatabase#0;class#DatabaseUtility#0" expanded="false" />
@@ -1288,8 +1287,6 @@
             <element signature="method#getColumns#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getMetaData#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#getTableMetaData#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#updateQuery#0;class#DatabaseUtility#0" expanded="false" />
-            <element signature="method#executeQuery#0;class#DatabaseUtility#0" expanded="false" />
             <element signature="method#main#0;class#DatabaseUtility#0" expanded="false" />
           </folding>
         </state>
