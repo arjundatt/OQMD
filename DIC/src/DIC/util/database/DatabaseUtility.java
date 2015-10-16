@@ -193,11 +193,10 @@ public class DatabaseUtility {
         return vector;
     }
 
-    public static Vector deleteTable(Connection connection, String schemaName, String tableName) throws SQLException {
+    public static int deleteTable(Connection connection, String schemaName, String tableName) throws SQLException {
         String sql = "drop \"" + schemaName + "\".\"" + tableName + "\"";
-        Vector vector = executeQuery(connection, sql);
-        vector.remove(0);
-        return vector;
+        int ret = updateQuery(connection, sql);
+        return ret;
     }
 
     public static int updateQuery(Connection connection, String sql) throws SQLException {
