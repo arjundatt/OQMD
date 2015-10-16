@@ -194,7 +194,7 @@ public class DatabaseUtility {
     }
 
     public static int deleteTable(Connection connection, String schemaName, String tableName) throws SQLException {
-        String sql = "drop \"" + schemaName + "\".\"" + tableName + "\"";
+        String sql = "drop table \"" + schemaName + "\".\"" + tableName + "\"";
         int ret = updateQuery(connection, sql);
         return ret;
     }
