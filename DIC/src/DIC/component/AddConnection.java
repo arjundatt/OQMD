@@ -101,13 +101,14 @@ public class AddConnection extends JDialog implements ActionListener {
         connectionName = new TextField("Connection Name", 34, true);
         fields.add(connectionName);
         fields.add(Box.createVerticalStrut(20));
-        system = new TextField("System", "192.168.0.1", 34, true);
+        system = new TextField("System", "ora.csc.ncsu.edu", 34, true);
         fields.add(system);
         fields.add(Box.createVerticalStrut(20));
         instanceName = new TextField("Instance Name", 34, true);
+        instanceName.setText("orcl");
         fields.add(instanceName);
         fields.add(Box.createVerticalStrut(20));
-        dbTypeComboBox = new JComboBox(new String[]{"Derby", "Oracle"});
+        dbTypeComboBox = new JComboBox(new String[]{"Oracle", "Derby"});
         dbTypeComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -123,9 +124,11 @@ public class AddConnection extends JDialog implements ActionListener {
         fields.add(port);
         fields.add(Box.createVerticalStrut(20));
         userName = new TextField("User Name", 34, true);
+        userName.setText("ngarg");
         fields.add(userName);
         fields.add(Box.createVerticalStrut(20));
         password = new PasswordField("Password", 34, true);
+        password.setText("200104701");
         fields.add(password);
         fields.add(Box.createVerticalStrut(20));
         TitledBorder title = BorderFactory.createTitledBorder("Connection Information");
