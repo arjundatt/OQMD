@@ -143,6 +143,8 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
             while (removeTab(i++)) {
             }
             removeTab(1);
+        } else if (evt.getPropertyName().equals("mapper")) {
+
         }
     }
 }

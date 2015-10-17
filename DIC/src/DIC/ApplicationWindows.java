@@ -166,6 +166,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         rightPanel.init("Tables", table);
         SqlEditorView sqlEditor = new SqlEditorView(connection);
         rightPanel.addTab("Sql Editor", sqlEditor, false);
+        //todo add mapper tab
     }
 
     private void showTableView() {

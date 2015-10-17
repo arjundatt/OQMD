@@ -71,7 +71,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 callConnectionFromInstanceNode(selectedNode);
                 if (selectedNode.getChildCount() == 0) {
-                    ArrayList<String> result = (ArrayList<String>) DatabaseUtility.getSchemas(connection, instanceId);
+                    ArrayList<String> result = (ArrayList<String>) DatabaseUtility.getSchemas(connection/*, instanceId*/);
                     for (String schema : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("name", schema);

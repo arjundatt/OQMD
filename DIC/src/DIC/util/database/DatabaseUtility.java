@@ -34,13 +34,13 @@ public class DatabaseUtility {
         }
         return connection;
     }
-    public static void addSchemasToMetadatabase(ArrayList<String> SchemaNames, String instanceId) throws SQLException {
+    public static void addSchemasToMetadatabase(ArrayList<String> SchemaNames/*, String instanceId*/) throws SQLException {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
             Statement st = con.createStatement();
             for (String schema : SchemaNames) {
-                String query = "Insert into Dic_Schema (" +
+                /*String query = "Insert into Dic_Schema (" +
                         "Dic_Schema_ID," +
                         "Dic_Schema_Name," +
                         "Dic_Schema_HbaseTable," +
@@ -53,7 +53,7 @@ public class DatabaseUtility {
                         + dbPort + "','"
                         + dbIp + "','"
                         + userName + "')";
-                st.executeUpdate(query);
+                st.executeUpdate(query);*/
             }
 
             con.close();
@@ -115,7 +115,7 @@ public class DatabaseUtility {
         return null;
     }
 
-    public static Collection<String> getSchemas(Connection connection, String instanceId) {
+    public static Collection<String> getSchemas(Connection connection/*, String instanceId*/) {
         ArrayList<String> schemaNames = new ArrayList<String>();
         try {
             DatabaseMetaData metadata = connection.getMetaData();
@@ -124,7 +124,7 @@ public class DatabaseUtility {
                 schemaNames.add(schema.getString(1));
 
             }
-            addSchemasToMetadatabase(schemaNames, instanceId);
+            addSchemasToMetadatabase(schemaNames/*, instanceId*/);
         } catch (SQLException e) {
             e.printStackTrace();
         }
