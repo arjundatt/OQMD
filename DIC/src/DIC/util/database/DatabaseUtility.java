@@ -34,6 +34,34 @@ public class DatabaseUtility {
         }
         return connection;
     }
+    public static void addSchemasToMetadatabase(ArrayList<String> SchemaNames, String instanceId) throws SQLException {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
+            Statement st = con.createStatement();
+            for (String schema : SchemaNames) {
+                String query = "Insert into Dic_Schema (" +
+                        "Dic_Schema_ID," +
+                        "Dic_Schema_Name," +
+                        "Dic_Schema_HbaseTable," +
+                        "Dic_Schema_Instance_ID," +
+                        "values(" + GenerateID.generateID() + ",'"
+                        + dbType + "','"
+                        + instanceName + "','"
+                        + connectionName + "','"
+                        + password + "','"
+                        + dbPort + "','"
+                        + dbIp + "','"
+                        + userName + "')";
+                st.executeUpdate(query);
+            }
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void addConnectionToMetadatabase(String connectionName, String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
         try {
@@ -87,14 +115,16 @@ public class DatabaseUtility {
         return null;
     }
 
-    public static Collection<String> getSchemas(Connection connection) {
+    public static Collection<String> getSchemas(Connection connection, String instanceId) {
         ArrayList<String> schemaNames = new ArrayList<String>();
         try {
             DatabaseMetaData metadata = connection.getMetaData();
             ResultSet schema = metadata.getSchemas();
             while (schema.next()) {
                 schemaNames.add(schema.getString(1));
+
             }
+            addSchemasToMetadatabase(schemaNames, instanceId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
