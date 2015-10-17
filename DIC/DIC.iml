@@ -7,11 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="commons-math-2.0" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/ojdbc6.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-math3-3.5/commons-math-2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -20,20 +19,22 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/hbase-0.94.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-math-2.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="commons-math-2.2" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/hadoop-core-0.20.2-cdh3u0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/hadoop-core-0.19.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
