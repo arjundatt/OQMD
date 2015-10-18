@@ -120,7 +120,7 @@ public class AddConnection extends JDialog implements ActionListener {
         });
         fields.add(new ComboBoxField("Database type", dbTypeComboBox));
         fields.add(Box.createVerticalStrut(20));
-        port = new TextField("Port", "1530", 34, true);
+        port = new TextField("Port", "1521", 34, true);
         fields.add(port);
         fields.add(Box.createVerticalStrut(20));
         userName = new TextField("User Name", 34, true);
