@@ -15,10 +15,7 @@ import java.util.Collection;
 import static DIC.util.commons.Utility.getButton;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/26/13
- * Time: 2:32 PM
+ * Created by Arnab Saha on 10/10/15.
  */
 
 public class SqlEditorView extends JPanel implements ActionListener {

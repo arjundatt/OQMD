@@ -20,10 +20,7 @@ import java.util.*;
 import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/8/13
- * Time: 5:22 PM
+ * Created by Arnab Saha on 10/10/15.
  */
 
 public class LeftHierarchy extends JPanel implements ActionListener, KeyListener {

@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
 
+/**
+ * Created by arjundatt.16 on 10/08/15.
+ */
 public class DatabaseUtility {
     static final String JDBC_DRIVER = "com.ibm.db2.jcc.DB2Driver";
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";

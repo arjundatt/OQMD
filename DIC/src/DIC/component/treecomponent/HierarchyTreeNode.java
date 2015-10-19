@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: asharm24
- * Date: 8/19/15
- * Time: 6:23 PM
+ * Created by arjundatt.16 on 10/11/15.
  */
 public class HierarchyTreeNode extends DefaultMutableTreeNode {
     private Map<String, String> attributes;

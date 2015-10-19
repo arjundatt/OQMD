@@ -7,10 +7,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/16/13
- * Time: 3:38 PM
+ * Created by Arnab Saha on 10/11/15.
  */
 public class KTableRenderer implements TableCellRenderer {
     JLabel label = new JLabel();

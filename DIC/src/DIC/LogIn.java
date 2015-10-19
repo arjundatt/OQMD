@@ -12,10 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/7/13
- * Time: 11:19 AM
+ * Created by Nishtha Garg on 10/10/15.
  */
 
 public class LogIn implements ActionListener, KeyListener {

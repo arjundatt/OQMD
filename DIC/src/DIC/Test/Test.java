@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 /**
- * Created by nisthagarg on 10/14/15.
+ * Created by Nistha Garg on 10/14/15.
  */
 public class Test {
     public static void createTable() {

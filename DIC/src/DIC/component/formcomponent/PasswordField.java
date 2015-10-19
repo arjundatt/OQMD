@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Globalids
- * Date: 8/8/13
- * Time: 12:13 PM
+ * Created by Nishtha Garg on 10/10/15.
  */
 public class PasswordField extends JPanel {
     private JPasswordField password;

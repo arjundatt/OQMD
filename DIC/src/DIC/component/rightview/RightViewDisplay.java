@@ -3,10 +3,7 @@ package DIC.component.rightview;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/22/13
- * Time: 10:51 AM
+ * Created by Arnab Saha on 10/11/15.
  */
 
 public interface RightViewDisplay {

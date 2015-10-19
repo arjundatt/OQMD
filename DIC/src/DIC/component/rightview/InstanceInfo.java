@@ -4,11 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/21/13
- * Time: 4:30 PM
- * To change this template use File | Settings | File Templates.
+ * Created by Arnab Saha on 10/11/15.
  */
 public class InstanceInfo extends JPanel {
     String connectionName, system, instanceName, databaseType, port;

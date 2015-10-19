@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/28/13
- * Time: 4:16 PM
+ * Created by arjundatt.16 on 10/08/15.
  */
 public class Utility {
     public static String getLocalisedText(String property) throws IOException {

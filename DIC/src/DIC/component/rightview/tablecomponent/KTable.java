@@ -10,10 +10,7 @@ import java.awt.event.KeyListener;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/8/13
- * Time: 5:23 PM
+ * Created by Arnab Saha on 10/11/15.
  */
 public class KTable extends JPanel implements ActionListener, KeyListener {
     private JTable table;

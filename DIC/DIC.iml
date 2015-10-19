@@ -26,15 +26,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="commons-math-2.2" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/hadoop-core-0.19.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="hadoop-core-0.20.2" level="project" />
+    <orderEntry type="library" name="hbase-0.94.2" level="project" />
+    <orderEntry type="library" name="ojdbc14" level="application" />
   </component>
 </module>

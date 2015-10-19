@@ -4,11 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/14/13
- * Time: 1:06 PM
- *
+ * Created by Arnab Saha on 10/11/15.
  */
 public class DefaultTableView extends JPanel implements Runnable {
     private JLabel label;

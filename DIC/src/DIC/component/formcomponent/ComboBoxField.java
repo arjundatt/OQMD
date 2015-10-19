@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/12/13
- * Time: 5:53 PM
+ * Created by Nishtha Garg on 10/10/15.
  */
 public class ComboBoxField extends JPanel {
     private JComboBox comboBox;

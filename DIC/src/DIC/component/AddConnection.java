@@ -10,10 +10,7 @@ import java.awt.event.*;
 import static java.lang.String.format;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/12/13
- * Time: 5:48 PM
+ * Created by arjundatt.16 on 10/11/15.
  */
 public class AddConnection extends JDialog implements ActionListener {
     private JPanel fields;

@@ -18,10 +18,7 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/26/13
- * Time: 12:16 PM
+ * Created by Arnab Saha on 10/10/15.
  */
 
 public class DefaultDetailView extends DefaultRightViewDisplay implements PropertyChangeListener {

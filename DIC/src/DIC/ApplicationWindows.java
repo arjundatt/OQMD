@@ -21,10 +21,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/7/13
- * Time: 2:16
+ * Created by Nishtha Garg on 10/10/15.
  */
 public class ApplicationWindows extends JFrame implements MouseListener {
 

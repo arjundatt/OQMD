@@ -8,10 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 10/24/14
- * Time: 7:28 AM
+ * Created by Arnab Saha on 10/14/15.
  */
 public class Stopwatch {
     public static void main(final String args[]) {

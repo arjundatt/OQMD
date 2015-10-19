@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/9/13
- * Time: 1:57 PM
+ * Created by arjundatt.16 on 10/11/15.
  */
 public class PropertyFileAccess {
     Properties properties;

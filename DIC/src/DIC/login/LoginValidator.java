@@ -2,10 +2,7 @@ package DIC.login;
 
 
 /**
- * Created with IntelliJ IDEA.
- * User: Globalids
- * Date: 8/7/13
- * Time: 4:44 PM
+ * Created by Arnab Saha on 10/11/15.
  */
 public class LoginValidator {
 

@@ -5,10 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Arnab Saha
- * Date: 8/27/13
- * Time: 4:30 PM
+ * Created by Arnab Saha on 10/11/15.
  */
 
 public class HighlightRow extends DefaultTableCellRenderer {
