@@ -15,9 +15,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
-
-import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by Arnab Saha on 10/10/15.
@@ -68,11 +69,13 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 callConnectionFromInstanceNode(selectedNode);
                 if (selectedNode.getChildCount() == 0) {
-                    ArrayList<String> result = (ArrayList<String>) DatabaseUtility.getSchemas(connection/*, instanceId*/);
-                    for (String schema : result) {
+                    Vector<Vector<String>> schemaDetails = DatabaseUtility.getSchemas(connection, selectedNode.getAttribute("id"));
+                    for (Vector<String> schemaDetail : schemaDetails) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("name", schema);
-                        HierarchyTreeNode newChild = new HierarchyTreeNode(schema, map);
+                        map.put("name", schemaDetail.get(0));   //name
+                        map.put("schemaId", schemaDetail.get(1));    //schemaId
+                        map.put("instanceId", schemaDetail.get(2));    //instanceId
+                        HierarchyTreeNode newChild = new HierarchyTreeNode(schemaDetail.get(0), map);
                         selectedNode.add(newChild);
                     }
                     jTree.expandPath(new TreePath(selectedNode.getPath()));
@@ -91,14 +94,19 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode instanceNode = (HierarchyTreeNode) selectedNode.getParent();
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
-                    ArrayList<String> result = (ArrayList<String>) DatabaseUtility.getTables(connection, selectedNode.toString());
-                    for (String table : result) {
+                    Vector<Vector<String>> result = DatabaseUtility.getTables(connection, selectedNode.toString(), selectedNode.getAttribute("schemaId"));
+                    for (Vector<String> tableDetail : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("metadata_discovered", "false");
-                        map.put("column_discovered", "false");
-                        map.put("name", table);
-                        map.put("time_stamp", String.valueOf(System.nanoTime()));
-                        HierarchyTreeNode newChild = new HierarchyTreeNode(table, map);
+                        map.put("tableId", tableDetail.get(0));
+                        map.put("column_count", tableDetail.get(1));
+                        map.put("column_family", tableDetail.get(2));
+                        map.put("column_discovered", tableDetail.get(3));
+                        map.put("metadata_discovered", tableDetail.get(4));
+                        map.put("name", tableDetail.get(5));
+                        map.put("record_count", tableDetail.get(6));
+                        map.put("time_stamp", tableDetail.get(7));
+                        map.put("schemaId", tableDetail.get(8));
+                        HierarchyTreeNode newChild = new HierarchyTreeNode(tableDetail.get(5), map);
                         selectedNode.add(newChild);
                     }
                     jTree.expandPath(new TreePath(selectedNode.getPath()));
@@ -107,9 +115,9 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
             }
         });
         schemaPopUp.add(temp);
-        temp = new JMenuItem("Create Table");
+        /*temp = new JMenuItem("Create Table");
         temp.setIcon(new ImageIcon(getClass().getResource("../../resource/createTable.gif")));
-        schemaPopUp.add(temp);
+        schemaPopUp.add(temp);*/
 
         /* Discover Columns */
         tablePopUp = new JPopupMenu();
@@ -122,14 +130,19 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode instanceNode = (HierarchyTreeNode) selectedNode.getParent().getParent();
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
-                    ArrayList<String> result = (ArrayList<String>) DatabaseUtility.getColumns(connection, selectedNode.getParent().toString(), selectedNode.toString());
-                    for (String column : result) {
+                    Vector<Vector<String>> result = DatabaseUtility.getColumns(connection, selectedNode.getParent().toString(), selectedNode.toString(), selectedNode.getAttribute("tableId"));
+                    for (Vector<String> column : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("name", column);
-                        HierarchyTreeNode newChild = new HierarchyTreeNode(column, map);
+                        map.put("columnId", column.get(0));
+                        map.put("length", column.get(1));
+                        map.put("name", column.get(2));
+                        map.put("type", column.get(3));
+                        map.put("tableId", column.get(4));
+                        HierarchyTreeNode newChild = new HierarchyTreeNode(column.get(2), map);
                         selectedNode.add(newChild);
                     }
                     selectedNode.setAttribute("column_discovered", "true");
+                    DatabaseUtility.updateColumnDiscovered(connection, selectedNode.getAttribute("tableId"));
                     jTree.expandPath(new TreePath(selectedNode.getPath()));
                     updateUI();
                 }
@@ -158,6 +171,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                             Vector<Object> colMetaData = result.elementAt(index);
                             colNode.setAttribute("type", colMetaData.elementAt(1).toString());
                             colNode.setAttribute("length", colMetaData.elementAt(2).toString());
+                            DatabaseUtility.updateColumnParameters(connection, colNode.getAttribute("columnId"), colMetaData.elementAt(1).toString(), colMetaData.elementAt(2).toString());
                             index++;
                         }
                         HashMap<String, String> tableMetaData = DatabaseUtility.getTableMetaData(connection, selectedNode.getParent().toString(), selectedNode.toString());
@@ -165,6 +179,8 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                         selectedNode.setAttribute("record_count", tableMetaData.get("record_count"));
                         jTree.expandPath(new TreePath(selectedNode.getPath()));
                         selectedNode.setAttribute("metadata_discovered", "true");
+                        DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("tableId"),tableMetaData.get("col_count"), tableMetaData.get("record_count"));
+
                         updateUI();
                     } else {
                         JOptionPane.showMessageDialog(getTopLevelAncestor(), "Column not Discovered", "Error", JOptionPane.ERROR_MESSAGE);
@@ -257,7 +273,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public HierarchyTreeNode addConnection(AddConnection temp) {
+    public HierarchyTreeNode addConnection(AddConnection temp, String connectionId) {
         DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("database", temp.getDbTypeComboBox().getSelectedItem().toString());
@@ -267,6 +283,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
         map.put("pass", temp.getPassword().getText());
         map.put("port", temp.getPort().getText());
         map.put("system", temp.getSystem().getText());
+        map.put("id", connectionId);
         HierarchyTreeNode instanceNode = new HierarchyTreeNode(temp.getConnectionName().getText(), map);
         root.add(instanceNode);
         model.reload(root);
@@ -320,11 +337,11 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
     private void getConnectionCall() {
         try {
             connection = DatabaseUtility.getConnection(addConnection.getSystem().getText(), addConnection.getDbTypeComboBox().getSelectedItem().toString(), addConnection.getPort().getText(), addConnection.getInstanceName().getText(), addConnection.getUserName().getText(), addConnection.getPassword().getText());
-            HierarchyTreeNode instanceNode = addConnection(addConnection);
+            //add connection to db
+            String connectionId = DatabaseUtility.addConnectionToMetadatabase(connection, addConnection.getConnectionName().getText(), addConnection.getSystem().getText(), addConnection.getDbTypeComboBox().getSelectedItem().toString(), addConnection.getPort().getText(), addConnection.getInstanceName().getText(), addConnection.getUserName().getText(), addConnection.getPassword().getText());
+            HierarchyTreeNode instanceNode = addConnection(addConnection, connectionId);
             connectionMap.put(instanceNode, connection);
             addConnection.close();
-            //add the connection parameters to db
-            DatabaseUtility.addConnectionToMetadatabase(addConnection.getConnectionName().getText(),addConnection.getSystem().getText(), addConnection.getDbTypeComboBox().getSelectedItem().toString(), addConnection.getPort().getText(), addConnection.getInstanceName().getText(), addConnection.getUserName().getText(), addConnection.getPassword().getText());
 
         } catch (SQLException e1) {
             e1.printStackTrace();

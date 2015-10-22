@@ -4,6 +4,7 @@ import DIC.util.database.DatabaseUtility;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -24,6 +25,26 @@ public class GenerateID {
             e.printStackTrace();
         }
         return String.valueOf(id);
+    }
+
+    public static ArrayList<String> generateMultipleIds(int noOfIdsRequired) {
+        Integer id = null;
+        ArrayList<String> ids = new ArrayList<String>();
+        try {
+            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
+            Vector vector = DatabaseUtility.getData(connection, "NGARG", "DIC_ID");
+            id = Integer.parseInt(((Vector) vector.get(0)).get(0).toString());
+            String updateSQL = "update NGARG.DIC_ID set DIC_ID = " + (id + noOfIdsRequired) + " where DIC_ID = " + id;
+//            System.out.println(updateSQL);
+            DatabaseUtility.updateQuery(connection, updateSQL);
+            for (int i = id; i < id + noOfIdsRequired; i++) {
+                ids.add(String.valueOf(i));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ids;
     }
 
     public static void main(String[] args) {

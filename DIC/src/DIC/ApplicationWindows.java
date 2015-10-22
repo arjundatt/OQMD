@@ -38,9 +38,13 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         JLabel label = new JLabel("Welcome " + message);
         createApplicationWindows(label);
 
-        setExtendedState(Frame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
+        int Width = (int) java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+        int Height = (int) java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+        this.setSize(Width-100,Height-100);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

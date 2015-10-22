@@ -4,7 +4,6 @@ import DIC.util.commons.GenerateID;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -16,6 +15,16 @@ public class DatabaseUtility {
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DERBY = "Derby";
     static final String ORACLE = "Oracle";
+    static Connection metadataConnection = null;
+
+    static {
+        try {
+            metadataConnection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /*Dic_Instance_ID INTEGER NOT NULL,"
                 + "Dic_Instance_DatabaseType VARCHAR(20)  NOT NULL, "
@@ -26,6 +35,7 @@ public class DatabaseUtility {
                 + "Dic_Instance_SystemName VARCHAR(40) NOT NULL, "
                 + "Dic_Instance_UserName VARCHAR(40) NOT NULL, "*/
     public static Connection getDerbyConnection(String dbIP, String port, String instance, String userName, String pass) throws SQLException {
+
         Connection connection = null;
         try {
             Class.forName(JDBC_DRIVER);
@@ -37,40 +47,46 @@ public class DatabaseUtility {
         }
         return connection;
     }
-    public static void addSchemasToMetadatabase(ArrayList<String> SchemaNames/*, String instanceId*/) throws SQLException {
+
+    public static Vector<Vector<String>> addSchemasToMetadatabase(Connection con, ArrayList<String> schemaNames, String instanceId) throws SQLException {
+        Vector<Vector<String>> schemaDetails = new Vector<Vector<String>>();    //schemaId, schemaName
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
-            Statement st = con.createStatement();
-            for (String schema : SchemaNames) {
-                /*String query = "Insert into Dic_Schema (" +
+            String query = "Insert all";
+            int noOfIdsRequired = schemaNames.size();
+            //get a list of ids
+            ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
+            int i = 0;
+            for (String schemaName : schemaNames) {
+                Vector<String> schema = new Vector<String>();
+                query += " into NGARG.Dic_Schema (" +
                         "Dic_Schema_ID," +
                         "Dic_Schema_Name," +
                         "Dic_Schema_HbaseTable," +
-                        "Dic_Schema_Instance_ID," +
-                        "values(" + GenerateID.generateID() + ",'"
-                        + dbType + "','"
-                        + instanceName + "','"
-                        + connectionName + "','"
-                        + password + "','"
-                        + dbPort + "','"
-                        + dbIp + "','"
-                        + userName + "')";
-                st.executeUpdate(query);*/
+                        "Dic_Schema_Instance_ID)" +
+                        "values("
+                        + ids.get(i) + ",'"
+                        + schemaName + "',"
+                        + "0,'"
+                        + instanceId + "') ";
+                schema.add(schemaName);
+                schema.add(ids.get(i++));
+                schema.add(instanceId);
+                schemaDetails.add(schema);
             }
+            if (!query.equals("Insert all"))
+                DatabaseUtility.updateQuery(con, query + " select * from dual");
 
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return schemaDetails;
     }
 
-    public static void addConnectionToMetadatabase(String connectionName, String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
+    public static String addConnectionToMetadatabase(Connection con, String connectionName, String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
+        String connectionId = null;
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
             Statement st = con.createStatement();
+            connectionId = GenerateID.generateID();
             String query = "Insert into Dic_Instance (Dic_Instance_ID," +
                     "Dic_Instance_DatabaseType," +
                     "Dic_Instance_InstanceName," +
@@ -79,7 +95,7 @@ public class DatabaseUtility {
                     "Dic_Instance_PortNumber," +
                     "Dic_Instance_SystemName," +
                     "Dic_Instance_UserName) " +
-                    "values(" + GenerateID.generateID() + ",'"
+                    "values(" + connectionId + ",'"
                     + dbType + "','"
                     + instanceName + "','"
                     + connectionName + "','"
@@ -88,11 +104,10 @@ public class DatabaseUtility {
                     + dbIp + "','"
                     + userName + "')";
             st.executeUpdate(query);
-            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return connectionId;
     }
 
 
@@ -111,6 +126,8 @@ public class DatabaseUtility {
     }
 
     public static Connection getConnection(String dbIP, String dbType, String port, String instance, String userName, String pass) throws SQLException {
+        if (dbIP.equals("ora.csc.ncsu.edu") && metadataConnection != null)        //returns metadata connection quickly
+            return metadataConnection;
         if (dbType.equals(DERBY))
             return getDerbyConnection(dbIP, port, instance, userName, pass);
         else if (dbType.equals(ORACLE))
@@ -118,8 +135,9 @@ public class DatabaseUtility {
         return null;
     }
 
-    public static Collection<String> getSchemas(Connection connection/*, String instanceId*/) {
+    public static Vector<Vector<String>> getSchemas(Connection connection, String instanceId) {
         ArrayList<String> schemaNames = new ArrayList<String>();
+        Vector<Vector<String>> schemaDetails = null;
         try {
             DatabaseMetaData metadata = connection.getMetaData();
             ResultSet schema = metadata.getSchemas();
@@ -127,15 +145,16 @@ public class DatabaseUtility {
                 schemaNames.add(schema.getString(1));
 
             }
-            addSchemasToMetadatabase(schemaNames/*, instanceId*/);
+            schemaDetails = addSchemasToMetadatabase(connection, schemaNames, instanceId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return schemaNames;
+        return schemaDetails;
     }
 
-    public static Collection<String> getTables(Connection connection, String schemaName) {
+    public static Vector<Vector<String>> getTables(Connection connection, String schemaName, String schemaId) {
         ArrayList<String> tableNames = new ArrayList<String>();
+        Vector<Vector<String>> tableDetails = null;
         try {
             DatabaseMetaData metadata = connection.getMetaData();
             ResultSet tables = metadata.getTables(null, schemaName, null, null);
@@ -143,24 +162,162 @@ public class DatabaseUtility {
                 tableNames.add(tables.getString(3));
                 getMetaData(connection, schemaName, tableNames.get(tableNames.size() - 1));
             }
+            tableDetails = addTablesToMetadatabase(connection, tableNames, schemaId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return tableNames;
+        return tableDetails;
     }
 
-    public static Collection<String> getColumns(Connection connection, String schemaName, String tableName) {
-        ArrayList<String> columns = new ArrayList<String>();
+    private static Vector<Vector<String>> addTablesToMetadatabase(Connection connection, ArrayList<String> tableNames, String schemaId) {
+        Vector<Vector<String>> tableDetails = new Vector<Vector<String>>();    //schemaId, schemaName
+        try {
+            String query = "Insert all";
+            int noOfIdsRequired = tableNames.size();
+            //get a list of ids
+            ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
+            int i = 0;
+            for (String tableName : tableNames) {
+                Vector<String> table = new Vector<String>();
+                String id = ids.get(i);
+                long time = System.nanoTime();
+                query += " into NGARG.Dic_Table (" +
+                        "DIC_TABLE_ID, " +                    //1
+                        "DIC_TABLE_COLUMNCOUNT, " +           //2
+                        "DIC_TABLE_ISCOLUMNFAMILY, " +        //3
+                        "DIC_TABLE_COLUMNDISCOVERED, " +      //4
+                        "DIC_TABLE_METADATADISCOVERED, " +    //5
+                        "DIC_TABLE_NAME, " +                  //6
+                        "DIC_TABLE_RECORD, " +                //7
+                        "DIC_TABLE_TIMESTAMP, " +             //8
+                        "DIC_TABLE_SCHEMA_ID) values ('"               //9
+
+                        + id + "',"                   //1
+                        + "0,"                               //2
+                        + "0,"                               //3
+                        + "0,"                                 //4
+                        + "0,'"                                 //5
+                        + tableName + "',"                                 //6
+                        + "0,"                                 //7
+                        + time + ",'"                                 //8
+                        + schemaId + "') ";                  //9
+
+                table.add(ids.get(i++));
+                table.add("0");
+                table.add("0");
+                table.add("0");
+                table.add("0");
+                table.add(tableName);
+                table.add("0");
+                table.add(String.valueOf(time));
+                table.add(schemaId);
+                tableDetails.add(table);
+            }
+            if (!query.equals("Insert all"))
+                DatabaseUtility.updateQuery(connection, query + " select * from dual");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tableDetails;
+    }
+
+    private static Vector<Vector<String>> addColumnsToMetadatabase(Connection connection, ArrayList<String> columnNames, String tableId) {
+        Vector<Vector<String>> columnDetails = new Vector<Vector<String>>();    //schemaId, schemaName
+        try {
+            String query = "Insert all";
+            int noOfIdsRequired = columnNames.size();
+            //get a list of ids
+            ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
+            int i = 0;
+            for (String columnName : columnNames) {
+                Vector<String> column = new Vector<String>();
+                String id = ids.get(i);
+                query += " into NGARG.Dic_Column (" +
+                        "DIC_COLUMN_ID, " +
+                        "DIC_COLUMN_LENGTH, " +
+                        "DIC_COLUMN_NAME, " +
+                        "DIC_COLUMN_TYPE, " +
+                        "DIC_COLUMN_TABLE_ID) values('"
+                        + id + "',"                   //1
+                        + "0,'"                                 //2
+                        + columnName + "',"                                 //3
+                        + "'null','"                                        //4
+                        + tableId + "') ";                  //5
+
+                column.add(ids.get(i++));
+                column.add("0");
+                column.add(columnName);
+                column.add("");
+                column.add(tableId);
+                columnDetails.add(column);
+            }
+            if (!query.equals("Insert all"))
+                DatabaseUtility.updateQuery(connection, query + " select * from dual");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return columnDetails;
+    }
+
+    public static void updateColumnDiscovered(Connection connection, String tableId) {
+        String query = "update NGARG.DIC_TABLE set DIC_TABLE_COLUMNDISCOVERED = 1 where DIC_TABLE_ID = '" + tableId+"'";
+        try {
+            DatabaseUtility.updateQuery(connection, query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static Vector<Vector<String>> getColumns(Connection connection, String schemaName, String tableName, String tableId) {
+        ArrayList<String> columnNames = new ArrayList<String>();
+        Vector<Vector<String>> columnDetails = null;
         try {
             DatabaseMetaData metadata = connection.getMetaData();
             ResultSet col = metadata.getColumns(null, schemaName, tableName, null);
             while (col.next()) {
-                columns.add(col.getString(4));
+                columnNames.add(col.getString(4));
+            }
+            columnDetails = addColumnsToMetadatabase(connection, columnNames, tableId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return columnDetails;
+    }
+
+    public static ArrayList<String> getColumns(Connection connection, String schemaName, String tableName) {
+        ArrayList<String> columnNames = new ArrayList<String>();
+        try {
+            DatabaseMetaData metadata = connection.getMetaData();
+            ResultSet col = metadata.getColumns(null, schemaName, tableName, null);
+            while (col.next()) {
+                columnNames.add(col.getString(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return columns;
+        return columnNames;
+    }
+
+    public static void updateColumnParameters(Connection connection, String columnId, String type, String length) {
+        String query = "update NGARG.DIC_COLUMN set DIC_COLUMN_TYPE = '" + type + "', DIC_COLUMN_LENGTH = " + Integer.parseInt(length) + " where DIC_COLUMN_ID = '" + columnId + "'";
+
+        try {
+            DatabaseUtility.updateQuery(connection, query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateTableParameters(Connection connection, String tableId, String col_count, String record_count) {
+        String query = "update NGARG.DIC_TABLE set DIC_TABLE_COLUMNCOUNT = " + Integer.parseInt(col_count) + ", DIC_TABLE_RECORD = " + Integer.parseInt(record_count) + ", DIC_TABLE_METADATADISCOVERED = 1 where DIC_TABLE_ID='" + tableId + "'";
+        try {
+            DatabaseUtility.updateQuery(connection, query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Vector<Vector<Object>> getMetaData(Connection connection, String schemaName, String tableName) {
@@ -267,6 +424,6 @@ public class DatabaseUtility {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        getSchemas(connection);
+//        getSchemas(connection);
     }
 }
