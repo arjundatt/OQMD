@@ -10,7 +10,7 @@ import java.sql.Statement;
  */
 public class Test {
     public static void createTable() {
-        String query1 ="CREATE TABLE Dic_Instance (" + "Dic_Instance_ID VARCHAR(400) NOT NULL,"
+        /*String query1 ="CREATE TABLE Dic_Instance (" + "Dic_Instance_ID VARCHAR(400) NOT NULL,"
                 + "Dic_Instance_DatabaseType VARCHAR(400)  NOT NULL, "
                 + "Dic_Instance_InstanceName VARCHAR(400) NOT NULL, "
                 + "Dic_Instance_ConnectionName VARCHAR(400) NOT NULL, "
@@ -38,17 +38,29 @@ public class Test {
                 + "Dic_Table_Schema_ID VARCHAR(400) NOT NULL,"
                 + "PRIMARY KEY (Dic_Table_ID))";
 
-        String query4 = "CREATE TABLE Dic_Column (" + "Dic_Column_ID VARCHAR(400) NOT NULL,"
+        //String query4 = "CREATE TABLE Dic_Column (" + "Dic_Column_ID VARCHAR(400) NOT NULL,"
                 + "Dic_Column_Length INTEGER  NOT NULL, "
                 + "Dic_Column_Name VARCHAR(400) NOT NULL, "
                 + "Dic_Column_type VARCHAR(400) NOT NULL, "
                 + "Dic_Column_Table_ID VARCHAR(400) NOT NULL,"
-                + "PRIMARY KEY (Dic_Column_ID))";
+                + "PRIMARY KEY (Dic_Column_ID))";*/
+
+        String createtabledicregex = "CREATE TABLE Dic_Regex (" + "Dic_Regex_ID VARCHAR2(400),"
+                + "Dic_Regex_Type VARCHAR2(400), "
+                + "Dic_Regex_RegularExp VARCHAR2(400), "
+                + "Dic_Regex_linkID VARCHAR2(400), "
+                + "Dic_Regex_Order INTEGER, "
+                + "PRIMARY KEY (Dic_Regex_ID))";
+        String createtablediclink = "CREATE TABLE Dic_Link (" + "Dic_Link_ID VARCHAR2(400),"
+                + "Dic_Link_Value VARCHAR2(400), "
+                + "Dic_Link_linkID VARCHAR2(400), "
+                + "PRIMARY KEY (Dic_Link_ID))";
 
         //string insert = "INSERT INTO Dic_Instance VALUES (1,'a','b','c','d',2,'g','h')";*/
         //String query = "CREATE TABLE Dic_ID(Dic_ID INTEGER)";
         //String insert = "INSERT INTO Dic_ID VALUES (100000)";
-        //String delete= "DROP TABLE Dic_Instance";
+        //String drop= "DROP TABLE Dic_Regex";
+        //String delete= "Delete from Dic_Link";
 
         //Statement st = null;
         try {
@@ -61,8 +73,10 @@ public class Test {
             //st.execute(query1);
             //st.execute(query2);
             //st.execute(query3);
-            st.execute(query4);
-            System.out.println("ok");
+            //st.execute(createtabledicregex);
+            //st.execute(delete);
+            //st.execute(createtablediclink);
+            //System.out.println("ok");
             connection.close();
         } catch (Exception e) {
             e.printStackTrace();
