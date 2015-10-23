@@ -416,6 +416,9 @@ public class DatabaseUtility {
         return vector;
     }
 
+    public static Vector executeQueryOnMetaDatabase(String sql) throws SQLException {
+        return executeQuery(metadataConnection, sql);
+    }
 
     public static void main(String[] args) {
         Connection connection = null;
