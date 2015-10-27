@@ -9,9 +9,9 @@ import java.awt.*;
 public class InstanceInfo extends JPanel {
     String connectionName, system, instanceName, databaseType, port;
 
-    public InstanceInfo(String connectionName, String instanceName, String system, String databaseType, String port) {
-        setBorder(BorderFactory.createEmptyBorder(50,200,50,200));
-        setLayout(new GridLayout(5,2,500,10));
+    public InstanceInfo(String connectionName, String system, String instanceName, String databaseType, String port) {
+        setBorder(BorderFactory.createEmptyBorder(50, 200, 50, 200));
+        setLayout(new GridLayout(5, 2, 500, 10));
         this.connectionName = connectionName;
         this.instanceName = instanceName;
         this.system = system;

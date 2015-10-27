@@ -46,7 +46,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         this.setSize(Width-100,Height-100);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        addWindowListener(new WindowAdapter() {
+        /*addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 try {
                     xmlTree.writeXml(jTree);
@@ -54,7 +54,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
                     e1.printStackTrace();
                 }
             }
-        });
+        });*/
         node = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
         showConnectionTable();
     }
@@ -120,9 +120,9 @@ public class ApplicationWindows extends JFrame implements MouseListener {
     }
 
     private void showColumnView() {
-        String name = node.getAttribute("name");
-        String length = node.getAttribute("length");
-        String type = node.getAttribute("type");
+        String name = node.getAttribute("dic_column_name");
+        String length = node.getAttribute("dic_column_length");
+        String type = node.getAttribute("dic_column_type");
         ColumnInfo columnInfo = new ColumnInfo(name, length, type);
         JPanel columnInfoPanel = new JPanel();
         columnInfoPanel.add(columnInfo);
@@ -130,11 +130,11 @@ public class ApplicationWindows extends JFrame implements MouseListener {
     }
 
     private void showInstanceView() {
-        String connectionName = node.getAttribute("name");
-        String system = node.getAttribute("system");
-        String instanceName = node.getAttribute("instance");
-        String databaseType = node.getAttribute("database");
-        String port = node.getAttribute("port");
+        String connectionName = node.getAttribute("dic_instance_connectionname");
+        String system = node.getAttribute("dic_instance_systemname");
+        String instanceName = node.getAttribute("dic_instance_instancename");
+        String databaseType = node.getAttribute("dic_instance_databasetype");
+        String port = node.getAttribute("dic_instance_portnumber");
         InstanceInfo instanceInfo = new InstanceInfo(connectionName, system, instanceName, databaseType, port);
         JPanel instanceInfoPanel = new JPanel();
         instanceInfoPanel.add(instanceInfo);
@@ -149,18 +149,18 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         while (children.hasMoreElements()) {
             Vector<Object> currentChild = new Vector<Object>();
             HierarchyTreeNode temp = children.nextElement();
-            currentChild.add(temp.getAttribute("name"));
-            if (temp.getAttribute("metadata_discovered").equals("true")) {
-                currentChild.add(Integer.parseInt(temp.getAttribute("record_count")));
+            currentChild.add(temp.getAttribute("dic_table_name"));
+            if (temp.getAttribute("dic_table_metadatadiscovered").equals("1")) {
+                currentChild.add(Integer.parseInt(temp.getAttribute("dic_table_record")));
             } else {
                 currentChild.add("");
             }
-            if (temp.getAttribute("column_discovered").equals("true")) {
-                currentChild.add(Integer.parseInt(temp.getAttribute("column_count")));
+            if (temp.getAttribute("dic_table_columndiscovered").equals("1")) {
+                currentChild.add(Integer.parseInt(temp.getAttribute("dic_table_columncount")));
             } else {
                 currentChild.add("");
             }
-            currentChild.add(Boolean.valueOf(temp.getAttribute("metadata_discovered")));
+            currentChild.add(temp.getAttribute("dic_table_metadatadiscovered"));
             data.add(currentChild);
         }
         table = new KTable(data, columns);
@@ -184,7 +184,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
     private void showMetaData() {
         HierarchyTreeNode instanceNode = (HierarchyTreeNode) (node.getParent()).getParent();
         callConnectionFromInstanceNode(instanceNode);
-        if (node.getAttribute("metadata_discovered").equals("true")) {
+        if (node.getAttribute("dic_table_metadatadiscovered").equals("1")) {
             Enumeration<HierarchyTreeNode> children = node.children();
             String[] col = new String[]{"Name", "Data Type", "Size", "Is Primary Key"};
             Vector<String> columns = new Vector<String>(Arrays.asList(col));
@@ -192,11 +192,11 @@ public class ApplicationWindows extends JFrame implements MouseListener {
             while (children.hasMoreElements()) {
                 Vector<Object> currentChild = new Vector<Object>();
                 HierarchyTreeNode temp = children.nextElement();
-                currentChild.add(temp.getAttribute("name"));
-                currentChild.add(temp.getAttribute("type"));
-                currentChild.add(Integer.parseInt(temp.getAttribute("length")));
-                if (temp.getAttribute("time_stamp") != null) {
-                    currentChild.add(Long.parseLong(temp.getAttribute("time_stamp")));
+                currentChild.add(temp.getAttribute("dic_column_name"));
+                currentChild.add(temp.getAttribute("dic_column_type"));
+                currentChild.add(Integer.parseInt(temp.getAttribute("dic_column_length")));
+                if (temp.getAttribute("dic_table_timestamp") != null) {
+                    currentChild.add(Long.parseLong(temp.getAttribute("dic_table_timestamp")));
                 } else {
                     currentChild.add("");
                 }
@@ -254,11 +254,11 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         while (children.hasMoreElements()) {
             Vector<Object> currentChild = new Vector<Object>();
             HierarchyTreeNode temp = children.nextElement();
-            currentChild.add(temp.getAttribute("database"));
-            currentChild.add(temp.getAttribute("instance"));
-            currentChild.add(temp.getAttribute("name"));
-            currentChild.add(temp.getAttribute("port"));
-            currentChild.add(temp.getAttribute("system"));
+            currentChild.add(temp.getAttribute("dic_instance_databasetype"));
+            currentChild.add(temp.getAttribute("dic_instance_connectionname"));
+            currentChild.add(temp.getAttribute("dic_instance_instancename"));
+            currentChild.add(temp.getAttribute("dic_instance_portnumber"));
+            currentChild.add(temp.getAttribute("dic_instance_systemname"));
             data.add(currentChild);
         }
         table = new KTable(data, columns);
@@ -310,7 +310,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         connection = leftHierarchy.getConnectionMap().get(instanceNode);
         if (connection == null) {
             try {
-                connection = DatabaseUtility.getConnection(instanceNode.getAttribute("system"), instanceNode.getAttribute("database"), instanceNode.getAttribute("port"), instanceNode.getAttribute("instance"), instanceNode.getAttribute("uname"), instanceNode.getAttribute("pass"));
+                connection = DatabaseUtility.getConnection(instanceNode.getAttribute("dic_instance_systemname"), instanceNode.getAttribute("dic_instance_databasetype"), instanceNode.getAttribute("dic_instance_portnumber"), instanceNode.getAttribute("dic_instance_instancename"), instanceNode.getAttribute("dic_instance_username"), instanceNode.getAttribute("dic_instance_password"));
                 leftHierarchy.setConnection(connection);
                 leftHierarchy.getConnectionMap().put(instanceNode, connection);
             } catch (SQLException e1) {
