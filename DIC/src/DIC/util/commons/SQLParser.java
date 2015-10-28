@@ -106,17 +106,18 @@ public class SQLParser {
                 "       JOIN NGARG.dic_table \n" +
                 "         ON dic_schema_id = dic_table_schema_id \n" +
                 "       JOIN NGARG.dic_column \n" +
-                "         ON dic_column_table_id = dic_table_id ");
+                "         ON dic_column_table_id = dic_table_id " +
+                "WHERE  dic_column_table_id = '2001092'");
         sqlParser.parse();
         System.out.println("Columns are ");
         for (String column : sqlParser.getColumns()) {
             System.out.print(column + ", ");
         }
-        System.out.println("\n Tables are ");
+        System.out.println("\nTables are ");
         for (String table : sqlParser.getTables()) {
             System.out.print(table + ", ");
         }
-        System.out.println("schema = " + sqlParser.getSchema());
+        System.out.println("\nschema = " + sqlParser.getSchema());
         System.out.println("where clause = " + sqlParser.where);
     }
 }
