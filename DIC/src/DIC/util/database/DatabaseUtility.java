@@ -80,6 +80,7 @@ public class DatabaseUtility {
             e.printStackTrace();
         }
         return schemaDetails;
+        //jbjkb
     }
 
     public static String addConnectionToMetadatabase(Connection con, String connectionName, String dbIp, String dbType, String dbPort, String instanceName, String userName, String password) throws SQLException {
