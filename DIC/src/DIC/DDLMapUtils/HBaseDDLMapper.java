@@ -17,6 +17,17 @@ import java.io.IOException;
 
 public class HBaseDDLMapper implements DDLMappingBase{
 
+    //test main: remove it later!!!
+    public static void main(String[] a){
+        String mQuery = "SELECT id,name FROM EmployeeAmerica";
+        HBaseDDLMapper obj = new HBaseDDLMapper();
+        System.out.print(obj.query(mQuery));
+    }
+
+
+    //manage this to change dynamically latter!!!
+    private static final int MAX_COLUMNS = 10;
+
     /*  mQuery of of the form : SELECT \\S+ FROM \\S+(.*)
      */
     @Override
@@ -28,12 +39,16 @@ public class HBaseDDLMapper implements DDLMappingBase{
     public String query(String mQuery) {
 
         String selectReg = "SELECT \\S+ FROM \\S+(.*)";
-        StringBuilder val = new StringBuilder();
+
+
         if(mQuery.matches(selectReg)) {
             String[] components = mQuery.split("((\\s*SELECT\\s+)|(\\s*FROM\\s*))");
             String mColVals = "";
             String mTableName = "";
-            String[] mColValsList={""};
+            String[] mColValsArr = new String[MAX_COLUMNS];
+            StringBuilder concatResult = new StringBuilder();
+
+            int numberOfColumns=0;
 
             for(String str : components){
                 if(str.matches("\\S+")){
@@ -45,37 +60,44 @@ public class HBaseDDLMapper implements DDLMappingBase{
                     }
                 }
             }
-
-            //read all columns
-            if("*".equals(mColVals)){
-
+            if(mColVals.contains(",")){
+                mColValsArr = mColVals.split("\\s*,\\s*");
+                numberOfColumns=mColVals.split("\\s*,\\s*").length;
             }
-            //read specific columns
             else{
-                mColValsList = mColVals.split("\\s*,\\s*");
+                mColValsArr[0]=mColVals;
+                numberOfColumns=1;
             }
             Configuration config = HBaseConfiguration.create();
             try {
                 HTable table = new HTable(config, mTableName);
-
-                //Test: fetching data from single row only for now
-                Get get = new Get(Bytes.toBytes("row1"));
-
-                Result result = table.get(get);
-
-//test code starts
-                // Reading values from Result class object
-                for(String cols : mColValsList) {
-                    byte[] value = result.getValue(Bytes.toBytes("colFamily"), Bytes.toBytes(cols));
-                    val.append(Bytes.toString(value) + "\n");
-                }
-//test code ends
+                int counter=1;
+                do{
+                    boolean end = false;
+                    Get get = new Get(Bytes.toBytes("row"+counter));
+                    counter++;
+                    Result result = table.get(get);
+                    for(int i=0;i<numberOfColumns;i++){
+                        // Reading values from Result class object
+                        byte [] value = result.getValue(Bytes.toBytes("professional_data"),Bytes.toBytes(mColValsArr[i]));
+                        if(value==null){
+                            end=true;
+                            break;
+                        }
+                        concatResult.append(Bytes.toString(value)+"  ");
+                    }
+                    if(end){
+                        break;
+                    }
+                    concatResult.append("\n");
+                } while(true);
             } catch (IOException e) {
                 e.printStackTrace();
 
             }
+            return concatResult.toString();
         }
-        return val.toString();
+        return null;
     }
 
     @Override

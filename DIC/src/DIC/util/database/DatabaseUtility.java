@@ -15,7 +15,7 @@ public class DatabaseUtility {
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DERBY = "Derby";
     static final String ORACLE = "Oracle";
-    static Connection metadataConnection = null;
+    public static Connection metadataConnection = null;
 
     static {
         try {
@@ -126,7 +126,7 @@ public class DatabaseUtility {
     }
 
     public static Connection getConnection(String dbIP, String dbType, String port, String instance, String userName, String pass) throws SQLException {
-        if (dbIP.equals("ora.csc.ncsu.edu") && metadataConnection != null)        //returns metadata connection quickly
+        if (dbIP.equals("ora.csc.ncsu.edu") && metadataConnection != null && !metadataConnection.isClosed())        //returns metadata connection quickly
             return metadataConnection;
         if (dbType.equals(DERBY))
             return getDerbyConnection(dbIP, port, instance, userName, pass);

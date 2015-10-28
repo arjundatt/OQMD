@@ -6,6 +6,7 @@ import DIC.component.formcomponent.TextField;
 import DIC.component.treecomponent.HierarchyTreeNode;
 import DIC.util.database.DatabaseUtility;
 import DIC.xml.XMLTree;
+import org.omg.CORBA.DATA_CONVERSION;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -39,8 +40,8 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
 
     public LeftHierarchy() {
         setLayout(new BorderLayout());
-        XMLTree xmlTree = new XMLTree();
-        root = xmlTree.xmlToTree();
+//        XMLTree xmlTree = new XMLTree();
+        root = TreeMakerFromMetaDatabase.makeTree();
         createLeftHierarchy();
     }
 
@@ -69,12 +70,12 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 callConnectionFromInstanceNode(selectedNode);
                 if (selectedNode.getChildCount() == 0) {
-                    Vector<Vector<String>> schemaDetails = DatabaseUtility.getSchemas(connection, selectedNode.getAttribute("id"));
+                    Vector<Vector<String>> schemaDetails = DatabaseUtility.getSchemas(connection, selectedNode.getAttribute("dic_instance_id"));
                     for (Vector<String> schemaDetail : schemaDetails) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("name", schemaDetail.get(0));   //name
-                        map.put("schemaId", schemaDetail.get(1));    //schemaId
-                        map.put("instanceId", schemaDetail.get(2));    //instanceId
+                        map.put("dic_schema_name", schemaDetail.get(0));   //name
+                        map.put("dic_schema_id", schemaDetail.get(1));    //schemaId
+                        map.put("dic_schema_instance_id", schemaDetail.get(2));    //instanceId
                         HierarchyTreeNode newChild = new HierarchyTreeNode(schemaDetail.get(0), map);
                         selectedNode.add(newChild);
                     }
@@ -94,18 +95,20 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode instanceNode = (HierarchyTreeNode) selectedNode.getParent();
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
-                    Vector<Vector<String>> result = DatabaseUtility.getTables(connection, selectedNode.toString(), selectedNode.getAttribute("schemaId"));
+                    //todo hardcoded metadata connection
+                    connection = DatabaseUtility.metadataConnection;
+                    Vector<Vector<String>> result = DatabaseUtility.getTables(connection, selectedNode.toString(), selectedNode.getAttribute("dic_schema_id"));
                     for (Vector<String> tableDetail : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("tableId", tableDetail.get(0));
-                        map.put("column_count", tableDetail.get(1));
-                        map.put("column_family", tableDetail.get(2));
-                        map.put("column_discovered", tableDetail.get(3));
-                        map.put("metadata_discovered", tableDetail.get(4));
-                        map.put("name", tableDetail.get(5));
-                        map.put("record_count", tableDetail.get(6));
-                        map.put("time_stamp", tableDetail.get(7));
-                        map.put("schemaId", tableDetail.get(8));
+                        map.put("dic_table_id", tableDetail.get(0));
+                        map.put("dic_table_columncount", tableDetail.get(1));
+                        map.put("dic_table_iscolumnfamily", tableDetail.get(2));
+                        map.put("dic_table_columndiscovered", tableDetail.get(3));
+                        map.put("dic_table_metadatadiscovered", tableDetail.get(4));
+                        map.put("dic_table_name", tableDetail.get(5));
+                        map.put("dic_table_record", tableDetail.get(6));
+                        map.put("dic_table_timestamp", tableDetail.get(7));
+                        map.put("dic_table_schema_id", tableDetail.get(8));
                         HierarchyTreeNode newChild = new HierarchyTreeNode(tableDetail.get(5), map);
                         selectedNode.add(newChild);
                     }
@@ -130,19 +133,21 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode instanceNode = (HierarchyTreeNode) selectedNode.getParent().getParent();
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
+                    //todo hardcoded metadata connection
+                    connection = DatabaseUtility.metadataConnection;
                     Vector<Vector<String>> result = DatabaseUtility.getColumns(connection, selectedNode.getParent().toString(), selectedNode.toString(), selectedNode.getAttribute("tableId"));
                     for (Vector<String> column : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
-                        map.put("columnId", column.get(0));
-                        map.put("length", column.get(1));
-                        map.put("name", column.get(2));
-                        map.put("type", column.get(3));
-                        map.put("tableId", column.get(4));
+                        map.put("dic_column_id", column.get(0));
+                        map.put("dic_column_length", column.get(1));
+                        map.put("dic_column_name", column.get(2));
+                        map.put("dic_column_type", column.get(3));
+                        map.put("dic_column_table_id ", column.get(4));
                         HierarchyTreeNode newChild = new HierarchyTreeNode(column.get(2), map);
                         selectedNode.add(newChild);
                     }
-                    selectedNode.setAttribute("column_discovered", "true");
-                    DatabaseUtility.updateColumnDiscovered(connection, selectedNode.getAttribute("tableId"));
+                    selectedNode.setAttribute("dic_table_columndiscovered", "1");
+                    DatabaseUtility.updateColumnDiscovered(connection, selectedNode.getAttribute("dic_table_id"));
                     jTree.expandPath(new TreePath(selectedNode.getPath()));
                     updateUI();
                 }
@@ -159,18 +164,18 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 HierarchyTreeNode instanceNode = (HierarchyTreeNode) selectedNode.getParent().getParent();
                 callConnectionFromInstanceNode(instanceNode);
-                if (Boolean.valueOf(selectedNode.getAttribute("metadata_discovered"))) {
+                if (selectedNode.getAttribute("dic_table_metadatadiscovered").equals("1")) {
                     JOptionPane.showMessageDialog(getTopLevelAncestor(), "Metadata Already Discovered", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    if (Boolean.valueOf(selectedNode.getAttribute("column_discovered"))) {
+                    if (Boolean.valueOf(selectedNode.getAttribute("dic_table_columndiscovered"))) {
                         Vector<Vector<Object>> result = DatabaseUtility.getMetaData(connection, selectedNode.getParent().toString(), selectedNode.toString());
                         Enumeration children = selectedNode.children();
                         int index = 0;
                         while (children.hasMoreElements()) {
                             HierarchyTreeNode colNode = (HierarchyTreeNode) children.nextElement();
                             Vector<Object> colMetaData = result.elementAt(index);
-                            colNode.setAttribute("type", colMetaData.elementAt(1).toString());
-                            colNode.setAttribute("length", colMetaData.elementAt(2).toString());
+                            colNode.setAttribute("dic_column_type", colMetaData.elementAt(1).toString());
+                            colNode.setAttribute("dic_column_length", colMetaData.elementAt(2).toString());
                             DatabaseUtility.updateColumnParameters(connection, colNode.getAttribute("columnId"), colMetaData.elementAt(1).toString(), colMetaData.elementAt(2).toString());
                             index++;
                         }
@@ -178,7 +183,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                         selectedNode.setAttribute("column_count", tableMetaData.get("col_count"));
                         selectedNode.setAttribute("record_count", tableMetaData.get("record_count"));
                         jTree.expandPath(new TreePath(selectedNode.getPath()));
-                        selectedNode.setAttribute("metadata_discovered", "true");
+                        selectedNode.setAttribute("metadata_discovered", "1");
                         DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("tableId"),tableMetaData.get("col_count"), tableMetaData.get("record_count"));
 
                         updateUI();
@@ -276,14 +281,14 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
     public HierarchyTreeNode addConnection(AddConnection temp, String connectionId) {
         DefaultTreeModel model = (DefaultTreeModel) jTree.getModel();
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("database", temp.getDbTypeComboBox().getSelectedItem().toString());
-        map.put("instance", temp.getInstanceName().getText());
-        map.put("name", temp.getConnectionName().getText());
-        map.put("uname", temp.getUserName().getText());
-        map.put("pass", temp.getPassword().getText());
-        map.put("port", temp.getPort().getText());
-        map.put("system", temp.getSystem().getText());
-        map.put("id", connectionId);
+        map.put("dic_instance_databasetype", temp.getDbTypeComboBox().getSelectedItem().toString());
+        map.put("dic_instance_instancename", temp.getInstanceName().getText());
+        map.put("dic_instance_instancename", temp.getConnectionName().getText());
+        map.put("dic_instance_username", temp.getUserName().getText());
+        map.put("dic_instance_password", temp.getPassword().getText());
+        map.put("dic_instance_portnumber", temp.getPort().getText());
+        map.put("dic_instance_systemname", temp.getSystem().getText());
+        map.put("dic_instance_id", connectionId);
         HierarchyTreeNode instanceNode = new HierarchyTreeNode(temp.getConnectionName().getText(), map);
         root.add(instanceNode);
         model.reload(root);
@@ -363,7 +368,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
         connection = connectionMap.get(instanceNode);
         if (connection == null) {
             try {
-                connection = DatabaseUtility.getConnection(instanceNode.getAttribute("system"), instanceNode.getAttribute("database"), instanceNode.getAttribute("port"), instanceNode.getAttribute("instance"), instanceNode.getAttribute("uname"), instanceNode.getAttribute("pass"));
+                connection = DatabaseUtility.getConnection(instanceNode.getAttribute("dic_instance_systemname"), instanceNode.getAttribute("dic_instance_databasetype"), instanceNode.getAttribute("dic_instance_portnumber"), instanceNode.getAttribute("dic_instance_instancename"), instanceNode.getAttribute("dic_instance_username"), instanceNode.getAttribute("dic_instance_password"));
                 getConnectionMap().put(instanceNode, connection);
             } catch (SQLException e1) {
                 e1.printStackTrace();
