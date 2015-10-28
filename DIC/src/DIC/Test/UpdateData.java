@@ -22,11 +22,12 @@ public class UpdateData{
         System.out.println("step 1");
         // Instantiating Configuration class
         Configuration config = HBaseConfiguration.create();
-        config.set("hbase.zookeeper.quorum", "localhost");
-        config.set("hbase.zookeeper.property.clientport", "2181");
+//        config.set("hbase.zookeeper.quorum", "localhost");
+//        config.set("hbase.zookeeper.property.clientport", "2181");
+        config.set("hbase.master","localhost:60000");
         System.out.println("step 2");
         // Instantiating HTable class
-        HTable hTable = new HTable(config, "employee");
+        HTable hTable = new HTable(config, "EmployeeAmerica");
         System.out.println("step 3");
 
         //Create object of FileReader
@@ -37,7 +38,7 @@ public class UpdateData{
 
         //Variable to hold the one line data
         String line;
-        int i=12;
+        int i=1;
 
         // Read file line by line and print on the console
         while ((line = bufferReader.readLine()) != null)   {
