@@ -96,7 +96,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
                     //todo hardcoded metadata connection
-                    connection = DatabaseUtility.metadataConnection;
+//                    connection = DatabaseUtility.metadataConnection;
                     Vector<Vector<String>> result = DatabaseUtility.getTables(connection, selectedNode.toString(), selectedNode.getAttribute("dic_schema_id"));
                     for (Vector<String> tableDetail : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
@@ -134,8 +134,8 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 callConnectionFromInstanceNode(instanceNode);
                 if (selectedNode.getChildCount() == 0) {
                     //todo hardcoded metadata connection
-                    connection = DatabaseUtility.metadataConnection;
-                    Vector<Vector<String>> result = DatabaseUtility.getColumns(connection, selectedNode.getParent().toString(), selectedNode.toString(), selectedNode.getAttribute("tableId"));
+//                    connection = DatabaseUtility.metadataConnection;
+                    Vector<Vector<String>> result = DatabaseUtility.getColumns(connection, selectedNode.getParent().toString(), selectedNode.toString(), selectedNode.getAttribute("dic_table_id"));
                     for (Vector<String> column : result) {
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("dic_column_id", column.get(0));
@@ -167,7 +167,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 if (selectedNode.getAttribute("dic_table_metadatadiscovered").equals("1")) {
                     JOptionPane.showMessageDialog(getTopLevelAncestor(), "Metadata Already Discovered", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    if (Boolean.valueOf(selectedNode.getAttribute("dic_table_columndiscovered"))) {
+                    if (selectedNode.getAttribute("dic_table_columndiscovered").equals("1")) {
                         Vector<Vector<Object>> result = DatabaseUtility.getMetaData(connection, selectedNode.getParent().toString(), selectedNode.toString());
                         Enumeration children = selectedNode.children();
                         int index = 0;
@@ -176,15 +176,15 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                             Vector<Object> colMetaData = result.elementAt(index);
                             colNode.setAttribute("dic_column_type", colMetaData.elementAt(1).toString());
                             colNode.setAttribute("dic_column_length", colMetaData.elementAt(2).toString());
-                            DatabaseUtility.updateColumnParameters(connection, colNode.getAttribute("columnId"), colMetaData.elementAt(1).toString(), colMetaData.elementAt(2).toString());
+                            DatabaseUtility.updateColumnParameters(connection, colNode.getAttribute("dic_column_id"), colMetaData.elementAt(1).toString(), colMetaData.elementAt(2).toString());
                             index++;
                         }
                         HashMap<String, String> tableMetaData = DatabaseUtility.getTableMetaData(connection, selectedNode.getParent().toString(), selectedNode.toString());
-                        selectedNode.setAttribute("column_count", tableMetaData.get("col_count"));
-                        selectedNode.setAttribute("record_count", tableMetaData.get("record_count"));
+                        selectedNode.setAttribute("dic_table_columncount", tableMetaData.get("col_count"));
+                        selectedNode.setAttribute("dic_table_record", tableMetaData.get("record_count"));
                         jTree.expandPath(new TreePath(selectedNode.getPath()));
-                        selectedNode.setAttribute("metadata_discovered", "1");
-                        DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("tableId"),tableMetaData.get("col_count"), tableMetaData.get("record_count"));
+                        selectedNode.setAttribute("dic_table_metadatadiscovered", "1");
+                        DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("dic_table_id"),tableMetaData.get("col_count"), tableMetaData.get("record_count"));
 
                         updateUI();
                     } else {

@@ -1,5 +1,6 @@
 package DIC.util.commons;
 
+import DIC.util.database.DatabaseUtility;
 import gudusoft.gsqlparser.EDbVendor;
 import gudusoft.gsqlparser.ESqlStatementType;
 import gudusoft.gsqlparser.TCustomSqlStatement;
@@ -9,7 +10,9 @@ import gudusoft.gsqlparser.nodes.TTableList;
 import gudusoft.gsqlparser.nodes.TWhereClause;
 import gudusoft.gsqlparser.stmt.TSelectSqlStatement;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +24,7 @@ public class SQLParser {
     String sql;
     String schema;
     ArrayList<String> columns;
+    ArrayList<String> columnIDs;
     ArrayList<String> tables;
     String where;
 
@@ -28,6 +32,7 @@ public class SQLParser {
         this.sql = sql;
         columns = new ArrayList<String>();
         tables = new ArrayList<String>();
+        columnIDs = new ArrayList<String>();
         schema = "";
         where = "";
     }
@@ -56,9 +61,37 @@ public class SQLParser {
                 if (firstTable.contains(".")) {
                     schema = firstTable.substring(0, firstTable.indexOf("."));
                 }
+                String sql = "SELECT dic_column_id \n" +
+                        "FROM   dic_column \n" +
+                        "       JOIN dic_table \n" +
+                        "         ON dic_column_table_id = dic_table_id \n" +
+                        "       JOIN dic_schema \n" +
+                        "         ON dic_table_schema_id = dic_schema_id " +
+                        "WHERE ";
+                for (String column : columns) {
+                    sql += "DIC_COLUMN_NAME = '" + column + "' or ";
+                }
+                for (String table : tables) {
+                    sql += "DIC_TABLE_NAME = '" + table + "' or ";
+                }
+                sql += "DIC_SCHEMA_NAME = '" + schema + "'";
+                System.out.println(sql);
+                try {
+                    Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(sql);
+                    vector.remove(0); //removing column name
+                    for (Vector<String> row : vector) {
+                        columnIDs.add(row.get(0));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return ret;
+    }
+
+    public ArrayList<String> getColumnIDs() {
+        return columnIDs;
     }
 
     public ArrayList<String> getColumns() {
@@ -119,5 +152,10 @@ public class SQLParser {
         }
         System.out.println("\nschema = " + sqlParser.getSchema());
         System.out.println("where clause = " + sqlParser.where);
+
+        System.out.println("Columns Ids are ");
+        for (String columnId : sqlParser.getColumnIDs()) {
+            System.out.print(columnId + ", ");
+        }
     }
 }
