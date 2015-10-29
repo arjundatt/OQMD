@@ -69,10 +69,10 @@ public class SQLParser {
                         "         ON dic_table_schema_id = dic_schema_id " +
                         "WHERE ";
                 for (String column : columns) {
-                    sql += "DIC_COLUMN_NAME = '" + column + "' or ";
+                    sql += "DIC_COLUMN_NAME = '" + column.toUpperCase() + "' or ";
                 }
                 for (String table : tables) {
-                    sql += "DIC_TABLE_NAME = '" + table + "' or ";
+                    sql += "DIC_TABLE_NAME = '" + table.substring(table.indexOf(".") + 1, table.length()) + "' and ";
                 }
                 sql += "DIC_SCHEMA_NAME = '" + schema + "'";
                 System.out.println(sql);
