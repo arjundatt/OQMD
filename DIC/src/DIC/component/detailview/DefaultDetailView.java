@@ -166,7 +166,7 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                     if (query.toLowerCase().startsWith("select")) {
                         Vector<Vector<Object>> data = null;
                         try {
-                            data = DatabaseUtility.executeQuery((Connection) evt.getOldValue(), query);
+                            data = DatabaseUtility.executeQuery((Connection) evt.getOldValue(), query);  //fetches data from oracle connection
                             Vector<Object> cols = data.elementAt(0);
                             Vector<String> columns = new Vector<String>();
                             for (Object column : cols) {
@@ -188,6 +188,7 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                     sqlParser.parse();
                     ArrayList<String> columnIDs = sqlParser.getColumnIDs();
                     //todo for arjun: the above statement retrives the columnIDs
+//                    DatabaseUtility.executeQueryOnMetaDatabase("")
                     String text = "<html><h3><font color='red' size='8'>";
                     for (String columnID : columnIDs) {
                         text += " " + columnID + ", ";
