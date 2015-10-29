@@ -3,6 +3,7 @@ package DIC.component.detailview;
 import DIC.component.rightview.DefaultRightViewDisplay;
 import DIC.component.rightview.DefaultTableView;
 import DIC.component.rightview.tablecomponent.KTable;
+import DIC.util.commons.SQLParser;
 import DIC.util.database.DatabaseUtility;
 import org.apache.commons.math.util.MathUtils;
 
@@ -13,6 +14,7 @@ import java.beans.PropertyChangeListener;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -140,7 +142,73 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
             while (removeTab(i++)) {
             }
             removeTab(1);
-        } else if (evt.getPropertyName().equals("mapper")) {
+        } else if (evt.getPropertyName().equals("mapper")) {       //mapper view
+            init("General Information", createDefaultPanel());
+            final String sql = String.valueOf(evt.getNewValue());
+            SwingWorker swingWorker = new SwingWorker() {
+                @Override
+                protected String doInBackground() throws Exception {
+                    runQuery();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    removeTab(1);
+                }
+
+                private void runQuery() {
+                    JPanel rdbmsPanel, hbasePanel;
+                    rdbmsPanel = new JPanel(new BorderLayout());
+                    hbasePanel = new JPanel(new BorderLayout());
+//                    long start = System.nanoTime();
+                    String query = sql.trim();
+                    if (query.toLowerCase().startsWith("select")) {
+                        Vector<Vector<Object>> data = null;
+                        try {
+                            data = DatabaseUtility.executeQuery((Connection) evt.getOldValue(), query);
+                            Vector<Object> cols = data.elementAt(0);
+                            Vector<String> columns = new Vector<String>();
+                            for (Object column : cols) {
+                                columns.add(String.valueOf(column));
+                            }
+                            data.remove(0);
+                            KTable table = new KTable(data, columns);
+                            table.hideToolPanel();
+                            rdbmsPanel.add(BorderLayout.CENTER, table);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            JLabel errorMessage = new JLabel("<html><h3><font color='red' size='8'>" + e.getMessage() + "</font></h3></html>");
+                            errorMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                            errorMessage.setVerticalAlignment(SwingConstants.CENTER);
+                            rdbmsPanel.add(BorderLayout.CENTER, errorMessage);
+                        }
+                    }
+                    SQLParser sqlParser = new SQLParser(query);
+                    sqlParser.parse();
+                    ArrayList<String> columnIDs = sqlParser.getColumnIDs();
+                    //todo for arjun: the above statement retrives the columnIDs
+                    String text = "<html><h3><font color='red' size='8'>";
+                    for (String columnID : columnIDs) {
+                        text += " " + columnID + ", ";
+                        System.out.println(columnID);
+                    }
+                    text += "</font></h3></html>";
+                    JLabel errorMessage = new JLabel(text);
+                    errorMessage.setHorizontalAlignment(SwingConstants.CENTER);
+                    errorMessage.setVerticalAlignment(SwingConstants.CENTER);
+                    hbasePanel.add(errorMessage);
+                    /*double denominator = 1000000000;
+                    double x = (System.nanoTime() - start) / denominator;
+                    double timeNeededForTheThreadToComplete = MathUtils.round(x, 2, BigDecimal.ROUND_HALF_DOWN);*/
+                    addTab("Data from RDBMS", rdbmsPanel, true);
+                    addTab("Data from Hbase", hbasePanel, true);
+                }
+            };
+            DefaultTableView progressBar = new DefaultTableView();
+            addTab("Query Running", progressBar.showProgress(true), false);
+            swingWorker.execute();
+            getTabbedPane().setSelectedIndex(1);
 
         }
     }

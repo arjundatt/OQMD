@@ -21,9 +21,9 @@ import static DIC.util.commons.Utility.getButton;
 public class SqlEditorView extends JPanel implements ActionListener {
     private JPanel sqlEditorPanel;
     private DefaultDetailView bottomPanel;
-    private JTextArea editor;
+    protected JTextArea editor;
     private JButton open, save, saveAs, execute, clearAll, cut, copy, paste, caseToggle, history, closeAllTabs;
-    private Connection connection;
+    protected Connection connection;
     private Collection<String> keyWords = Arrays.asList("select", "from");
     private String path;
 
@@ -116,7 +116,7 @@ public class SqlEditorView extends JPanel implements ActionListener {
             file_save_as();
         }
         if (e.getSource() == execute)
-            firePropertyChange("sql", connection, editor.getText());
+            executeSQL();
 
         if (e.getSource() == clearAll)
             editor.setText("");
@@ -139,6 +139,10 @@ public class SqlEditorView extends JPanel implements ActionListener {
         if (e.getSource() == closeAllTabs)
             firePropertyChange("closeAllTabs", null, null);
         updateUI();
+    }
+
+    protected void executeSQL() {
+        firePropertyChange("sql", connection, editor.getText());
     }
 
     private boolean fileOpen() {

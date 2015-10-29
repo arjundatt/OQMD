@@ -1,17 +1,22 @@
 package DIC;
 
+import DIC.component.detailview.MapperEditorView;
 import DIC.component.detailview.SqlEditorView;
 import DIC.component.lefthierarchy.LeftHierarchy;
-import DIC.component.rightview.*;
-import DIC.component.rightview.tablecomponent.*;
-import DIC.component.treecomponent.*;
+import DIC.component.rightview.ColumnInfo;
+import DIC.component.rightview.DefaultRightViewDisplay;
+import DIC.component.rightview.InstanceInfo;
+import DIC.component.rightview.tablecomponent.KTable;
+import DIC.component.treecomponent.HierarchyTreeNode;
 import DIC.util.database.DatabaseUtility;
 import DIC.xml.XMLTree;
 
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Connection;
@@ -43,7 +48,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         setVisible(true);
         int Width = (int) java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         int Height = (int) java.awt.Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-        this.setSize(Width-100,Height-100);
+        this.setSize(Width - 100, Height - 100);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         /*addWindowListener(new WindowAdapter() {
@@ -168,6 +173,8 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         SqlEditorView sqlEditor = new SqlEditorView(connection);
         rightPanel.addTab("Sql Editor", sqlEditor, false);
         //todo add mapper tab
+        MapperEditorView mapperEditorView = new MapperEditorView(connection);
+        rightPanel.addTab("Mapper", mapperEditorView, false);
     }
 
     private void showTableView() {
