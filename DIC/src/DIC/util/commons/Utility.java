@@ -26,6 +26,13 @@ public class Utility {
         return button;
     }
 
+    public static JButton getButton(String text, String toolTip, int mnemonic) {
+        JButton button = new JButton(text);
+        button.setMnemonic(mnemonic);
+        button.setToolTipText(toolTip);
+        return button;
+    }
+
     public static JButton getButton(ImageIcon icon, String toolTipText, int mnemonic) {
         JButton button = getButton(icon, toolTipText);
         button.setMnemonic(mnemonic);

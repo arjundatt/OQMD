@@ -1,5 +1,6 @@
 package DIC.component.detailview;
 
+import DIC.DDLMapUtils.HBaseDDLMapper;
 import DIC.component.rightview.DefaultRightViewDisplay;
 import DIC.component.rightview.DefaultTableView;
 import DIC.component.rightview.tablecomponent.KTable;
@@ -184,10 +185,48 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                             rdbmsPanel.add(BorderLayout.CENTER, errorMessage);
                         }
                     }
+                    //retrieval for HBase starts
                     SQLParser sqlParser = new SQLParser(query);
                     sqlParser.parse();
                     ArrayList<String> columnIDs = sqlParser.getColumnIDs();
-                    //todo for arjun: the above statement retrives the columnIDs
+                    System.out.print(""+columnIDs);
+                    String queryHbaseColIds="SELECT DIC_MAPPER_COLUMN2 FROM DIC_MAPPER WHERE ";
+                    for(int i=0;i<columnIDs.size()-1;i++){
+                        queryHbaseColIds+="DIC_MAPPER_COLUMN1='"+columnIDs.get(i)+"' or ";
+                    }
+                    queryHbaseColIds+="DIC_MAPPER_COLUMN1='"+columnIDs.get(columnIDs.size()-1)+"'";
+                    ArrayList<String> HbaseColumnIDs = new ArrayList<String>();
+                    try {
+                        Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(queryHbaseColIds);
+                        vector.remove(0);
+                        for (Vector<String> row : vector) {
+                            HbaseColumnIDs.add(row.get(0));
+                        }
+                        String queryHbaseColNames="SELECT DIC_COLUMN_NAME FROM DIC_COLUMN WHERE ";
+                        for(int i=0;i<HbaseColumnIDs.size()-1;i++){
+                            queryHbaseColNames+="DIC_COLUMN_ID='"+HbaseColumnIDs.get(i) +"' or ";
+
+                        }
+                        queryHbaseColNames+="DIC_COLUMN_ID='"+HbaseColumnIDs.get(HbaseColumnIDs.size()-1) +"'";
+                        //vector = new Vector<Vector<String>>();
+                        vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(queryHbaseColNames);
+                        vector.remove(0);
+                        Vector<String> HcolumnNames = new Vector<String>();
+                        ArrayList<String> HBaseColumnNames = new ArrayList<String>();
+                        for (Vector<String> row : vector) {
+                            HBaseColumnNames.add(row.get(0));
+                            HcolumnNames.add(row.get(0));
+                        }
+                        HBaseDDLMapper hbaseInstance = new HBaseDDLMapper();
+                        Vector<Vector<Object>> hBaseResult = hbaseInstance.query(HBaseColumnNames, "", "");
+                        KTable table = new KTable(hBaseResult,HcolumnNames);
+                        table.hideToolPanel();
+                        hbasePanel.add(BorderLayout.CENTER, table);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    //retrieval for HBase ends
+
 //                    DatabaseUtility.executeQueryOnMetaDatabase("")
                     String text = "<html><h3><font color='red' size='8'>";
                     for (String columnID : columnIDs) {
@@ -198,7 +237,7 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                     JLabel errorMessage = new JLabel(text);
                     errorMessage.setHorizontalAlignment(SwingConstants.CENTER);
                     errorMessage.setVerticalAlignment(SwingConstants.CENTER);
-                    hbasePanel.add(errorMessage);
+                    //hbasePanel.add(errorMessage);
                     /*double denominator = 1000000000;
                     double x = (System.nanoTime() - start) / denominator;
                     double timeNeededForTheThreadToComplete = MathUtils.round(x, 2, BigDecimal.ROUND_HALF_DOWN);*/
