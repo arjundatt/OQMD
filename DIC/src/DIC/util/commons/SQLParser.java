@@ -67,14 +67,15 @@ public class SQLParser {
                         "         ON dic_column_table_id = dic_table_id \n" +
                         "       JOIN dic_schema \n" +
                         "         ON dic_table_schema_id = dic_schema_id " +
-                        "WHERE ";
+                        "WHERE (";
                 for (String column : columns) {
                     sql += "DIC_COLUMN_NAME = '" + column.toUpperCase() + "' or ";
                 }
+                sql = sql.substring(0, sql.length() - 3) + ") and (";
                 for (String table : tables) {
-                    sql += "DIC_TABLE_NAME = '" + table.substring(table.indexOf(".") + 1, table.length()) + "' and ";
+                    sql += "DIC_TABLE_NAME = '" + table.substring(table.indexOf(".") + 1, table.length()) + "' or ";
                 }
-                sql += "DIC_SCHEMA_NAME = '" + schema + "'";
+                sql = sql.substring(0, sql.length() - 3) + ") and DIC_SCHEMA_NAME = '" + schema + "'";
                 System.out.println(sql);
                 try {
                     Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(sql);

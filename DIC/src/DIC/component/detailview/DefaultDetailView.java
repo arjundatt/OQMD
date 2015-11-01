@@ -189,12 +189,12 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                     SQLParser sqlParser = new SQLParser(query);
                     sqlParser.parse();
                     ArrayList<String> columnIDs = sqlParser.getColumnIDs();
-                    System.out.print(""+columnIDs);
-                    String queryHbaseColIds="SELECT DIC_MAPPER_COLUMN2 FROM DIC_MAPPER WHERE ";
-                    for(int i=0;i<columnIDs.size()-1;i++){
-                        queryHbaseColIds+="DIC_MAPPER_COLUMN1='"+columnIDs.get(i)+"' or ";
+                    System.out.print("" + columnIDs);
+                    String queryHbaseColIds = "SELECT DIC_MAPPER_COLUMN2 FROM DIC_MAPPER WHERE ";
+                    for (int i = 0; i < columnIDs.size() - 1; i++) {
+                        queryHbaseColIds += "DIC_MAPPER_COLUMN1='" + columnIDs.get(i) + "' or ";
                     }
-                    queryHbaseColIds+="DIC_MAPPER_COLUMN1='"+columnIDs.get(columnIDs.size()-1)+"'";
+                    queryHbaseColIds += "DIC_MAPPER_COLUMN1='" + columnIDs.get(columnIDs.size() - 1) + "'";
                     ArrayList<String> HbaseColumnIDs = new ArrayList<String>();
                     try {
                         Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(queryHbaseColIds);
@@ -202,12 +202,12 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                         for (Vector<String> row : vector) {
                             HbaseColumnIDs.add(row.get(0));
                         }
-                        String queryHbaseColNames="SELECT DIC_COLUMN_NAME FROM DIC_COLUMN WHERE ";
-                        for(int i=0;i<HbaseColumnIDs.size()-1;i++){
-                            queryHbaseColNames+="DIC_COLUMN_ID='"+HbaseColumnIDs.get(i) +"' or ";
+                        String queryHbaseColNames = "SELECT DIC_COLUMN_NAME FROM DIC_COLUMN WHERE ";
+                        for (int i = 0; i < HbaseColumnIDs.size() - 1; i++) {
+                            queryHbaseColNames += "DIC_COLUMN_ID='" + HbaseColumnIDs.get(i) + "' or ";
 
                         }
-                        queryHbaseColNames+="DIC_COLUMN_ID='"+HbaseColumnIDs.get(HbaseColumnIDs.size()-1) +"'";
+                        queryHbaseColNames += "DIC_COLUMN_ID='" + HbaseColumnIDs.get(HbaseColumnIDs.size() - 1) + "'";
                         //vector = new Vector<Vector<String>>();
                         vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(queryHbaseColNames);
                         vector.remove(0);
@@ -219,7 +219,7 @@ public class DefaultDetailView extends DefaultRightViewDisplay implements Proper
                         }
                         HBaseDDLMapper hbaseInstance = new HBaseDDLMapper();
                         Vector<Vector<Object>> hBaseResult = hbaseInstance.query(HBaseColumnNames, "", "");
-                        KTable table = new KTable(hBaseResult,HcolumnNames);
+                        KTable table = new KTable(hBaseResult, HcolumnNames);
                         table.hideToolPanel();
                         hbasePanel.add(BorderLayout.CENTER, table);
                     } catch (SQLException e) {
