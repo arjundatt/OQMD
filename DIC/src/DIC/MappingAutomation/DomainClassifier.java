@@ -15,7 +15,7 @@ import java.util.Vector;
  * Created by arjundatt.16 on 11/3/2015.
  */
 abstract public class DomainClassifier {
-    protected Map<String, Regex> regexMap;
+    protected Map<String, Regex> regexMap;                   //regexId->regex object
     protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
     //use only this for each mapping
     protected static ArrayList<AttributeIdentityModel> bucketClassifier;
