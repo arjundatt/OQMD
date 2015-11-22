@@ -203,6 +203,9 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
             @Override
             public void actionPerformed(ActionEvent e) {
                 //todo add the profile columns action
+                HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
+                String tableId = selectedNode.getAttribute("dic_table_id");
+                //now have fun
             }
         });
         tablePopUp.add(temp);
