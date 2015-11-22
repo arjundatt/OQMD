@@ -196,10 +196,20 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
             }
         });
         tablePopUp.add(temp);
-
-        temp = new JMenuItem("Edit Table");
-        temp.setIcon(new ImageIcon(getClass().getResource("../../resource/discover_relationship_16.gif")));
+        //do the column profiling to find patterns
+        temp = new JMenuItem("Profile Columns");
+        temp.setIcon(new ImageIcon(getClass().getResource("../../resource/discover_column_16.gif")));
+        temp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //todo add the profile columns action
+            }
+        });
         tablePopUp.add(temp);
+
+        /*temp = new JMenuItem("Edit Table");
+        temp.setIcon(new ImageIcon(getClass().getResource("../../resource/discover_relationship_16.gif")));
+        tablePopUp.add(temp);*/
 
         jTree.addMouseListener(new MouseListener() {
             @Override
