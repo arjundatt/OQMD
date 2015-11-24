@@ -1,5 +1,6 @@
 package DIC.component.lefthierarchy;
 
+import DIC.MappingAutomation.RDBMSClassifier;
 import DIC.component.AddConnection;
 import DIC.component.formcomponent.PasswordField;
 import DIC.component.formcomponent.TextField;
@@ -202,10 +203,11 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
         temp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //todo add the profile columns action
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 String tableId = selectedNode.getAttribute("dic_table_id");
-                //now have fun
+                RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
+                rdbmsClassifier.initClassification(tableId);
+                rdbmsClassifier.phaseI();
             }
         });
         tablePopUp.add(temp);

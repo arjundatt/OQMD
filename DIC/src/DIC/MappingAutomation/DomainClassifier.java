@@ -5,10 +5,7 @@ import DIC.MappingAutomation.Model.Regex;
 import DIC.util.database.DatabaseUtility;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 /**
  *
@@ -16,9 +13,10 @@ import java.util.Vector;
  */
 abstract public class DomainClassifier {
     protected Map<String, Regex> regexMap;                   //regexId->regex object
-    protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
+    //protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
     //use only this for each mapping
-    protected static ArrayList<AttributeIdentityModel> bucketClassifier;
+    //protected static ArrayList<AttributeIdentityModel> bucketClassifier;
+    protected static HashMap<String,PriorityQueue<AttributeIdentityModel>> bucketClassifier;
 
     protected void getDomains() {
         String regexSQL = "SELECT dic_regex_id, \n" +
@@ -51,12 +49,39 @@ abstract public class DomainClassifier {
                 }
             }
 
+            initBucket(regexMap);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    protected Map<String, ArrayList<String>> generateColumnMap(Vector<Vector<String>> data, Vector<Vector<String>> columns) {
+    private class AttributesComparator implements Comparator<AttributeIdentityModel>{
+
+        @Override
+        public int compare(AttributeIdentityModel o1, AttributeIdentityModel o2) {
+            if(o1.getEfficiency() < o2.getEfficiency()){
+                return -1;
+            }
+            if(o1.getEfficiency() > o2.getEfficiency()){
+                return 1;
+            }
+            return 0;
+        }
+    }
+
+    private void initBucket(Map<String, Regex> mRegexMap){
+        bucketClassifier = new HashMap<String, PriorityQueue<AttributeIdentityModel>>();
+        int i=0;
+        for(Map.Entry<String,Regex> idToValuesEntry : mRegexMap.entrySet()){
+            String columnId = idToValuesEntry.getKey();
+            Comparator<AttributeIdentityModel> comparator = new AttributesComparator();
+            PriorityQueue<AttributeIdentityModel> queue = new PriorityQueue<AttributeIdentityModel>(comparator);
+            bucketClassifier.put(columnId,queue);
+        }
+    }
+
+    protected HashMap<String, ArrayList<String>> generateColumnMap(Vector<Vector<String>> data, Vector<Vector<String>> columns) {
         data.remove(0);
         HashMap<String, ArrayList<String>> columnMap = new HashMap<String, ArrayList<String>>();
         for (int i = 0; i < data.get(0).size(); i++) {
@@ -76,6 +101,9 @@ abstract public class DomainClassifier {
         return columnMap;
     }
 
+    //Implement this method for each database type
+    abstract public void phaseI();
+
     //Classify each attribute into n (priority)buckets(classifications like name, id, phone number, country, etc.)
     /* 0. Create n empty buckets: each corresponds to each classification
          * 1. Retrieve all column names in RDBMS
@@ -91,12 +119,69 @@ abstract public class DomainClassifier {
          *    **** check for other classifications.
          * 9. Insert unclassified columns into LIST_UNCLASSIFIED<AttributeIdentityModel>
          */
-    //Implement this method for each database type
-    abstract public void phaseI();
+    protected void phaseII(HashMap<String, ArrayList<String>> columnMap){
+        for (Map.Entry<String, ArrayList<String>> idToValuesEntry : columnMap.entrySet()) {
+            String columnId = idToValuesEntry.getKey();
+            ArrayList<String> values = idToValuesEntry.getValue();
+            AttributeIdentityModel attributeInstance = new AttributeIdentityModel("","",columnId,0.0f);
+            //match the values to the regex pattern of regexMap
+            for (Map.Entry<String, Regex> stringRegexEntry : regexMap.entrySet()) {
+                String regexId = stringRegexEntry.getKey();
+                Regex regex = stringRegexEntry.getValue();
+                float efficiency=0.0f;
+                if (regex.getRegex() == null) {
+                    //check the values of the links
+                    ArrayList<Link> links = regex.getValues();
+                    // iterate through the values to check if it matches with the links
+                    efficiency = sampleMatch(attributeInstance, values, regex.getValuesString(links));
+                }
+                else{
+                    efficiency = sampleMatch(attributeInstance, values, regex);
+                }
+                PriorityQueue<AttributeIdentityModel> q = bucketClassifier.get(regexId);
+                q.add(attributeInstance);
+                bucketClassifier.put(regexId,q);
+            }
+        }
+    }
 
-    //executed after phase I
+    private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, ArrayList<String> links){
+        for(int i=0;(i<500 && i<population.size());i++){
+            int j=0;
+            float sampleEfficiency = 0.0f;
+            int matchCount =0;
+            while (j<50){
+                if(links.contains(population.get(i))){
+                    matchCount++;
+                }
+                j++;
+            }
+            sampleEfficiency = matchCount/50;
+            attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
+        }
+        return attributeInstance.getEfficiency();
+    }
+
+    private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, Regex regex){
+
+        for(int i=0;(i<500 && i<population.size());i++){
+            int j=0;
+            float sampleEfficiency = 0.0f;
+            int matchCount =0;
+            while (j<50){
+                if(population.get(i).matches(regex.getRegex())){
+                    matchCount++;
+                }
+                j++;
+            }
+            sampleEfficiency = matchCount/50;
+            attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
+        }
+        return attributeInstance.getEfficiency();
+    }
+    //executed after phase II
     //mapping is done here -> but this is NOT the final result
-    private void phaseII() {
+    private void phaseIII() {
         /* 1. Iterate through each bucket
          * 2. pick the 2 highest priority(efficiency) values, belonging to different db_types, from the same bucket
          *    ****(need to think about efficiency values(of the same db_type) which are the same)
@@ -105,28 +190,12 @@ abstract public class DomainClassifier {
          * 5. repeat the process for all the values in the same bucket.
          * 6. add unclassified columns to LIST_UNCLASSIFIED<AttributeIdentityModel>
         * */
-        for (Map.Entry<String, ArrayList<String>> idToValuesEntry : columnMap.entrySet()) {
-            String columnId = idToValuesEntry.getKey();
-            ArrayList<String> values = idToValuesEntry.getValue();
-            //match the values to the regex pattern of regexMap
-            for (Map.Entry<String, Regex> stringRegexEntry : regexMap.entrySet()) {
-                String regexId = stringRegexEntry.getKey();
-                Regex regex = stringRegexEntry.getValue();
-                if (regex.getRegex() == null) {
-                    //check the values of the links
-                    ArrayList<Link> links = regex.getValues();
-                    // iterate through the values to check if it matches with the links
-                    for (String value : values) {
-                        //write code for percentage matching blah blah
-                    }
-                }
-            }
-        }
+
     }
 
-    //executed after phase II
+    //executed after phase III
     //mapping is done here -> this is perhaps the final result
-    private void phaseIII() {
+    private void phaseIV() {
         /* Need to compare the matched columns once again to find similar patterns. Not sure if this is necessary.
         * */
     }

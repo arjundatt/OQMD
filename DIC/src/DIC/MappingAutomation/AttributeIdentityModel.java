@@ -17,15 +17,19 @@ public class AttributeIdentityModel {
 
     private String type;
     private String tableName;
-    private String columnName;
+    private String columnId;
 
+
+    public void setEfficiency(float efficiency) {
+        this.efficiency = efficiency;
+    }
 
     private float efficiency;
 
-    public AttributeIdentityModel(String type, String tableName, String columnName, float efficiency) {
+    public AttributeIdentityModel(String type, String tableName, String columnId, float efficiency) {
         this.type = type;
         this.tableName = tableName;
-        this.columnName = columnName;
+        this.columnId = columnId;
         this.efficiency = efficiency;
     }
 
@@ -41,9 +45,10 @@ public class AttributeIdentityModel {
         return tableName;
     }
 
-    public String getColumnName() {
-        return columnName;
+    public String getColumnId() {
+        return columnId;
     }
+
 
 
 }

@@ -15,6 +15,7 @@ public class Regex {
     private Integer linkId;
     private int order;
     private ArrayList<Link> values;
+    private ArrayList<String> valuesString;
 
     public Regex(String regexId, String type, String regex, Integer linkId, int order) {
         this.regexId = regexId;
@@ -53,5 +54,15 @@ public class Regex {
 
     public ArrayList<Link> getValues() {
         return values;
+    }
+
+    public ArrayList<String> getValuesString(ArrayList<Link> mValues){
+        if(this.valuesString == null && mValues!= null){
+            this.valuesString = new ArrayList<String>();
+            for (Link v : mValues){
+                valuesString.add(v.getValue());
+            }
+        }
+        return valuesString;
     }
 }

@@ -58,8 +58,9 @@ public class RDBMSClassifier extends DomainClassifier {
             Vector<Vector<String>> tableName = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(tableSQL);
             dataSQL += tableName.get(1).get(0);
             data = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(dataSQL);
+            HashMap<String, ArrayList<String>> columnMap = new HashMap<String, ArrayList<String>>();
             columnMap = generateColumnMap(data, columns);
-
+            super.phaseII(columnMap);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,7 +71,7 @@ public class RDBMSClassifier extends DomainClassifier {
 
     public static void main(String[] args) {
         RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
-        rdbmsClassifier.initClassification("10011888");
+        rdbmsClassifier.initClassification("10012100");
         rdbmsClassifier.phaseI();
 
     }

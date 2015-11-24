@@ -8,6 +8,11 @@ package DIC.MappingAutomation.Model;
  */
 public class Link {
     private String id;
+
+    public String getValue() {
+        return value;
+    }
+
     private String value;
     private String linkId;
 
