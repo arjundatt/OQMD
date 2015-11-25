@@ -19,6 +19,9 @@ public class AttributeIdentityModel {
     private String tableName;
     private String columnId;
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public void setEfficiency(float efficiency) {
         this.efficiency = efficiency;

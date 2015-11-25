@@ -34,7 +34,7 @@ abstract public class DomainClassifier {
         try {
             Vector<Vector<String>> domainDetails = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(regexSQL);
             domainDetails.remove(0);
-            regexMap = new HashMap<String, Regex>();
+            regexMap = new LinkedHashMap<String, Regex>();
             for (Vector<String> domainDetail : domainDetails) {
                 String regexId = domainDetail.get(0);
                 Regex regex = regexMap.get(regexId);
@@ -123,11 +123,12 @@ abstract public class DomainClassifier {
         for (Map.Entry<String, ArrayList<String>> idToValuesEntry : columnMap.entrySet()) {
             String columnId = idToValuesEntry.getKey();
             ArrayList<String> values = idToValuesEntry.getValue();
-            AttributeIdentityModel attributeInstance = new AttributeIdentityModel("","",columnId,0.0f);
             //match the values to the regex pattern of regexMap
             for (Map.Entry<String, Regex> stringRegexEntry : regexMap.entrySet()) {
+                AttributeIdentityModel attributeInstance = new AttributeIdentityModel("","",columnId,0.0f);
                 String regexId = stringRegexEntry.getKey();
                 Regex regex = stringRegexEntry.getValue();
+                attributeInstance.setType(regex.getType());
                 float efficiency=0.0f;
                 if (regex.getRegex() == null) {
                     //check the values of the links
@@ -143,40 +144,50 @@ abstract public class DomainClassifier {
                 bucketClassifier.put(regexId,q);
             }
         }
+        testCode();
+    }
+
+    //todo:test code, remove it later
+    private void testCode(){
+        for(Map.Entry<String,PriorityQueue<AttributeIdentityModel>> idToValuesEntry : bucketClassifier.entrySet()){
+            String id = idToValuesEntry.getKey();
+            PriorityQueue<AttributeIdentityModel> p = idToValuesEntry.getValue();
+            Iterator itr = p.iterator();
+            while (itr.hasNext()){
+                AttributeIdentityModel o = (AttributeIdentityModel) itr.next();
+                System.out.println("column id: " + o.getColumnId() + " type: " + o.getType() + " efficiency: " + o.getEfficiency());
+            }
+        }
+
     }
 
     private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, ArrayList<String> links){
-        for(int i=0;(i<500 && i<population.size());i++){
-            int j=0;
-            float sampleEfficiency = 0.0f;
-            int matchCount =0;
-            while (j<50){
-                if(links.contains(population.get(i))){
+        float sampleEfficiency = 0.0f;
+        int matchCount =0;
+        int i;
+        for(i=0;(i<500 && i<population.size());i++){
+            if(links.contains(population.get(i))) {
                     matchCount++;
-                }
-                j++;
             }
-            sampleEfficiency = matchCount/50;
-            attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
         }
+        sampleEfficiency = i>1 ? matchCount/(i-1): 0.0f;
+        attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
+
         return attributeInstance.getEfficiency();
     }
 
     private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, Regex regex){
-
-        for(int i=0;(i<500 && i<population.size());i++){
-            int j=0;
-            float sampleEfficiency = 0.0f;
-            int matchCount =0;
-            while (j<50){
-                if(population.get(i).matches(regex.getRegex())){
+        float sampleEfficiency = 0.0f;
+        int matchCount =0;
+        int i;
+        for(i=0;(i<500 && i<population.size());i++){
+            if(population.get(i).matches(regex.getRegex())){
                     matchCount++;
-                }
-                j++;
             }
-            sampleEfficiency = matchCount/50;
-            attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
         }
+
+        sampleEfficiency = i>1 ? matchCount/(i-1): 0.0f;
+        attributeInstance.setEfficiency(sampleEfficiency);
         return attributeInstance.getEfficiency();
     }
     //executed after phase II
