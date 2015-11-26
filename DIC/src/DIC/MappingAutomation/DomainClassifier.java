@@ -12,13 +12,18 @@ import java.util.*;
  * Created by arjundatt.16 on 11/3/2015.
  */
 abstract public class DomainClassifier {
-    protected Map<String, Regex> regexMap;                   //regexId->regex object
+    protected static Map<String, Regex> regexMap;                   //regexId->regex object
     //protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
-    //use only this for each mapping
-    //protected static ArrayList<AttributeIdentityModel> bucketClassifier;
-    protected static HashMap<String,PriorityQueue<AttributeIdentityModel>> bucketClassifier;
 
-    protected void getDomains() {
+    //use only bucketClassifier for each mapping
+    //regexID -> (DBType -> priority queue of classified attributes)
+    protected static HashMap<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> bucketClassifier;
+
+    protected void getDomains(String sourceIdentity) {
+        if(regexMap != null){
+            initBucket(regexMap, sourceIdentity);
+            return;
+        }
         String regexSQL = "SELECT dic_regex_id, \n" +
                 "       dic_regex_type, \n" +
                 "       dic_regex_regularexp, \n" +
@@ -49,7 +54,7 @@ abstract public class DomainClassifier {
                 }
             }
 
-            initBucket(regexMap);
+            initBucket(regexMap, sourceIdentity);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,14 +75,24 @@ abstract public class DomainClassifier {
         }
     }
 
-    private void initBucket(Map<String, Regex> mRegexMap){
-        bucketClassifier = new HashMap<String, PriorityQueue<AttributeIdentityModel>>();
+    private void initBucket(Map<String, Regex> mRegexMap, String sourceIdentity){
+        if(bucketClassifier == null) {
+            bucketClassifier = new HashMap<String, HashMap<String, PriorityQueue<AttributeIdentityModel>>>();
+        }
         int i=0;
         for(Map.Entry<String,Regex> idToValuesEntry : mRegexMap.entrySet()){
             String columnId = idToValuesEntry.getKey();
             Comparator<AttributeIdentityModel> comparator = new AttributesComparator();
+            HashMap<String, PriorityQueue<AttributeIdentityModel>> map;
+            if(bucketClassifier.get(columnId)==null) {
+                map = new HashMap<String, PriorityQueue<AttributeIdentityModel>>();
+            }
+            else{
+                map = bucketClassifier.get(columnId);
+            }
             PriorityQueue<AttributeIdentityModel> queue = new PriorityQueue<AttributeIdentityModel>(comparator);
-            bucketClassifier.put(columnId,queue);
+            map.put(sourceIdentity,queue);
+            bucketClassifier.put(columnId,map);
         }
     }
 
@@ -100,6 +115,8 @@ abstract public class DomainClassifier {
         }
         return columnMap;
     }
+    //Implement this method for each database type
+    abstract public void initClassification(String tableID);
 
     //Implement this method for each database type
     abstract public void phaseI();
@@ -119,7 +136,7 @@ abstract public class DomainClassifier {
          *    **** check for other classifications.
          * 9. Insert unclassified columns into LIST_UNCLASSIFIED<AttributeIdentityModel>
          */
-    protected void phaseII(HashMap<String, ArrayList<String>> columnMap){
+    protected void phaseII(HashMap<String, ArrayList<String>> columnMap, String sourceIdentity){
         for (Map.Entry<String, ArrayList<String>> idToValuesEntry : columnMap.entrySet()) {
             String columnId = idToValuesEntry.getKey();
             ArrayList<String> values = idToValuesEntry.getValue();
@@ -139,26 +156,33 @@ abstract public class DomainClassifier {
                 else{
                     efficiency = sampleMatch(attributeInstance, values, regex);
                 }
-                PriorityQueue<AttributeIdentityModel> q = bucketClassifier.get(regexId);
+                HashMap<String,PriorityQueue<AttributeIdentityModel>> map= bucketClassifier.get(regexId);
+                PriorityQueue<AttributeIdentityModel> q = map.get(sourceIdentity);
                 q.add(attributeInstance);
-                bucketClassifier.put(regexId,q);
+                bucketClassifier.put(regexId,map);
             }
         }
-        testCode();
+        testCode(sourceIdentity);
     }
 
     //todo:test code, remove it later
-    private void testCode(){
-        for(Map.Entry<String,PriorityQueue<AttributeIdentityModel>> idToValuesEntry : bucketClassifier.entrySet()){
+    private void testCode(String sourceIdentity){
+        Iterator<Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>>> itr= bucketClassifier.entrySet().iterator();
+        while (itr.hasNext()){
+            Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> idToValuesEntry = itr.next();
             String id = idToValuesEntry.getKey();
-            PriorityQueue<AttributeIdentityModel> p = idToValuesEntry.getValue();
-            Iterator itr = p.iterator();
-            while (itr.hasNext()){
-                AttributeIdentityModel o = (AttributeIdentityModel) itr.next();
-                System.out.println("column id: " + o.getColumnId() + " type: " + o.getType() + " efficiency: " + o.getEfficiency());
+            Iterator<Map.Entry<String,PriorityQueue<AttributeIdentityModel>>> subItr = (idToValuesEntry.getValue()).entrySet().iterator();
+            while(subItr.hasNext()){
+                Map.Entry<String,PriorityQueue<AttributeIdentityModel>> child = subItr.next();
+                System.out.print("DB: " + child.getKey());
+                PriorityQueue<AttributeIdentityModel> p = child.getValue();
+                Iterator pItr = p.iterator();
+                while (pItr.hasNext()){
+                    AttributeIdentityModel o = (AttributeIdentityModel) pItr.next();
+                    System.out.println(" column id: " + o.getColumnId() + " type: " + o.getType() + " efficiency: " + o.getEfficiency());
+                }
             }
         }
-
     }
 
     private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, ArrayList<String> links){

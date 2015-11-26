@@ -14,29 +14,13 @@ import java.util.Vector;
 public class RDBMSClassifier extends DomainClassifier {
     String tableId;
     Vector<Vector<String>> data;
+    public static final String IDENTITY = "rdbms";
 
-
-    public void initClassification(String tableId) {
-        this.tableId = tableId;
-        getDomains();
+    @Override
+    public void initClassification(String tableID) {
+        this.tableId = tableID;
+        getDomains(IDENTITY);
     }
-
-
-    //Classify each attribute into n (priority)buckets(classifications like name, id, phone number, country, etc.)
-    /* 0. Create n empty buckets: each corresponds to each classification
-         * 1. Retrieve all column names in RDBMS
-         * 2. Iterate through each column
-         * 3. efficiency = 0
-         * 4. Iterate through first 10 entries per column -> match regex/database from regex table for one entry.
-         * 5. If efficiency<50%(random value -- need to test) -> match regex/database from regex table for next entry.
-         * 6. If efficiency>90%(random value -- need to test) -> put this column in ith bucket with
-         *    **** CL(confidence level) = efficiency and <AttributeIdentityModel value> and move to next column
-         * 7. If efficiency>50%(random value -- need to test) -> pickup next 10 entries and repeat the process.
-         * 8. If after 200(random value -- need to test) cells in a column -> 50% < efficiency < 100% then put in
-         *    **** the ith bucket with CL(confidence level) = efficiency and <AttributeIdentityModel value> but
-         *    **** check for other classifications.
-         * 9. Insert unclassified columns into LIST_UNCLASSIFIED<AttributeIdentityModel>
-         */
 
     /**
      * Initialization of the columnMap and regexMap
@@ -58,9 +42,9 @@ public class RDBMSClassifier extends DomainClassifier {
             Vector<Vector<String>> tableName = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(tableSQL);
             dataSQL += tableName.get(1).get(0);
             data = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(dataSQL);
-            HashMap<String, ArrayList<String>> columnMap = new HashMap<String, ArrayList<String>>();
+            HashMap<String, ArrayList<String>> columnMap;
             columnMap = generateColumnMap(data, columns);
-            super.phaseII(columnMap);
+            super.phaseII(columnMap,IDENTITY);
         } catch (SQLException e) {
             e.printStackTrace();
         }
