@@ -17,7 +17,7 @@ abstract public class DomainClassifier {
 
     //use only bucketClassifier for each mapping
     //regexID -> (DBType -> priority queue of classified attributes)
-    protected static HashMap<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> bucketClassifier;
+    protected static LinkedHashMap<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> bucketClassifier;
 
     protected void getDomains(String sourceIdentity) {
         if(regexMap != null){
@@ -77,7 +77,7 @@ abstract public class DomainClassifier {
 
     private void initBucket(Map<String, Regex> mRegexMap, String sourceIdentity){
         if(bucketClassifier == null) {
-            bucketClassifier = new HashMap<String, HashMap<String, PriorityQueue<AttributeIdentityModel>>>();
+            bucketClassifier = new LinkedHashMap<String, HashMap<String, PriorityQueue<AttributeIdentityModel>>>();
         }
         int i=0;
         for(Map.Entry<String,Regex> idToValuesEntry : mRegexMap.entrySet()){
@@ -163,6 +163,7 @@ abstract public class DomainClassifier {
             }
         }
         testCode(sourceIdentity);
+        phaseIII();
     }
 
     //todo:test code, remove it later
@@ -214,9 +215,11 @@ abstract public class DomainClassifier {
         attributeInstance.setEfficiency(sampleEfficiency);
         return attributeInstance.getEfficiency();
     }
+
     //executed after phase II
     //mapping is done here -> but this is NOT the final result
     private void phaseIII() {
+
         /* 1. Iterate through each bucket
          * 2. pick the 2 highest priority(efficiency) values, belonging to different db_types, from the same bucket
          *    ****(need to think about efficiency values(of the same db_type) which are the same)
@@ -225,7 +228,29 @@ abstract public class DomainClassifier {
          * 5. repeat the process for all the values in the same bucket.
          * 6. add unclassified columns to LIST_UNCLASSIFIED<AttributeIdentityModel>
         * */
+        Iterator<Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>>> bucketIterator = (bucketClassifier.entrySet()).iterator();
+        int domainCount =0;
+        while(bucketIterator.hasNext()){
+            Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> child = bucketIterator.next();
+            String regexID = child.getKey();
+            domainCount++;
+            Iterator<Map.Entry<String,PriorityQueue<AttributeIdentityModel>>> subIterator = child.getValue().entrySet().iterator();
+            while(subIterator.hasNext()){
+                Map.Entry<String,PriorityQueue<AttributeIdentityModel>> buckets = subIterator.next();
+                String dbIdentity = buckets.getKey();
+                PriorityQueue<AttributeIdentityModel> classificationQueue = buckets.getValue();
+                int size = classificationQueue.size();
+                while (size>0){
+                    AttributeIdentityModel attributeInstance = classificationQueue.poll();
+                    if(attributeInstance.getEfficiency() <0.5f){
+                        continue;
+                    }
+                    System.out.print("Domain:"+domainCount+" db type: "+dbIdentity+"|Attribute: "+attributeInstance.getColumnId());
+                    size--;
+                }
 
+            }
+        }
     }
 
     //executed after phase III
