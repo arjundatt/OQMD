@@ -90,7 +90,7 @@ abstract public class DomainClassifier {
             else{
                 map = bucketClassifier.get(columnId);
             }
-            PriorityQueue<AttributeIdentityModel> queue = new PriorityQueue<AttributeIdentityModel>(comparator);
+            PriorityQueue<AttributeIdentityModel> queue = new PriorityQueue<AttributeIdentityModel>(11,comparator);
             map.put(sourceIdentity,queue);
             bucketClassifier.put(columnId,map);
         }

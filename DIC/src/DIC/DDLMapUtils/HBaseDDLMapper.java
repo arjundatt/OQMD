@@ -78,7 +78,7 @@ public class HBaseDDLMapper implements DDLMappingBase{
             e.printStackTrace();
 
         }
-        System.out.println(concatResult.toString());
+        //System.out.println(concatResult.toString());
         return data;
     }
 

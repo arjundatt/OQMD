@@ -12,6 +12,9 @@ import java.io.IOException;
  * Created by root on 10/27/15.
  */
 public class CreateHbaseTable {
+    static final String columnFamily = "social_security_info";
+    static final String table_name = "Citizens";
+
     public static void main(String[] args) throws IOException {
 
         // Instantiating configuration class
@@ -23,10 +26,10 @@ public class CreateHbaseTable {
         HBaseAdmin admin = new HBaseAdmin(con);
 
         // Instantiating table descriptor class
-        HTableDescriptor tableDescriptor = new HTableDescriptor("EmployeeAmerica");
+        HTableDescriptor tableDescriptor = new HTableDescriptor(table_name);
 
         // Adding column families to table descriptor
-        tableDescriptor.addFamily(new HColumnDescriptor("professional_data"));
+        tableDescriptor.addFamily(new HColumnDescriptor(columnFamily));
         //tableDescriptor.addFamily(new HColumnDescriptor("professional"));
 
         // Execute the table through admin

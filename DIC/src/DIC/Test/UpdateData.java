@@ -42,6 +42,7 @@ public class UpdateData{
         //Variable to hold the one line data
         String line;
         int i=1;
+        int error=0;
 
         // Read file line by line and print on the console
         while ((line = bufferReader.readLine()) != null)   {
@@ -55,8 +56,15 @@ public class UpdateData{
             // Updating a cell value
             int j=0;
             for(String column : columnNames){
-                p.add(Bytes.toBytes(columnFamily),
-                        Bytes.toBytes(column),Bytes.toBytes(part[j]));
+                if(part.length>j) {
+                    p.add(Bytes.toBytes(columnFamily),
+                            Bytes.toBytes(column), Bytes.toBytes(part[j]));
+                }
+                else{
+                    error++;
+                    p.add(Bytes.toBytes(columnFamily),
+                            Bytes.toBytes(column), Bytes.toBytes(""));
+                }
                 j++;
             }
 //            p.add(Bytes.toBytes("professional_data"),
@@ -69,7 +77,7 @@ public class UpdateData{
             i++;
 
         }
-        System.out.println("data Updated");
+        System.out.println("data Updated with errors:"+error);
 
         // closing HTable
         hTable.close();
