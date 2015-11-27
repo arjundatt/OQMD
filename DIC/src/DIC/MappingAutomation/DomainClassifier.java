@@ -242,11 +242,13 @@ abstract public class DomainClassifier {
                 int size = classificationQueue.size();
                 while (size>0){
                     AttributeIdentityModel attributeInstance = classificationQueue.poll();
-                    if(attributeInstance.getEfficiency() <0.5f){
-                        continue;
+                    if(attributeInstance!=null) {
+                        if (attributeInstance.getEfficiency() < 0.5f) {
+                            continue;
+                        }
+                        System.out.println("Domain:" + domainCount + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
+                        size--;
                     }
-                    System.out.print("Domain:"+domainCount+" db type: "+dbIdentity+"|Attribute: "+attributeInstance.getColumnId());
-                    size--;
                 }
 
             }
