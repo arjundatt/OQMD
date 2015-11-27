@@ -42,8 +42,8 @@ public class HBaseClassifier extends DomainClassifier{
 //        config.set("hbase.zookeeper.property.clientport", "2181");
         config.set("hbase.master","localhost:60000");
         System.out.println("step 2");
-        // Instantiating HTable class
         try {
+            // Instantiating HTable class
             HTable hTable = new HTable(config, TABLE_NAME);
             int i=1;
             while(true){
@@ -69,6 +69,7 @@ public class HBaseClassifier extends DomainClassifier{
                     columnData.add(value);
                     columnMap.put(mHbaseColumns[k],columnData);
                 }
+                i++;
             }
             super.phaseII(columnMap,IDENTITY);
 
