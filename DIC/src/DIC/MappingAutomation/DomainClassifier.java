@@ -162,8 +162,8 @@ abstract public class DomainClassifier {
                 bucketClassifier.put(regexId,map);
             }
         }
-        testCode(sourceIdentity);
-        phaseIII();
+        //testCode(sourceIdentity);
+        //phaseIII();
     }
 
     //todo:test code, remove it later
@@ -218,7 +218,7 @@ abstract public class DomainClassifier {
 
     //executed after phase II
     //mapping is done here -> but this is NOT the final result
-    private void phaseIII() {
+    protected void phaseIII() {
 
         /* 1. Iterate through each bucket
          * 2. pick the 2 highest priority(efficiency) values, belonging to different db_types, from the same bucket
@@ -242,12 +242,12 @@ abstract public class DomainClassifier {
                 int size = classificationQueue.size();
                 while (size>0){
                     AttributeIdentityModel attributeInstance = classificationQueue.poll();
+                    size--;
                     if(attributeInstance!=null) {
                         if (attributeInstance.getEfficiency() < 0.5f) {
                             continue;
                         }
                         System.out.println("Domain:" + domainCount + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
-                        size--;
                     }
                 }
 
