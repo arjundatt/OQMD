@@ -1,5 +1,6 @@
 package DIC.component.lefthierarchy;
 
+import DIC.MappingAutomation.HBaseClassifier;
 import DIC.MappingAutomation.RDBMSClassifier;
 import DIC.component.AddConnection;
 import DIC.component.formcomponent.PasswordField;
@@ -207,7 +208,10 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 String tableId = selectedNode.getAttribute("dic_table_id");
                 RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
                 rdbmsClassifier.initClassification(tableId);
-                rdbmsClassifier.phaseI();
+
+                //todo: test code for Hbase, add appropriate tableID
+                HBaseClassifier hBaseClassifier = new HBaseClassifier();
+                hBaseClassifier.initClassification("none");
             }
         });
         tablePopUp.add(temp);

@@ -20,6 +20,7 @@ public class RDBMSClassifier extends DomainClassifier {
     public void initClassification(String tableID) {
         this.tableId = tableID;
         getDomains(IDENTITY);
+        phaseI();
     }
 
     /**

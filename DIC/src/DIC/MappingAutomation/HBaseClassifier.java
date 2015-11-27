@@ -30,6 +30,7 @@ public class HBaseClassifier extends DomainClassifier{
     public void initClassification(String tableID) {
         this.tableId = tableID;
         getDomains(IDENTITY);
+        phaseI();
     }
 
     @Override
@@ -76,6 +77,10 @@ public class HBaseClassifier extends DomainClassifier{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public static void main(String[] a){
 
     }
 }
