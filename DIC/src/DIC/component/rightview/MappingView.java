@@ -1,11 +1,15 @@
 package DIC.component.rightview;
 
+import DIC.util.database.DatabaseUtility;
+
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,67 +27,24 @@ public class MappingView extends JPanel {
         this.tableId = tableId;
         this.mappedTableId = mappedTableId;
 
-        JTable table = new JTable(new MyTableModel());
+        JTable table = new JTable(new MappingTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
 
-        //Set up column sizes.
-//        initColumnSizes(table);
-
         //Fiddle with the Sport column's cell editors/renderers.
-        setUpSportColumn(table, table.getColumnModel().getColumn(1));
+        setUpSportColumn(table, table.getColumnModel().getColumn(2));
 
         //Add the scroll pane to this panel.
         add(scrollPane);
     }
 
-    /*
-     * This method picks good column sizes.
-     * If all column heads are wider than the column's cells'
-     * contents, then you can just use column.sizeWidthToFit().
-     */
-    private void initColumnSizes(JTable table) {
-        MyTableModel model = (MyTableModel) table.getModel();
-        TableColumn column = null;
-        Component comp = null;
-        int headerWidth = 0;
-        int cellWidth = 0;
-        Object[] longValues = model.longValues;
-        TableCellRenderer headerRenderer =
-                table.getTableHeader().getDefaultRenderer();
-
-        for (int i = 0; i < 3; i++) {
-            column = table.getColumnModel().getColumn(i);
-
-            comp = headerRenderer.getTableCellRendererComponent(
-                    null, column.getHeaderValue(),
-                    false, false, 0, 0);
-            headerWidth = comp.getPreferredSize().width;
-
-            comp = table.getDefaultRenderer(model.getColumnClass(i)).
-                    getTableCellRendererComponent(
-                            table, longValues[i],
-                            false, false, 0, i);
-            cellWidth = comp.getPreferredSize().width;
-
-            if (DEBUG) {
-                System.out.println("Initializing width of column "
-                        + i + ". "
-                        + "headerWidth = " + headerWidth
-                        + "; cellWidth = " + cellWidth);
-            }
-
-            column.setPreferredWidth(Math.max(headerWidth, cellWidth));
-        }
-    }
-
     public void setUpSportColumn(JTable table,
                                  TableColumn sportColumn) {
         //Set up the editor for the sport cells.
-        JComboBox comboBox = new JComboBox();
+        JComboBox<String> comboBox = new JComboBox<String>();
         comboBox.addItem("Snowboarding");
         comboBox.addItem("Rowing");
         comboBox.addItem("Knitting");
@@ -99,26 +60,24 @@ public class MappingView extends JPanel {
         sportColumn.setCellRenderer(renderer);
     }
 
-    class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"Table 1 column name",
+    class MappingTableModel extends AbstractTableModel {
+        private String[] columnNames = {"Table 1 column id", "Table 1 column name",
                 "Table 2 column name",
                 " "};
         private Object[][] data = {
-                {"Kathy",
+                {"Kathy", "Kathy",
                         "Snowboarding", new Boolean(false)},
-                {"John",
-                        "Rowing",  new Boolean(true)},
-                {"Sue",
+                {"Kathy", "John",
+                        "Rowing", new Boolean(true)},
+                {"Kathy", "Sue",
                         "Knitting", new Boolean(false)},
-                {"Jane",
-                        "Speed reading",  new Boolean(true)},
-                {"Joe",
-                        "Pool",  new Boolean(false)}
+                {"Kathy", "Jane",
+                        "Speed reading", new Boolean(true)},
+                {"Kathy", "Joe",
+                        "Pool", new Boolean(false)}
         };
 
-        public final Object[] longValues = {"Jane", "Kathy",
-                "None of the above",
-                new Integer(20), Boolean.TRUE};
+        private Object[][] data2 = getData();
 
         public int getColumnCount() {
             return columnNames.length;
@@ -153,7 +112,7 @@ public class MappingView extends JPanel {
         public boolean isCellEditable(int row, int col) {
             //Note that the data/cell address is constant,
             //no matter where the cell appears onscreen.
-            if (col == 0) {
+            if (col < 2) {
                 return false;
             } else {
                 return true;
@@ -196,6 +155,32 @@ public class MappingView extends JPanel {
         }
     }
 
+    private Object[][] getData() {
+        try {
+            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            String tableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + tableId + "'\n";
+            Vector<Vector<String>> tablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(tableSql);
+            tablesVector.remove(0);
+
+            String mappedTableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + mappedTableId + "'\n";
+            Vector<Vector<String>> mappedTablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(mappedTableSql);
+            mappedTablesVector.remove(0);
+
+            for (Vector<String> tableDetail : tablesVector) {
+                Vector<Object> aRow = new Vector<Object>();
+                aRow.add(tableDetail.get(0)); //first col id
+                aRow.add(tableDetail.get(1)); //first col name
+//                for (Vector<String> mappedTableDetail : mappedTablesVector) {
+//                    if (mappedTableDetail.get())
+//                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new Object[0][];
+    }
+
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
@@ -224,5 +209,28 @@ public class MappingView extends JPanel {
                 createAndShowGUI();
             }
         });
+    }
+}
+
+class Element {
+    private String id;
+    private String name;
+
+    public Element(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
