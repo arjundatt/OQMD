@@ -292,7 +292,7 @@ abstract public class DomainClassifier {
             for(AttributeIdentityModel attr : attributeBag){
                 String cID = attr.getColumnId();
                 if(allColumnIds.contains(cID)){
-                    mappingSql += "WHEN "+cID+" THEN "+regexId+"\n";
+                    mappingSql += "WHEN '"+cID+"' THEN '"+regexId+"'\n";
                     allColumnIds.remove(cID);
                 }
             }
