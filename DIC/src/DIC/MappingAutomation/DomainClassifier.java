@@ -142,7 +142,7 @@ abstract public class DomainClassifier {
             ArrayList<String> values = idToValuesEntry.getValue();
             //match the values to the regex pattern of regexMap
             for (Map.Entry<String, Regex> stringRegexEntry : regexMap.entrySet()) {
-                AttributeIdentityModel attributeInstance = new AttributeIdentityModel("","",columnId,0.0f);
+                AttributeIdentityModel attributeInstance = new AttributeIdentityModel(sourceIdentity,"",columnId,0.0f);
                 String regexId = stringRegexEntry.getKey();
                 Regex regex = stringRegexEntry.getValue();
                 attributeInstance.setType(regex.getType());
@@ -228,6 +228,7 @@ abstract public class DomainClassifier {
          * 5. repeat the process for all the values in the same bucket.
          * 6. add unclassified columns to LIST_UNCLASSIFIED<AttributeIdentityModel>
         * */
+        LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings = new LinkedHashMap<String, ArrayList<AttributeIdentityModel>>();
         Iterator<Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>>> bucketIterator = (bucketClassifier.entrySet()).iterator();
         int domainCount =0;
         while(bucketIterator.hasNext()){
@@ -247,6 +248,16 @@ abstract public class DomainClassifier {
                         if (attributeInstance.getEfficiency() < 0.5f) {
                             continue;
                         }
+                        ArrayList<AttributeIdentityModel> attributeBag;
+                        if(mMappings.get(regexID)==null){
+                            attributeBag = new ArrayList<AttributeIdentityModel>();
+                            mMappings.put(regexID,attributeBag);
+                        }
+                        else{
+                            attributeBag = mMappings.get(regexID);
+                        }
+                        attributeBag.add(attributeInstance);
+                        //todo: test print, remove
                         System.out.println("Domain:" + domainCount + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
                     }
                 }
