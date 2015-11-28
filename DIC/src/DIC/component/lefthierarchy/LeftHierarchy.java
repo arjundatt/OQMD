@@ -7,8 +7,6 @@ import DIC.component.formcomponent.PasswordField;
 import DIC.component.formcomponent.TextField;
 import DIC.component.treecomponent.HierarchyTreeNode;
 import DIC.util.database.DatabaseUtility;
-import DIC.xml.XMLTree;
-import org.omg.CORBA.DATA_CONVERSION;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -18,13 +16,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 /**
- *
  * Created by Arnab Saha on 10/10/15.
  */
 
@@ -187,7 +181,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                         selectedNode.setAttribute("dic_table_record", tableMetaData.get("record_count"));
                         jTree.expandPath(new TreePath(selectedNode.getPath()));
                         selectedNode.setAttribute("dic_table_metadatadiscovered", "1");
-                        DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("dic_table_id"),tableMetaData.get("col_count"), tableMetaData.get("record_count"));
+                        DatabaseUtility.updateTableParameters(connection, selectedNode.getAttribute("dic_table_id"), tableMetaData.get("col_count"), tableMetaData.get("record_count"));
 
                         updateUI();
                     } else {
@@ -212,6 +206,28 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 //todo: test code for Hbase, add appropriate tableID
                 HBaseClassifier hBaseClassifier = new HBaseClassifier();
                 hBaseClassifier.initClassification("none");
+            }
+        });
+        tablePopUp.add(temp);
+
+        //do the column profiling to find patterns
+        temp = new JMenuItem("Map Table");
+        temp.setIcon(new ImageIcon(getClass().getResource("../../resource/Discover_schemas_16.gif")));
+        temp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
+                    String tableId = selectedNode.getAttribute("dic_table_id");
+                    HashMap<String, String> tablesMap = getMappingTables(tableId);
+
+                    String mappedTableId = selectMappedTableDialog(tablesMap);
+                    if (mappedTableId != null) {
+                        updateMappedTableId(tableId, mappedTableId);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         tablePopUp.add(temp);
@@ -283,6 +299,54 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
             }
         });
         jTree.setSelectionPath(new TreePath(root));
+    }
+
+    private void updateMappedTableId(String tableId, String mappedTableId) throws SQLException {
+        String sql = "UPDATE dic_table \n" +
+                "SET    dic_table_mapped_column = '" + mappedTableId + "' \n" +
+                "WHERE  dic_table_id = '" + tableId + "' ";
+        DatabaseUtility.updateQuery(connection, sql);
+    }
+
+    protected String selectMappedTableDialog(HashMap<String, String> tablesMap) {
+        ArrayList<Object> tablesNamesList = new ArrayList<Object>();
+        for (String tableName : tablesMap.values()) {
+            tablesNamesList.add(tableName);
+        }
+        String[] tables = tablesNamesList.toArray(new String[tablesNamesList.size()]);
+        String selectedTableName = (String) JOptionPane.showInputDialog(
+                this.getParent().getParent(),
+                "",
+                "Select the table for mapping",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                tables,
+                tables[0]);
+        //update the table id in mapped table
+        for (Map.Entry<String, String> table : tablesMap.entrySet()) {
+            if (table.getValue().equals(selectedTableName))
+                return table.getKey();
+        }
+        return null;
+    }
+
+    private HashMap<String, String> getMappingTables(String tableId) throws SQLException {
+        HashMap<String, String> tablesMap = new HashMap<String, String>();       //tableId -> tableName
+        String sql = "SELECT DISTINCT dic_table_id, \n" +
+                "                dic_table_name, \n" +
+                "                dic_column_efficiency \n" +
+                "FROM   dic_table \n" +
+                "       JOIN dic_column \n" +
+                "         ON dic_table_id = dic_column_table_id \n" +
+                "WHERE  dic_column_regexid IS NOT NULL \n" +
+                "       AND dic_table_id <> '" + tableId + "' \n" +
+                "ORDER  BY dic_column_efficiency ";
+        Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(sql);
+        vector.remove(0); //deleting the column names
+        for (Vector<String> tableDetails : vector) {
+            tablesMap.put(tableDetails.get(0), tableDetails.get(1));
+        }
+        return tablesMap;
     }
 
     public static void main(String[] args) {
