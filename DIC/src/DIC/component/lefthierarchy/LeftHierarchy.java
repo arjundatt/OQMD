@@ -319,7 +319,7 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
 
     private void updateMappedTableId(String tableId, String mappedTableId) throws SQLException {
         String sql = "UPDATE dic_table \n" +
-                "SET    dic_table_mapped_column = '" + mappedTableId +"' \n" +
+                "SET    dic_table_mapped_table = '" + mappedTableId + "' \n" +
                 "WHERE  dic_table_id = '" + tableId + "' ";
         DatabaseUtility.updateQuery(connection, sql);
     }

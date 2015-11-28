@@ -6,6 +6,7 @@ import DIC.component.lefthierarchy.LeftHierarchy;
 import DIC.component.rightview.ColumnInfo;
 import DIC.component.rightview.DefaultRightViewDisplay;
 import DIC.component.rightview.InstanceInfo;
+import DIC.component.rightview.MappingView;
 import DIC.component.rightview.tablecomponent.KTable;
 import DIC.component.treecomponent.HierarchyTreeNode;
 import DIC.util.database.DatabaseUtility;
@@ -184,8 +185,31 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         JLabel tableLabel = new JLabel("Metadata Not Discovered");
         tableLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rightPanel.addTab("Data", tableLabel, false);
+        JLabel mappingPanel = new JLabel("No Mapping done");
+        mappingPanel.setHorizontalAlignment(SwingConstants.CENTER);
+        rightPanel.addTab("Mapping", mappingPanel, false);
         showMetaData();
         showTableData();
+        showMappingData();
+    }
+
+    private void showMappingData() {
+        //if there is no mapped details do nothing
+        // else show the mapping table
+        try {
+            String tableId = node.getAttribute("dic_table_id");
+            String sql = "SELECT DIC_TABLE_MAPPED_TABLE from DIC_TABLE where DIC_TABLE_ID = '" + tableId + "'";
+            Vector<Vector<String>> vector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(sql);
+            //if there is mapped table
+            String mappedTableId = vector.size() > 1 ? vector.get(1).get(0) : null;
+            if (mappedTableId != null) {
+                MappingView mappingView = new MappingView(tableId, mappedTableId);
+                rightPanel.refresh("Mapping", 2, mappingView);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showMetaData() {
