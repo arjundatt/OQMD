@@ -91,12 +91,12 @@ public class HBaseClassifier extends DomainClassifier{
                 }
                 i++;
             }
-            super.phaseII(columnMap, IDENTITY);
+            super.phaseII(columnMap, IDENTITY,tableId);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        allColumnIds.addAll(columnIds);
     }
 
     public static void main(String[] a){

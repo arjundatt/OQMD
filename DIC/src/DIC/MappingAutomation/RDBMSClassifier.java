@@ -36,6 +36,7 @@ public class RDBMSClassifier extends DomainClassifier {
             String dataSQL = "select ";
             for (Vector<String> column : columns) {
                 dataSQL += column.get(0) + ", ";
+                allColumnIds.add(column.get(1));
             }
             dataSQL = dataSQL.substring(0, dataSQL.length() - 2) +
                     " from NGARG.";
@@ -45,7 +46,7 @@ public class RDBMSClassifier extends DomainClassifier {
             data = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(dataSQL);
             HashMap<String, ArrayList<String>> columnMap;
             columnMap = generateColumnMap(data, columns);
-            super.phaseII(columnMap,IDENTITY);
+            super.phaseII(columnMap,IDENTITY,tableId);
         } catch (SQLException e) {
             e.printStackTrace();
         }

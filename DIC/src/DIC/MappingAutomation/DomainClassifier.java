@@ -14,7 +14,7 @@ import java.util.*;
 abstract public class DomainClassifier {
     protected static Map<String, Regex> regexMap;                   //regexId->regex object
     //protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
-
+    protected static HashSet<String> allColumnIds = new HashSet<String>();
     //use only bucketClassifier for each mapping
     //regexID -> (DBType -> priority queue of classified attributes)
     protected static LinkedHashMap<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>> bucketClassifier;
@@ -136,13 +136,13 @@ abstract public class DomainClassifier {
          *    **** check for other classifications.
          * 9. Insert unclassified columns into LIST_UNCLASSIFIED<AttributeIdentityModel>
          */
-    protected void phaseII(HashMap<String, ArrayList<String>> columnMap, String sourceIdentity){
+    protected void phaseII(HashMap<String, ArrayList<String>> columnMap, String sourceIdentity,String tableId){
         for (Map.Entry<String, ArrayList<String>> idToValuesEntry : columnMap.entrySet()) {
             String columnId = idToValuesEntry.getKey();
             ArrayList<String> values = idToValuesEntry.getValue();
             //match the values to the regex pattern of regexMap
             for (Map.Entry<String, Regex> stringRegexEntry : regexMap.entrySet()) {
-                AttributeIdentityModel attributeInstance = new AttributeIdentityModel(sourceIdentity,"",columnId,0.0f);
+                AttributeIdentityModel attributeInstance = new AttributeIdentityModel(sourceIdentity,tableId,columnId,0.0f);
                 String regexId = stringRegexEntry.getKey();
                 Regex regex = stringRegexEntry.getValue();
                 attributeInstance.setType(regex.getType());
@@ -269,12 +269,37 @@ abstract public class DomainClassifier {
 
             }
         }
+        phaseIV(mMappings);
     }
 
     //executed after phase III
     //mapping is done here -> this is perhaps the final result
-    private void phaseIV() {
+    private void phaseIV(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings) {
         /* Need to compare the matched columns once again to find similar patterns. Not sure if this is necessary.
         * */
+        insertIntoMetaDb(mMappings);
+
+    }
+
+    private void insertIntoMetaDb(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings){
+        String mappingSql = "UPDATE NGARG.DIC_COLUMN\n"+
+                " SET DIC_COLUMN_REGEXID = CASE DIC_COLUMN_ID\n";
+        Iterator<Map.Entry<String,ArrayList<AttributeIdentityModel>>> iterator = mMappings.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String,ArrayList<AttributeIdentityModel>> child = iterator.next();
+            String regexId = child.getKey();
+            ArrayList<AttributeIdentityModel> attributeBag = child.getValue();
+            for(AttributeIdentityModel attr : attributeBag){
+                String cID = attr.getColumnId();
+                if(allColumnIds.contains(cID)){
+                    mappingSql += "WHEN "+cID+" THEN "+regexId+"\n";
+                    allColumnIds.remove(cID);
+                }
+            }
+        }
+        mappingSql += "END";
+
+        //todo: execute mappingSql to update the DIC_COLUMN table
+        System.out.print(mappingSql);
     }
 }

@@ -10,14 +10,23 @@ public class AttributeIdentityModel {
 
     //Add more if need be
     public static final String TYPE = "DB_TYPE";  //rdbms, hbase, etc.
-    public static final String TABLE_NAME = "tableName";
+    public static final String TABLE_ID = "tableId";
     public static final String COLUMN_NAME = "columnName";
     public static final String EFFICIENCY = "effciency";
 
+    private String tableID;
+    private String columnId;
 
     private String type;
-    private String tableName;
-    private String columnId;
+
+    public String getTableID() {
+        return tableID;
+    }
+
+    public void setTableID(String tableID) {
+        this.tableID = tableID;
+    }
+
 
     public void setType(String type) {
         this.type = type;
@@ -29,9 +38,9 @@ public class AttributeIdentityModel {
 
     private float efficiency;
 
-    public AttributeIdentityModel(String type, String tableName, String columnId, float efficiency) {
+    public AttributeIdentityModel(String type, String tableId, String columnId, float efficiency) {
         this.type = type;
-        this.tableName = tableName;
+        this.tableID = tableId;
         this.columnId = columnId;
         this.efficiency = efficiency;
     }
@@ -42,10 +51,6 @@ public class AttributeIdentityModel {
 
     public float getEfficiency() {
         return efficiency;
-    }
-
-    public String getTableName() {
-        return tableName;
     }
 
     public String getColumnId() {
