@@ -201,11 +201,11 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 Vector<Vector<String>> tableDetails = new Vector<Vector<String>>();
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 String tableId = selectedNode.getAttribute("dic_table_id");
-                String regexSQL = "SELECT DIC_SCHEMA_HBASETABLE\n"+
+                String regexSQL = "SELECT DIC_SCHEMA_HBASETABLE\n" +
                         "FROM   NGARG.DIC_TABLE \n" +
                         "       FULL JOIN NGARG.DIC_SCHEMA \n" +
                         "              ON DIC_SCHEMA_ID = DIC_TABLE_SCHEMA_ID  \n" +
-                        "WHERE  DIC_TABLE_ID="+tableId;
+                        "WHERE  DIC_TABLE_ID=" + tableId;
 
                 try {
                     tableDetails = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(regexSQL);
@@ -214,12 +214,11 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 }
                 tableDetails.remove(0);  //remove column header
                 int x = Integer.parseInt(String.valueOf(tableDetails.get(0).get(0)));
-                boolean isHbase = !(x==0);
-                if(!isHbase) {
+                boolean isHbase = !(x == 0);
+                if (!isHbase) {
                     RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
                     rdbmsClassifier.initClassification(tableId);
-                }
-                else {
+                } else {
                     HBaseClassifier hBaseClassifier = new HBaseClassifier();
                     hBaseClassifier.initClassification(tableId);
                 }
