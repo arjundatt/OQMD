@@ -1,5 +1,6 @@
 package DIC.MappingAutomation;
 
+import DIC.util.database.DatabaseUtility;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Get;
@@ -8,6 +9,7 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
@@ -37,6 +39,20 @@ public class HBaseClassifier extends DomainClassifier{
     @Override
     public void phaseI() {
         HashMap<String, ArrayList<String>> columnMap = new HashMap<String, ArrayList<String>>();
+        ArrayList<String> columnIds = new ArrayList<String>();
+        ArrayList<String> columnNames = new ArrayList<String>();
+        String columnSQL = "select DIC_COLUMN_NAME, DIC_COLUMN_ID from NGARG.DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + tableId + "'";
+        try {
+            Vector<Vector<String>> columns = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(columnSQL);
+            columns.remove(0); //removing column name
+            for (Vector<String> column : columns) {
+                columnNames.add(column.get(0));
+                columnIds.add(column.get(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //columnID -> Arraylist(column data)
         //First retrieve the columns names/ids from DIC_COLUMN instead of using mHbaseColumns
         // Instantiating Configuration class
         Configuration config = HBaseConfiguration.create();
@@ -57,23 +73,25 @@ public class HBaseClassifier extends DomainClassifier{
                 if(result.isEmpty())
                     break;
 
-                for(int k=0;k<mHbaseColumns.length;k++){
+                for(int k=0;k<columnNames.size();k++){
                     // Reading values from Result class object
-                    String value = Bytes.toString(result.getValue(Bytes.toBytes(COLUMN_FAMILY), Bytes.toBytes(mHbaseColumns[k])));
+                    String columnName = columnNames.get(k);
+                    String columnId = columnIds.get(k);
+                    String value = Bytes.toString(result.getValue(Bytes.toBytes(COLUMN_FAMILY), Bytes.toBytes(columnName)));
                     ArrayList<String> columnData;
-                    if(columnMap.get(mHbaseColumns[k])==null){
+                    if(columnMap.get(columnName)==null){
                         columnData = new ArrayList<String>();
-                        columnMap.put(mHbaseColumns[k],columnData);
+                        columnMap.put(columnId,columnData);
                     }
                     else{
-                        columnData = columnMap.get(mHbaseColumns[k]);
+                        columnData = columnMap.get(columnId);
                     }
                     columnData.add(value);
-                    columnMap.put(mHbaseColumns[k],columnData);
+                    columnMap.put(columnId,columnData);
                 }
                 i++;
             }
-            super.phaseII(columnMap,IDENTITY);
+            super.phaseII(columnMap, IDENTITY);
 
         } catch (IOException e) {
             e.printStackTrace();

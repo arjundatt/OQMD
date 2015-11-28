@@ -204,14 +204,31 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
         temp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Vector<Vector<String>> tableDetails = new Vector<Vector<String>>();
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 String tableId = selectedNode.getAttribute("dic_table_id");
-                RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
-                rdbmsClassifier.initClassification(tableId);
+                String regexSQL = "SELECT DIC_SCHEMA_HBASETABLE\n"+
+                        "FROM   NGARG.DIC_TABLE \n" +
+                        "       FULL JOIN NGARG.DIC_SCHEMA \n" +
+                        "              ON DIC_SCHEMA_ID = DIC_TABLE_SCHEMA_ID  \n" +
+                        "WHERE  DIC_TABLE_ID="+tableId;
 
-                //todo: test code for Hbase, add appropriate tableID
-                HBaseClassifier hBaseClassifier = new HBaseClassifier();
-                hBaseClassifier.initClassification("none");
+                try {
+                    tableDetails = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(regexSQL);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                tableDetails.remove(0);  //remove column header
+                int x = Integer.parseInt(String.valueOf(tableDetails.get(0).get(0)));
+                boolean isHbase = !(x==0);
+                if(!isHbase) {
+                    RDBMSClassifier rdbmsClassifier = new RDBMSClassifier();
+                    rdbmsClassifier.initClassification(tableId);
+                }
+                else {
+                    HBaseClassifier hBaseClassifier = new HBaseClassifier();
+                    hBaseClassifier.initClassification(tableId);
+                }
             }
         });
         tablePopUp.add(temp);

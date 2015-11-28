@@ -162,7 +162,7 @@ abstract public class DomainClassifier {
                 bucketClassifier.put(regexId,map);
             }
         }
-        //testCode(sourceIdentity);
+        testCode(sourceIdentity);
         //phaseIII();
     }
 
@@ -190,13 +190,13 @@ abstract public class DomainClassifier {
         float sampleEfficiency = 0.0f;
         int matchCount =0;
         int i;
-        for(i=0;(i<500 && i<population.size());i++){
+        for(i=0;(i<1500 && i<population.size());i++){
             if(links.contains(population.get(i))) {
                     matchCount++;
             }
         }
-        sampleEfficiency = i>1 ? matchCount/(i-1): 0.0f;
-        attributeInstance.setEfficiency(sampleEfficiency/(1+(i/50)));
+        sampleEfficiency = i>1 ? (float)matchCount/i: 0.0f;
+        attributeInstance.setEfficiency(sampleEfficiency);
 
         return attributeInstance.getEfficiency();
     }
@@ -211,7 +211,7 @@ abstract public class DomainClassifier {
             }
         }
 
-        sampleEfficiency = i>1 ? matchCount/(i-1): 0.0f;
+        sampleEfficiency = i>1 ? (float)matchCount/i: 0.0f;
         attributeInstance.setEfficiency(sampleEfficiency);
         return attributeInstance.getEfficiency();
     }
@@ -228,7 +228,12 @@ abstract public class DomainClassifier {
          * 5. repeat the process for all the values in the same bucket.
          * 6. add unclassified columns to LIST_UNCLASSIFIED<AttributeIdentityModel>
         * */
+
+        //regexID -> ArrayList(attributes in this bucket(domain))
+        //The object AttributeIdentityModel <obj> contains the info about its ID and the dbType it belongs to
+        //use obj.getType() and obj.getColumnId to retrieve this info
         LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings = new LinkedHashMap<String, ArrayList<AttributeIdentityModel>>();
+
         Iterator<Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>>> bucketIterator = (bucketClassifier.entrySet()).iterator();
         int domainCount =0;
         while(bucketIterator.hasNext()){
