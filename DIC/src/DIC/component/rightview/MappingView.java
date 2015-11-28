@@ -77,7 +77,7 @@ public class MappingView extends JPanel {
                         "Pool", new Boolean(false)}
         };
 
-        private Object[][] data2 = getData();
+//        private Object[][] data2 = getData();
 
         public int getColumnCount() {
             return columnNames.length;
@@ -155,30 +155,34 @@ public class MappingView extends JPanel {
         }
     }
 
-    private Object[][] getData() {
+    private Vector<Vector<Object>> getMappingData() {
+        Vector<Vector<Object>> data = null;
         try {
-            Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+            data = new Vector<Vector<Object>>();
             String tableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + tableId + "'\n";
             Vector<Vector<String>> tablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(tableSql);
             tablesVector.remove(0);
 
-            String mappedTableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + mappedTableId + "'\n";
+            String mappedTableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID, DIC_COLUMN_EFFICIENCY from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + mappedTableId + "'\n";
             Vector<Vector<String>> mappedTablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(mappedTableSql);
             mappedTablesVector.remove(0);
 
             for (Vector<String> tableDetail : tablesVector) {
-                Vector<Object> aRow = new Vector<Object>();
-                aRow.add(tableDetail.get(0)); //first col id
-                aRow.add(tableDetail.get(1)); //first col name
-//                for (Vector<String> mappedTableDetail : mappedTablesVector) {
-//                    if (mappedTableDetail.get())
-//                }
+                for (Vector<String> mappedTableDetail : mappedTablesVector) {
+                    if (mappedTableDetail.get(2).equals(tableDetail.get(2))) {
+                        Vector<Object> aRow = new Vector<Object>();
+                        aRow.add(tableDetail.get(1)); //first col name
+                        aRow.add(mappedTableDetail.get(1)); //second col name
+                        aRow.add(mappedTableDetail.get(2));  //efficiency
+                        data.add(aRow);
+                    }
+                }
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return new Object[0][];
+        return data;
     }
 
     /**

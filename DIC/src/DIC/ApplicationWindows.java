@@ -6,7 +6,6 @@ import DIC.component.lefthierarchy.LeftHierarchy;
 import DIC.component.rightview.ColumnInfo;
 import DIC.component.rightview.DefaultRightViewDisplay;
 import DIC.component.rightview.InstanceInfo;
-import DIC.component.rightview.MappingView;
 import DIC.component.rightview.tablecomponent.KTable;
 import DIC.component.treecomponent.HierarchyTreeNode;
 import DIC.util.database.DatabaseUtility;
@@ -203,13 +202,46 @@ public class ApplicationWindows extends JFrame implements MouseListener {
             //if there is mapped table
             String mappedTableId = vector.size() > 1 ? vector.get(1).get(0) : null;
             if (mappedTableId != null) {
-                MappingView mappingView = new MappingView(tableId, mappedTableId);
-                rightPanel.refresh("Mapping", 2, mappingView);
+                Vector<Vector<Object>> mappingData = getMappingData(tableId, mappedTableId);
+                String[] col = new String[]{"Table 1 column name", "Table 2 column name", "Efficiency"};
+                Vector<String> columns = new Vector<String>(Arrays.asList(col));
+                KTable mappingTable = new KTable(mappingData, columns);
+                rightPanel.refresh("Mapping", 2, mappingTable);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Vector<Vector<Object>> getMappingData(String tableId, String mappedTableId) {
+        Vector<Vector<Object>> data = null;
+        try {
+            data = new Vector<Vector<Object>>();
+            String tableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + tableId + "'\n";
+            Vector<Vector<String>> tablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(tableSql);
+            tablesVector.remove(0);
+
+            String mappedTableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID, DIC_COLUMN_EFFICIENCY from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + mappedTableId + "'\n";
+            Vector<Vector<String>> mappedTablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(mappedTableSql);
+            mappedTablesVector.remove(0);
+
+            for (Vector<String> tableDetail : tablesVector) {
+                for (Vector<String> mappedTableDetail : mappedTablesVector) {
+                    if (mappedTableDetail.get(2).equals(tableDetail.get(2))) {
+                        Vector<Object> aRow = new Vector<Object>();
+                        aRow.add(tableDetail.get(1)); //first col name
+                        aRow.add(mappedTableDetail.get(1)); //second col name
+                        aRow.add(mappedTableDetail.get(3));  //efficiency
+                        data.add(aRow);
+                    }
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     private void showMetaData() {
