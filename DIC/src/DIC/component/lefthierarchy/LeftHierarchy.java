@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
+ *
  * Created by Arnab Saha on 10/10/15.
  */
 
@@ -202,8 +203,8 @@ public class LeftHierarchy extends JPanel implements ActionListener, KeyListener
                 HierarchyTreeNode selectedNode = (HierarchyTreeNode) jTree.getLastSelectedPathComponent();
                 String tableId = selectedNode.getAttribute("dic_table_id");
                 String regexSQL = "SELECT DIC_SCHEMA_HBASETABLE\n" +
-                        "FROM   NGARG.DIC_TABLE \n" +
-                        "       FULL JOIN NGARG.DIC_SCHEMA \n" +
+                        "FROM   DEMO1.DIC_TABLE \n" +
+                        "       FULL JOIN DEMO1.DIC_SCHEMA \n" +
                         "              ON DIC_SCHEMA_ID = DIC_TABLE_SCHEMA_ID  \n" +
                         "WHERE  DIC_TABLE_ID=" + tableId;
 

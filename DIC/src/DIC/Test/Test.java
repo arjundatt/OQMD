@@ -67,7 +67,7 @@ public class Test {
             /*Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
             */
-            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
+            Connection connection = DatabaseUtility.metadataConnection;
             Statement st = connection.createStatement();
             //DatabaseUtility.deleteTable(connection,"NGARG","DIC_INSTANCE");
             //st.execute(query1);

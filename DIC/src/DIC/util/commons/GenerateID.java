@@ -14,10 +14,10 @@ public class GenerateID {
     public static String generateID() {
         Integer id = null;
         try {
-            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
-            Vector vector = DatabaseUtility.getData(connection, "NGARG", "DIC_ID");
+            Connection connection = DatabaseUtility.metadataConnection;
+            Vector vector = DatabaseUtility.getData(connection, "DEMO1", "DIC_ID");
             id = Integer.parseInt(((Vector) vector.get(0)).get(0).toString());
-            String updateSQL = "update NGARG.DIC_ID set DIC_ID = " + (id + 1) + " where DIC_ID = " + id;
+            String updateSQL = "update DEMO1.DIC_ID set DIC_ID = '" + String.valueOf(id + 1) + "' where DIC_ID = '" + String.valueOf(id) + "'";
 //            System.out.println(updateSQL);
             DatabaseUtility.updateQuery(connection, updateSQL);
 
@@ -31,10 +31,10 @@ public class GenerateID {
         Integer id = null;
         ArrayList<String> ids = new ArrayList<String>();
         try {
-            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
-            Vector vector = DatabaseUtility.getData(connection, "NGARG", "DIC_ID");
+            Connection connection = DatabaseUtility.metadataConnection;
+            Vector vector = DatabaseUtility.getData(connection, "DEMO1", "DIC_ID");
             id = Integer.parseInt(((Vector) vector.get(0)).get(0).toString());
-            String updateSQL = "update NGARG.DIC_ID set DIC_ID = " + (id + noOfIdsRequired) + " where DIC_ID = " + id;
+            String updateSQL = "update DEMO1.DIC_ID set DIC_ID = '" + (id + noOfIdsRequired) + "' where DIC_ID = '" + id + "'";
 //            System.out.println(updateSQL);
             DatabaseUtility.updateQuery(connection, updateSQL);
             for (int i = id; i < id + noOfIdsRequired; i++) {

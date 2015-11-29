@@ -132,7 +132,7 @@ public class mappingtables {
 
     public static void main(String[] args) throws SQLException {
         try {
-            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
+            Connection connection = DatabaseUtility.metadataConnection;
             String delete1= "Delete from Dic_Link";
             String delete2= "Delete from Dic_Regex";
             Statement st = connection.createStatement();

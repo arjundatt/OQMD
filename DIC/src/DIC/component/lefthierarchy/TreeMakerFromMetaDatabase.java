@@ -48,11 +48,11 @@ public class TreeMakerFromMetaDatabase {
                 "       dic_column_table_id \n" +
 
                 "FROM   dic_instance \n" +
-                "       FULL OUTER JOIN dic_schema \n" +
+                "       LEFT OUTER JOIN dic_schema \n" +
                 "         ON dic_schema_instance_id = dic_instance_id \n" +
-                "       FULL OUTER JOIN dic_table \n" +
+                "       LEFT OUTER JOIN dic_table \n" +
                 "         ON dic_schema_id = dic_table_schema_id \n" +
-                "       FULL OUTER JOIN dic_column \n" +
+                "       LEFT OUTER JOIN dic_column \n" +
                 "         ON dic_column_table_id = dic_table_id ";
 
         HierarchyTreeNode root = null;
