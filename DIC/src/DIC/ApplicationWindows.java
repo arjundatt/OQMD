@@ -234,7 +234,6 @@ public class ApplicationWindows extends JFrame implements MouseListener {
                         aRow.add(mappedTableDetail.get(1)); //second col name
                         aRow.add(mappedTableDetail.get(3));  //efficiency
                         data.add(aRow);
-
                     }
                 }
 
