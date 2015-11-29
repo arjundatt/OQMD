@@ -8,6 +8,7 @@ import DIC.component.rightview.DefaultRightViewDisplay;
 import DIC.component.rightview.InstanceInfo;
 import DIC.component.rightview.tablecomponent.KTable;
 import DIC.component.treecomponent.HierarchyTreeNode;
+import DIC.util.commons.GenerateID;
 import DIC.util.database.DatabaseUtility;
 import DIC.xml.XMLTree;
 
@@ -234,6 +235,8 @@ public class ApplicationWindows extends JFrame implements MouseListener {
                         aRow.add(mappedTableDetail.get(1)); //second col name
                         aRow.add(mappedTableDetail.get(3));  //efficiency
                         data.add(aRow);
+                        String sql = "INSERT INTO DIC_MAPPER (DIC_MAPPER_ID, DIC_MAPPER_COLUMN1, DIC_MAPPER_COLUMN2) values ('" + GenerateID.generateID() + "','" + tableDetail.get(0) + "','" + mappedTableDetail.get(0) + "' )";
+                        System.out.println(sql);
                     }
                 }
 
