@@ -228,7 +228,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
 
             for (Vector<String> tableDetail : tablesVector) {
                 for (Vector<String> mappedTableDetail : mappedTablesVector) {
-                    if (mappedTableDetail.get(2).equals(tableDetail.get(2))) {
+                    if (mappedTableDetail.get(2) != null && mappedTableDetail.get(2).equals(tableDetail.get(2))) {
                         Vector<Object> aRow = new Vector<Object>();
                         aRow.add(tableDetail.get(1)); //first col name
                         aRow.add(mappedTableDetail.get(1)); //second col name
