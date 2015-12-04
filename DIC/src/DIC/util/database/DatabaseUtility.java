@@ -1,4 +1,4 @@
-    package DIC.util.database;
+package DIC.util.database;
 
 import DIC.util.commons.GenerateID;
 
@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.Vector;
 
 /**
+ *
  * Created by arjundatt.16 on 10/08/15.
  */
 public class DatabaseUtility {
-    static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
+    static final String JDBC_DRIVER = "com.ibm.db2.jcc.DB2Driver";
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DERBY = "Derby";
     static final String ORACLE = "Oracle";
@@ -19,7 +20,7 @@ public class DatabaseUtility {
 
     static {
         try {
-            metadataConnection = DatabaseUtility.getConnection("localhost", DERBY, "1527", "demo1", "demo1", "demo1");
+            metadataConnection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,11 +40,10 @@ public class DatabaseUtility {
         Connection connection = null;
         try {
             Class.forName(JDBC_DRIVER);
-            String url = "jdbc:derby://" + dbIP + ":" + port + "/" + instance + ";";
+            String url = "jdbc:derby://" + dbIP + ":" + port + "/" + instance + ";ssl=basic";
             connection = DriverManager.getConnection(url, userName, pass);
             System.out.println("Connected to database");
         } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
             System.out.println("Error: unable to load driver class!");
         }
         return connection;
@@ -52,37 +52,30 @@ public class DatabaseUtility {
     public static Vector<Vector<String>> addSchemasToMetadatabase(Connection con, ArrayList<String> schemaNames, String instanceId) throws SQLException {
         Vector<Vector<String>> schemaDetails = new Vector<Vector<String>>();    //schemaId, schemaName
         try {
-            String query = "Insert into DEMO1.Dic_Schema (" +
-                    "                        Dic_Schema_ID," +
-                    "                        Dic_Schema_Name," +
-                    "                        Dic_Schema_HbaseTable," +
-                    "                        Dic_Schema_Instance_ID)" +
-                    "                        values";
+            String query = "Insert all";
             int noOfIdsRequired = schemaNames.size();
             //get a list of ids
             ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
             int i = 0;
             for (String schemaName : schemaNames) {
                 Vector<String> schema = new Vector<String>();
-                query += "('"
-                        + ids.get(i) + "','"
+                query += " into NGARG.Dic_Schema (" +
+                        "Dic_Schema_ID," +
+                        "Dic_Schema_Name," +
+                        "Dic_Schema_HbaseTable," +
+                        "Dic_Schema_Instance_ID)" +
+                        "values("
+                        + ids.get(i) + ",'"
                         + schemaName + "',"
                         + "0,'"
-                        + instanceId + "'), ";
+                        + instanceId + "') ";
                 schema.add(schemaName);
                 schema.add(ids.get(i++));
                 schema.add(instanceId);
                 schemaDetails.add(schema);
             }
-            query = query.substring(0, query.length() - 2);
-            System.out.println(query);
-            if (!query.equals("Insert into DEMO1.Dic_Schema (" +
-                    "                                            Dic_Schema_ID," +
-                    "                                            Dic_Schema_Name," +
-                    "                                            Dic_Schema_HbaseTable," +
-                    "                                            Dic_Schema_Instance_ID)" +
-                    "                                            values"))
-                DatabaseUtility.updateQuery(con, query);
+            if (!query.equals("Insert all"))
+                DatabaseUtility.updateQuery(con, query + " select * from dual");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,15 +97,14 @@ public class DatabaseUtility {
                     "Dic_Instance_PortNumber," +
                     "Dic_Instance_SystemName," +
                     "Dic_Instance_UserName) " +
-                    "values('" + connectionId + "','"
+                    "values(" + connectionId + ",'"
                     + dbType + "','"
                     + instanceName + "','"
                     + connectionName + "','"
-                    + password + "',"
-                    + dbPort + ",'"
+                    + password + "','"
+                    + dbPort + "','"
                     + dbIp + "','"
                     + userName + "')";
-            System.out.println(query);
             st.executeUpdate(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -136,7 +128,7 @@ public class DatabaseUtility {
     }
 
     public static Connection getConnection(String dbIP, String dbType, String port, String instance, String userName, String pass) throws SQLException {
-        if (dbIP.equals("localhost") && metadataConnection != null && !metadataConnection.isClosed())        //returns metadata connection quickly
+        if (dbIP.equals("ora.csc.ncsu.edu") && metadataConnection != null && !metadataConnection.isClosed())        //returns metadata connection quickly
             return metadataConnection;
         if (dbType.equals(DERBY))
             return getDerbyConnection(dbIP, port, instance, userName, pass);
@@ -182,17 +174,7 @@ public class DatabaseUtility {
     private static Vector<Vector<String>> addTablesToMetadatabase(Connection connection, ArrayList<String> tableNames, String schemaId) {
         Vector<Vector<String>> tableDetails = new Vector<Vector<String>>();    //schemaId, schemaName
         try {
-            String query = "Insert ";
-            query += " into DEMO1.Dic_Table (" +
-                    "DIC_TABLE_ID, " +                    //1
-                    "DIC_TABLE_COLUMNCOUNT, " +           //2
-                    "DIC_TABLE_ISCOLUMNFAMILY, " +        //3
-                    "DIC_TABLE_COLUMNDISCOVERED, " +      //4
-                    "DIC_TABLE_METADATADISCOVERED, " +    //5
-                    "DIC_TABLE_NAME, " +                  //6
-                    "DIC_TABLE_RECORD, " +                //7
-                    "DIC_TABLE_TIMESTAMP, " +             //8
-                    "DIC_TABLE_SCHEMA_ID) values";
+            String query = "Insert all";
             int noOfIdsRequired = tableNames.size();
             //get a list of ids
             ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
@@ -201,7 +183,17 @@ public class DatabaseUtility {
                 Vector<String> table = new Vector<String>();
                 String id = ids.get(i);
                 long time = System.nanoTime();
-                query += "('"
+                query += " into NGARG.Dic_Table (" +
+                        "DIC_TABLE_ID, " +                    //1
+                        "DIC_TABLE_COLUMNCOUNT, " +           //2
+                        "DIC_TABLE_ISCOLUMNFAMILY, " +        //3
+                        "DIC_TABLE_COLUMNDISCOVERED, " +      //4
+                        "DIC_TABLE_METADATADISCOVERED, " +    //5
+                        "DIC_TABLE_NAME, " +                  //6
+                        "DIC_TABLE_RECORD, " +                //7
+                        "DIC_TABLE_TIMESTAMP, " +             //8
+                        "DIC_TABLE_SCHEMA_ID) values ('"               //9
+
                         + id + "',"                   //1
                         + "0,"                               //2
                         + "0,"                               //3
@@ -210,7 +202,7 @@ public class DatabaseUtility {
                         + tableName + "',"                                 //6
                         + "0,"                                 //7
                         + time + ",'"                                 //8
-                        + schemaId + "'), ";                  //9
+                        + schemaId + "') ";                  //9
 
                 table.add(ids.get(i++));
                 table.add("0");
@@ -223,10 +215,8 @@ public class DatabaseUtility {
                 table.add(schemaId);
                 tableDetails.add(table);
             }
-            query = query.substring(0, query.length() - 2);
-            System.out.println(query);
             if (!query.equals("Insert all"))
-                DatabaseUtility.updateQuery(connection, query);
+                DatabaseUtility.updateQuery(connection, query + " select * from dual");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -237,13 +227,7 @@ public class DatabaseUtility {
     private static Vector<Vector<String>> addColumnsToMetadatabase(Connection connection, ArrayList<String> columnNames, String tableId) {
         Vector<Vector<String>> columnDetails = new Vector<Vector<String>>();    //schemaId, schemaName
         try {
-            String query = "Insert ";
-            query += " into DEMO1.Dic_Column (" +
-                    "DIC_COLUMN_ID, " +
-                    "DIC_COLUMN_LENGTH, " +
-                    "DIC_COLUMN_NAME, " +
-                    "DIC_COLUMN_TYPE, " +
-                    "DIC_COLUMN_TABLE_ID) values";
+            String query = "Insert all";
             int noOfIdsRequired = columnNames.size();
             //get a list of ids
             ArrayList<String> ids = GenerateID.generateMultipleIds(noOfIdsRequired);
@@ -251,12 +235,17 @@ public class DatabaseUtility {
             for (String columnName : columnNames) {
                 Vector<String> column = new Vector<String>();
                 String id = ids.get(i);
-                query += "('"
+                query += " into NGARG.Dic_Column (" +
+                        "DIC_COLUMN_ID, " +
+                        "DIC_COLUMN_LENGTH, " +
+                        "DIC_COLUMN_NAME, " +
+                        "DIC_COLUMN_TYPE, " +
+                        "DIC_COLUMN_TABLE_ID) values('"
                         + id + "',"                   //1
                         + "0,'"                                 //2
                         + columnName + "',"                                 //3
                         + "'null','"                                        //4
-                        + tableId + "'), ";                  //5
+                        + tableId + "') ";                  //5
 
                 column.add(ids.get(i++));
                 column.add("0");
@@ -265,9 +254,8 @@ public class DatabaseUtility {
                 column.add(tableId);
                 columnDetails.add(column);
             }
-            query = query.substring(0, query.length() - 2);
             if (!query.equals("Insert all"))
-                DatabaseUtility.updateQuery(connection, query);
+                DatabaseUtility.updateQuery(connection, query + " select * from dual");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -276,7 +264,7 @@ public class DatabaseUtility {
     }
 
     public static void updateColumnDiscovered(Connection connection, String tableId) {
-        String query = "update DEMO1.DIC_TABLE set DIC_TABLE_COLUMNDISCOVERED = 1 where DIC_TABLE_ID = '" + tableId + "'";
+        String query = "update NGARG.DIC_TABLE set DIC_TABLE_COLUMNDISCOVERED = 1 where DIC_TABLE_ID = '" + tableId+"'";
         try {
             DatabaseUtility.updateQuery(connection, query);
         } catch (SQLException e) {
@@ -316,7 +304,7 @@ public class DatabaseUtility {
     }
 
     public static void updateColumnParameters(Connection connection, String columnId, String type, String length) {
-        String query = "update DEMO1.DIC_COLUMN set DIC_COLUMN_TYPE = '" + type + "', DIC_COLUMN_LENGTH = " + Integer.parseInt(length) + " where DIC_COLUMN_ID = '" + columnId + "'";
+        String query = "update NGARG.DIC_COLUMN set DIC_COLUMN_TYPE = '" + type + "', DIC_COLUMN_LENGTH = " + Integer.parseInt(length) + " where DIC_COLUMN_ID = '" + columnId + "'";
 
         try {
             DatabaseUtility.updateQuery(connection, query);
@@ -326,7 +314,7 @@ public class DatabaseUtility {
     }
 
     public static void updateTableParameters(Connection connection, String tableId, String col_count, String record_count) {
-        String query = "update DEMO1.DIC_TABLE set DIC_TABLE_COLUMNCOUNT = " + Integer.parseInt(col_count) + ", DIC_TABLE_RECORD = " + Integer.parseInt(record_count) + ", DIC_TABLE_METADATADISCOVERED = 1 where DIC_TABLE_ID='" + tableId + "'";
+        String query = "update NGARG.DIC_TABLE set DIC_TABLE_COLUMNCOUNT = " + Integer.parseInt(col_count) + ", DIC_TABLE_RECORD = " + Integer.parseInt(record_count) + ", DIC_TABLE_METADATADISCOVERED = 1 where DIC_TABLE_ID='" + tableId + "'";
         try {
             DatabaseUtility.updateQuery(connection, query);
         } catch (SQLException e) {

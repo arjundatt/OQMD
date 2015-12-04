@@ -37,7 +37,7 @@ public class Test2 {
             /*Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = (Connection) DriverManager.getConnection("jdbc:oracle:thin:@ora.csc.ncsu.edu:1521:orcl", "ngarg", "200104701");
             */
-            Connection connection = DatabaseUtility.metadataConnection;
+            Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
             System.out.println(DatabaseUtility.updateQuery(connection, query));
             connection.close();
         } catch (Exception e) {

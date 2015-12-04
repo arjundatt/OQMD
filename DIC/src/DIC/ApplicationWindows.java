@@ -226,7 +226,6 @@ public class ApplicationWindows extends JFrame implements MouseListener {
             String mappedTableSql = "select DIC_COLUMN_ID, DIC_COLUMN_NAME, DIC_COLUMN_REGEXID, DIC_COLUMN_EFFICIENCY from DIC_COLUMN where DIC_COLUMN_TABLE_ID = '" + mappedTableId + "'\n";
             Vector<Vector<String>> mappedTablesVector = (Vector<Vector<String>>) DatabaseUtility.executeQueryOnMetaDatabase(mappedTableSql);
             mappedTablesVector.remove(0);
-
             for (Vector<String> tableDetail : tablesVector) {
                 for (Vector<String> mappedTableDetail : mappedTablesVector) {
                     if (mappedTableDetail.get(2) != null && tableDetail.get(2) != null && mappedTableDetail.get(3) != null && mappedTableDetail.get(2).equals(tableDetail.get(2))) {
@@ -235,8 +234,7 @@ public class ApplicationWindows extends JFrame implements MouseListener {
                         aRow.add(mappedTableDetail.get(1)); //second col name
                         aRow.add(mappedTableDetail.get(3));  //efficiency
                         data.add(aRow);
-                        String sql = "INSERT INTO DIC_MAPPER (DIC_MAPPER_ID, DIC_MAPPER_COLUMN1, DIC_MAPPER_COLUMN2) values ('" + GenerateID.generateID() + "','" + tableDetail.get(0) + "','" + mappedTableDetail.get(0) + "' )";
-                        System.out.println(sql);
+
                     }
                 }
 
@@ -246,6 +244,8 @@ public class ApplicationWindows extends JFrame implements MouseListener {
         }
         return data;
     }
+
+
 
     private void showMetaData() {
         HierarchyTreeNode instanceNode = (HierarchyTreeNode) (node.getParent()).getParent();
