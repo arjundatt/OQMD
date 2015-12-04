@@ -21,7 +21,7 @@ public class mappingtables {
             int count=0;
             int i=0;
             Statement st = connection.createStatement();
-            File fin3 = new File("/Users/nisthagarg/Desktop/dicdata/"+line3+".txt");
+            File fin3 = new File("/home/nishtha/Downloads/dicdata/"+line3+".txt");
             FileInputStream fis3 = new FileInputStream(fin3);
             BufferedReader br3 = new BufferedReader(new InputStreamReader(fis3));
             String linecount = null;
@@ -29,12 +29,12 @@ public class mappingtables {
                 count++;
             }
             br3.close();
-            File fin4 = new File("/Users/nisthagarg/Desktop/dicdata/"+line3+".txt");
+            File fin4 = new File("/home/nishtha/Downloads/dicdata/"+line3+".txt");
             FileInputStream fis4 = new FileInputStream(fin4);
             BufferedReader br4 = new BufferedReader(new InputStreamReader(fis4));
             ArrayList<String> ids = GenerateID.generateMultipleIds(count);
             String line4 = null;
-            String sql = "Insert all\n";
+            /*String sql = "Insert all\n";
             //int count = 0;
             //sample comment
 
@@ -43,7 +43,23 @@ public class mappingtables {
                 sql = sql + "into Dic_Link("+"Dic_Link_ID,"+"Dic_Link_Value,"+"Dic_Link_linkID)"+"values('" + ids.get(i) + "','" + line4 + "','" + id2 + "')\n";
                 i++;
             }
-            sql = sql + "select * from dual";
+            sql = sql + "select * from dual";*/
+            String sql = "Insert into Dic_link (" +
+                    " Dic_Link_ID," +
+                    " Dic_Link_Value," +
+                    " Dic_Link_LinkID)" +
+                    " values";
+//int count = 0;
+//sample comment
+
+
+            while ((line4 = br4.readLine()) != null) {
+//sql = sql + "into Dic_Link("+"Dic_Link_ID,"+"Dic_Link_Value,"+"Dic_Link_linkID)"+"values('" + ids.get(i) + "','" + line4 + "','" + id2 + "')\n";
+                sql = sql + "('" + ids.get(i) + "','" + line4 + "','" + id2 + "'),\n";
+
+                i++;
+            }
+            sql = sql.substring(0, sql.length() - 2);
             System.out.println(sql);
             st.executeUpdate(sql);
 
@@ -57,7 +73,8 @@ public class mappingtables {
         try {
             //Connection connection = DatabaseUtility.getConnection("ora.csc.ncsu.edu", "Oracle", "1521", "orcl", "ngarg", "200104701");
             Statement st = connection.createStatement();
-            String sql = "Insert into Dic_Regex values('" + GenerateID.generateID() + "','" + line3 + "','" + "" + "','" + id + "','" + "" + "')";
+            String sql = "Insert into Dic_Regex values('" + GenerateID.generateID() + "','" + line3 + "','" + "" + "','" + id +"',0)";
+            System.out.println(sql);
             st.executeUpdate(sql);
             Insertfunction(id, connection,line3);
             id++;
@@ -73,7 +90,17 @@ public class mappingtables {
         try {
 
             Statement st = connection.createStatement();
-            String sql = "Insert into Dic_Regex values('" + GenerateID.generateID() + "','" + line1 + "','" + line2 + "','" + "" + "', '" + "" + "')";
+            String sql = "Insert into Dic_Regex(DIC_REGEX_ID, " +
+                    "                Dic_Regex_Type, " +
+                    "                Dic_Regex_RegularExp," +
+                    "                Dic_Regex_linkID, \n" +
+                    "                Dic_Regex_Order) values(" +
+                    "               '" + GenerateID.generateID() + "'," +
+                    "               '" + line1 + "'," +
+                    "               '" + line2 + "'," +
+                    "               '',"+
+                    "                  0)";
+            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +113,7 @@ public class mappingtables {
 
         try {
 
-            File fin2 = new File("/Users/nisthagarg/Desktop/dicdata/regexdata2.txt");
+            File fin2 = new File("/home/nishtha/Downloads/dicdata/regexdata2.txt");
             FileInputStream fis2 = new FileInputStream(fin2);
             BufferedReader br1 = new BufferedReader(new InputStreamReader(fis2));
             String line3 = null;
@@ -107,7 +134,7 @@ public class mappingtables {
 
         try {
 
-            File fin = new File("/Users/nisthagarg/Desktop/dicdata/regexdata.txt");
+            File fin = new File("/home/nishtha/Downloads/dicdata/regexdata.txt");
             FileInputStream fis = new FileInputStream(fin);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
             String line = null;

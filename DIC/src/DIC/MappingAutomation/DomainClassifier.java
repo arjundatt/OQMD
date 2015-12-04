@@ -45,7 +45,11 @@ abstract public class DomainClassifier {
                 Regex regex = regexMap.get(regexId);
                 if (regex == null) {
                     //create new regex
-                    regex = new Regex(regexId, domainDetail.get(1), domainDetail.get(2), domainDetail.get(3) == null ? null : Integer.parseInt(domainDetail.get(3)), Integer.parseInt(String.valueOf(domainDetail.get(4))));
+                    regex = new Regex(regexId,
+                            domainDetail.get(1),
+                            domainDetail.get(2),
+                            domainDetail.get(3) == null ? null : Integer.parseInt(domainDetail.get(3)),
+                            Integer.parseInt(String.valueOf(domainDetail.get(4))));
                     regexMap.put(regexId, regex);
                 }
                 if (regex.getLinkId() != null) {
@@ -263,7 +267,7 @@ abstract public class DomainClassifier {
                         }
                         attributeBag.add(attributeInstance);
                         //todo: test print, remove
-                        System.out.println("Domain:" + domainCount + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
+                        System.out.println("RegexId:" + regexID + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
                     }
                 }
 
@@ -284,6 +288,9 @@ abstract public class DomainClassifier {
     private void insertIntoMetaDb(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings){
         String mappingSql = "UPDATE NGARG.DIC_COLUMN\n"+
                 " SET DIC_COLUMN_REGEXID = CASE DIC_COLUMN_ID\n";
+        String mappingSqlEfficiency = "UPDATE NGARG.DIC_COLUMN\n"+
+                " SET DIC_COLUMN_EFFICIENCY = CASE DIC_COLUMN_ID\n";
+
         Iterator<Map.Entry<String,ArrayList<AttributeIdentityModel>>> iterator = mMappings.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry<String,ArrayList<AttributeIdentityModel>> child = iterator.next();
@@ -291,15 +298,27 @@ abstract public class DomainClassifier {
             ArrayList<AttributeIdentityModel> attributeBag = child.getValue();
             for(AttributeIdentityModel attr : attributeBag){
                 String cID = attr.getColumnId();
+                Float efficiency = attr.getEfficiency();
                 if(allColumnIds.contains(cID)){
                     mappingSql += "WHEN '"+cID+"' THEN '"+regexId+"'\n";
+                    mappingSqlEfficiency += "WHEN '"+cID+"' THEN "+efficiency+"\n";
                     allColumnIds.remove(cID);
                 }
             }
         }
         mappingSql += "END";
+        mappingSqlEfficiency += "END";
 
         //todo: execute mappingSql to update the DIC_COLUMN table
-        System.out.print(mappingSql);
+        System.out.println(mappingSql);
+        System.out.println(mappingSqlEfficiency);
+        try {
+            DatabaseUtility.executeQueryOnMetaDatabase(mappingSql);
+            DatabaseUtility.executeQueryOnMetaDatabase(mappingSqlEfficiency);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

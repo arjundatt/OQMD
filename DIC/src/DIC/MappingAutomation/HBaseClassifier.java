@@ -79,7 +79,7 @@ public class HBaseClassifier extends DomainClassifier{
                     String columnId = columnIds.get(k);
                     String value = Bytes.toString(result.getValue(Bytes.toBytes(COLUMN_FAMILY), Bytes.toBytes(columnName)));
                     ArrayList<String> columnData;
-                    if(columnMap.get(columnName)==null){
+                    if(columnMap.get(columnId)==null){
                         columnData = new ArrayList<String>();
                         columnMap.put(columnId,columnData);
                     }

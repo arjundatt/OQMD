@@ -1,4 +1,4 @@
-package DIC.util.database;
+    package DIC.util.database;
 
 import DIC.util.commons.GenerateID;
 
@@ -11,7 +11,7 @@ import java.util.Vector;
  * Created by arjundatt.16 on 10/08/15.
  */
 public class DatabaseUtility {
-    static final String JDBC_DRIVER = "com.ibm.db2.jcc.DB2Driver";
+    static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
     static final String DERBY = "Derby";
     static final String ORACLE = "Oracle";
@@ -39,7 +39,7 @@ public class DatabaseUtility {
         Connection connection = null;
         try {
             Class.forName(JDBC_DRIVER);
-            String url = "jdbc:derby://" + dbIP + ":" + port + "/" + instance + ";ssl=basic";
+            String url = "jdbc:derby://" + dbIP + ":" + port + "/" + instance + ";";
             connection = DriverManager.getConnection(url, userName, pass);
             System.out.println("Connected to database");
         } catch (ClassNotFoundException ex) {
