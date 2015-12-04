@@ -81,9 +81,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="hadoop-core-0.20.2" level="project" />
-    <orderEntry type="library" name="hbase-0.94.2" level="project" />
-    <orderEntry type="library" name="ojdbc14" level="project" />
     <orderEntry type="library" name="gsp" level="project" />
+    <orderEntry type="library" name="hadoop-core-0.20.2" level="project" />
+    <orderEntry type="library" name="ojdbc14" level="project" />
+    <orderEntry type="library" name="ojdbc6" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>
