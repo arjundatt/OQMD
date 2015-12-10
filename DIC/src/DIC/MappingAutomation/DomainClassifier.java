@@ -12,6 +12,9 @@ import java.util.*;
  * Created by arjundatt.16 on 11/3/2015.
  */
 abstract public class DomainClassifier {
+
+    protected static final int NUM_DATABASE_SUPPORTED = 2;
+
     protected static Map<String, Regex> regexMap;                   //regexId->regex object
     //protected Map<String, ArrayList<String>> columnMap;     //columnId->column Data
     protected static HashSet<String> allColumnIds = new HashSet<String>();
@@ -160,6 +163,7 @@ abstract public class DomainClassifier {
                 else{
                     efficiency = sampleMatch(attributeInstance, values, regex);
                 }
+                sampleMatch(attributeInstance,values);
                 HashMap<String,PriorityQueue<AttributeIdentityModel>> map= bucketClassifier.get(regexId);
                 PriorityQueue<AttributeIdentityModel> q = map.get(sourceIdentity);
                 q.add(attributeInstance);
@@ -186,6 +190,28 @@ abstract public class DomainClassifier {
                     AttributeIdentityModel o = (AttributeIdentityModel) pItr.next();
                     System.out.println(" column id: " + o.getColumnId() + " type: " + o.getType() + " efficiency: " + o.getEfficiency());
                 }
+            }
+        }
+    }
+
+    //Character pattern matching
+    private void sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population){
+        int i;
+        int matchCount =0;
+        StringBuilder pattern =new StringBuilder();
+        for(i=0;(i<500 && i<population.size());i++){
+            String observation = population.get(i);
+            for(int j=0;j<observation.length();j++){
+                if(Character.isLetter(observation.charAt(j))){
+                    pattern.append("A");
+                }
+                else if(Character.isLetter(observation.charAt(j)){
+                    pattern.append("A");
+                }
+            }
+            population.get(i)
+            if (population.get(i).matches(regex.getRegex())){
+                matchCount++;
             }
         }
     }
@@ -237,7 +263,8 @@ abstract public class DomainClassifier {
         //The object AttributeIdentityModel <obj> contains the info about its ID and the dbType it belongs to
         //use obj.getType() and obj.getColumnId to retrieve this info
         LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings = new LinkedHashMap<String, ArrayList<AttributeIdentityModel>>();
-
+        HashSet<String>  mDomainWithMultiMapping = new HashSet<String>();
+        //HashSet<String> alColumnIds_Copy = (HashSet<String>)allColumnIds.clone();
         Iterator<Map.Entry<String,HashMap<String,PriorityQueue<AttributeIdentityModel>>>> bucketIterator = (bucketClassifier.entrySet()).iterator();
         int domainCount =0;
         while(bucketIterator.hasNext()){
@@ -253,7 +280,7 @@ abstract public class DomainClassifier {
                 while (size>0){
                     AttributeIdentityModel attributeInstance = classificationQueue.poll();
                     size--;
-                    if(attributeInstance!=null) {
+                    if(attributeInstance!=null /*&& alColumnIds_Copy.contains(attributeInstance.getColumnId())*/) {
                         if (attributeInstance.getEfficiency() < 0.5f) {
                             continue;
                         }
@@ -263,9 +290,15 @@ abstract public class DomainClassifier {
                             mMappings.put(regexID,attributeBag);
                         }
                         else{
+                            //inti work for multiple mappings -- next phase
+                            if(mMappings.get(regexID).size()==2){
+                                mDomainWithMultiMapping.add(regexID);
+                            }
+
                             attributeBag = mMappings.get(regexID);
                         }
                         attributeBag.add(attributeInstance);
+                        //alColumnIds_Copy.remove(attributeInstance.getColumnId());
                         //todo: test print, remove
                         System.out.println("RegexId:" + regexID + " db type: " + dbIdentity + "|Attribute: " + attributeInstance.getColumnId());
                     }
@@ -273,7 +306,26 @@ abstract public class DomainClassifier {
 
             }
         }
+        //mMappings = characterPatternMapping(mMappings, mDomainWithMultiMapping);
         phaseIV(mMappings);
+    }
+
+    private LinkedHashMap<String,ArrayList<AttributeIdentityModel>> characterPatternMapping(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings, HashSet<String> mDomainWithMultiMapping){
+        Iterator<String> iterator = mDomainWithMultiMapping.iterator();
+        while (iterator.hasNext()){
+            String regexId = iterator.next();
+            ArrayList<AttributeIdentityModel> attributeBag = mMappings.get(regexId);
+            for(AttributeIdentityModel instance1 : attributeBag){
+                for (AttributeIdentityModel instance2 : attributeBag){
+                    if(!(instance1.getType().equals(instance2.getType()))){
+
+                    }
+                }
+            }
+
+
+        }
+        return mMappings;
     }
 
     //executed after phase III
@@ -321,4 +373,6 @@ abstract public class DomainClassifier {
 
 
     }
+
+
 }

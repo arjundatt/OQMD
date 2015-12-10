@@ -16,6 +16,7 @@ public class AttributeIdentityModel {
 
     private String tableID;
     private String columnId;
+    private String charPattern;
 
     private String type;
 
@@ -27,6 +28,13 @@ public class AttributeIdentityModel {
         this.tableID = tableID;
     }
 
+    public String getCharPattern() {
+        return charPattern;
+    }
+
+    public void setCharPattern(String charPattern) {
+        this.charPattern = charPattern;
+    }
 
     public void setType(String type) {
         this.type = type;

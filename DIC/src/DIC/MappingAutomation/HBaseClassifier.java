@@ -33,7 +33,7 @@ public class HBaseClassifier extends DomainClassifier{
         this.tableId = tableID;
         getDomains(IDENTITY);
         phaseI();
-        phaseIII();
+        super.phaseIII();
     }
 
     @Override
