@@ -197,23 +197,52 @@ abstract public class DomainClassifier {
     //Character pattern matching
     private void sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population){
         int i;
-        int matchCount =0;
-        StringBuilder pattern =new StringBuilder();
-        for(i=0;(i<500 && i<population.size());i++){
+        int sampleSize=50;
+        HashMap<String,Integer> possibilities = new HashMap<String, Integer>();
+        for(i=0;(i<sampleSize && i<population.size());i++){
             String observation = population.get(i);
+            StringBuilder pattern =new StringBuilder();
             for(int j=0;j<observation.length();j++){
                 if(Character.isLetter(observation.charAt(j))){
                     pattern.append("A");
                 }
-                else if(Character.isLetter(observation.charAt(j)){
-                    pattern.append("A");
+                else if(Character.isDigit(observation.charAt(j))){
+                    pattern.append("N");
+                }
+                else if(Character.isWhitespace(observation.charAt(j))){
+                    pattern.append("W");
+                }
+                else if(Character.isSpaceChar(observation.charAt(j))){
+                    pattern.append("w");
+                }
+                else{
+                    pattern.append("S");
                 }
             }
-            population.get(i)
-            if (population.get(i).matches(regex.getRegex())){
-                matchCount++;
+            if(!possibilities.containsKey(pattern)){
+                possibilities.put(pattern.toString(),0);
+            }
+            possibilities.put(pattern.toString(),1+possibilities.get(pattern.toString()));
+        }
+        Iterator<Map.Entry<String,Integer>> iterator = possibilities.entrySet().iterator();
+        Integer max = 0;
+        String xpattern=null;
+        while (iterator.hasNext()){
+            Map.Entry<String,Integer> child = iterator.next();
+            String pattern = child.getKey();
+            Integer value = child.getValue();
+            if(value>max){
+                max = value;
+                xpattern = pattern;
             }
         }
+        if(max>40){
+            attributeInstance.setCharPattern(xpattern.toString());
+        }
+        else{
+            attributeInstance.setCharPattern(null);
+        }
+
     }
 
     private float sampleMatch(AttributeIdentityModel attributeInstance, ArrayList<String> population, ArrayList<String> links){
@@ -290,7 +319,7 @@ abstract public class DomainClassifier {
                             mMappings.put(regexID,attributeBag);
                         }
                         else{
-                            //inti work for multiple mappings -- next phase
+                            //init work for multiple mappings -- next phase
                             if(mMappings.get(regexID).size()==2){
                                 mDomainWithMultiMapping.add(regexID);
                             }
@@ -306,11 +335,12 @@ abstract public class DomainClassifier {
 
             }
         }
-        //mMappings = characterPatternMapping(mMappings, mDomainWithMultiMapping);
-        phaseIV(mMappings);
+        phaseIV(mMappings, mDomainWithMultiMapping);
     }
 
-    private LinkedHashMap<String,ArrayList<AttributeIdentityModel>> characterPatternMapping(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings, HashSet<String> mDomainWithMultiMapping){
+    //break ties using chracter mappings
+    private LinkedHashMap<String,ArrayList<AttributeIdentityModel>> characterPatternMapping(LinkedHashMap<String,
+            ArrayList<AttributeIdentityModel>> mMappings, HashSet<String> mDomainWithMultiMapping){
         Iterator<String> iterator = mDomainWithMultiMapping.iterator();
         while (iterator.hasNext()){
             String regexId = iterator.next();
@@ -318,21 +348,35 @@ abstract public class DomainClassifier {
             for(AttributeIdentityModel instance1 : attributeBag){
                 for (AttributeIdentityModel instance2 : attributeBag){
                     if(!(instance1.getType().equals(instance2.getType()))){
-
+                        String charPattern1 = instance1.getCharPattern();
+                        String charPattern2 = instance2.getCharPattern();
+                        if(charPattern1.equals(charPattern2)){
+                            ArrayList<AttributeIdentityModel> newBag;
+                            if(mMappings.containsKey(charPattern1)){
+                                newBag = mMappings.get(charPattern1);
+                            }
+                            else {
+                                newBag = new ArrayList<AttributeIdentityModel>();
+                            }
+                            newBag.add(instance1);
+                            newBag.add(instance2);
+                            mMappings.put(charPattern1,newBag);
+                            attributeBag.remove(instance1);
+                            attributeBag.remove(instance2);
+                        }
                     }
                 }
             }
-
-
         }
         return mMappings;
     }
 
     //executed after phase III
     //mapping is done here -> this is perhaps the final result
-    private void phaseIV(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings) {
+    private void phaseIV(LinkedHashMap<String,ArrayList<AttributeIdentityModel>> mMappings, HashSet<String> mDomainWithMultiMapping) {
         /* Need to compare the matched columns once again to find similar patterns. Not sure if this is necessary.
         * */
+        mMappings = characterPatternMapping(mMappings, mDomainWithMultiMapping);
         insertIntoMetaDb(mMappings);
 
     }
