@@ -1,6 +1,6 @@
 <h1>One query multiple databases - An interface to mutually access data from heterogeneous databases</h1>
-@author: <b>Arnab Saha</b></br>
 @author: <b>Arjun Sharma</b></br>
+@author: <b>Arnab Saha</b></br>
 @author: <b>Nishtha Garg</b></br>
 
 <h2>Abstract</h2>
